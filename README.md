@@ -13,7 +13,7 @@
 
 O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar o acesso ao conhecimento relacionado à **Reforma Tributária**, apoiando principalmente profissionais e equipes da área de Contabilidade na compreensão e implementação das novas regras.
 
-A solução utiliza uma abordagem baseada em **RAG — Retrieval-Augmented Generation**, permitindo que o agente consulte uma base de conhecimento construída a partir de documentos selecionados de fontes institucionais e oficiais.
+A solução utiliza uma abordagem baseada em **RAG — Retrieval-Augmented Generation**, permitindo que o agente consulte uma base de conhecimento construída a partir de documentos oficiais e institucionais relacionados à Reforma Tributária do Consumo.
 
 O objetivo é transformar documentos técnicos e regulatórios em uma **base de conhecimento conversacional**, permitindo que o usuário faça perguntas em linguagem natural e receba respostas contextualizadas e fundamentadas nas fontes disponíveis.
 
@@ -42,7 +42,7 @@ Informações importantes podem estar distribuídas em diferentes documentos, ma
 
 Diante desse cenário, surge a oportunidade de utilizar Inteligência Artificial para criar uma camada conversacional sobre essa base documental.
 
-Em vez de o profissional precisar localizar manualmente determinada informação em dezenas de documentos, o agente permite realizar uma pergunta em linguagem natural e receber uma resposta baseada nos conteúdos disponíveis.
+Em vez de o profissional precisar localizar manualmente determinada informação em diversos documentos, o agente permite realizar uma pergunta em linguagem natural e receber uma resposta baseada nos conteúdos disponíveis.
 
 ---
 
@@ -76,38 +76,42 @@ O fluxo conceitual é:
           │              │              │
           └──────────────┼──────────────┘
                          ↓
-                 📚 Base documental
+                  📚 Base documental
                          ↓
-                 🔎 Extração de texto
+                  🔎 Extração de texto
                          ↓
-                   ✂️ Chunking
+                    ✂️ Chunking
                          ↓
-                  🧮 Embeddings
+                   🧮 Embeddings
                          ↓
-                 🗄️ Banco vetorial
+                  🗄️ Banco vetorial
                          ↓
-                    🔍 Retriever
+                     🔍 Retriever
                          ↓
-                📑 Contexto relevante
+                 📑 Contexto relevante
                          ↓
-                    🧠 Agente IA
+                     🧠 Agente IA
                          ↓
-                   🤖 Modelo LLM
+                    🤖 Modelo LLM
                          ↓
-                  💬 Resposta
+                   💬 Resposta
                          ↓
-              📚 Fontes consultadas
+                 📚 Fontes consultadas
 ```
 
-### 🔎 RAG
+> **Nota:** os documentos inicialmente selecionados para o MVP são materiais oficiais do **Curso Reforma Tributária RFB e CFC**, disponibilizados no portal da Receita Federal. Materiais do CFC e da Fenacon poderão ser incorporados posteriormente, conforme a evolução da base de conhecimento.
 
-O RAG permite que o modelo de linguagem consulte informações recuperadas da base documental antes de gerar uma resposta.
+---
+
+## 🔎 RAG
+
+O **RAG (Retrieval-Augmented Generation)** permite que o modelo de linguagem consulte informações recuperadas da base documental antes de gerar uma resposta.
 
 Dessa forma, o agente não depende exclusivamente do conhecimento previamente aprendido pelo modelo.
 
 O processo ocorre em duas etapas principais:
 
-**Retrieval**
+### Retrieval
 
 ```text
 Pergunta do usuário
@@ -117,7 +121,7 @@ Busca semântica
 Trechos relevantes dos documentos
 ```
 
-**Generation**
+### Generation
 
 ```text
 Pergunta
@@ -133,31 +137,171 @@ Resposta contextualizada
 
 # 📚 Fontes de conhecimento
 
-A base de conhecimento será construída a partir de documentos relacionados à Reforma Tributária provenientes de fontes institucionais e oficiais.
+A base de conhecimento será construída a partir de documentos relacionados à **Reforma Tributária do Consumo**, priorizando fontes oficiais e institucionais.
 
-### Conselho Federal de Contabilidade — CFC
+## 🏛️ Receita Federal do Brasil — RFB
 
-Materiais relacionados à atuação e capacitação dos profissionais de Contabilidade.
+A principal fonte documental inicial do projeto será o **Curso Reforma Tributária RFB e CFC**, disponibilizado pela Receita Federal do Brasil.
 
-### Federação Nacional das Empresas de Serviços Contábeis — Fenacon
+### 🔗 Fonte oficial dos documentos
 
-Materiais e conteúdos relacionados ao ambiente contábil, fiscal e empresarial.
+**[📖 Módulos do Curso Reforma Tributária RFB e CFC — Receita Federal](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso)**
 
-### Receita Federal
+Os materiais são disponibilizados oficialmente em formato PDF e contemplam diferentes temas relacionados à Reforma Tributária do Consumo.
 
-Documentos, orientações, materiais de apoio e informações oficiais relacionadas à Reforma Tributária do Consumo.
+### 📌 Data de referência da curadoria
 
-A Receita Federal mantém atualmente um programa específico sobre a Reforma Tributária do Consumo, incluindo informações sobre implementação, marcos legais, projetos tecnológicos, regulamentação e materiais de apoio.
+Os documentos utilizados na primeira seleção foram identificados com atualizações realizadas entre **29/07/2026 e 07/08/2026**, conforme as informações disponibilizadas no portal oficial da Receita Federal.
 
-Entre os materiais disponibilizados estão conteúdos do **Curso Reforma Tributária RFB e CFC**, incluindo temas como normas gerais da tributação do consumo, CBS, cadastro, obrigações acessórias, apuração assistida e compensação.
+---
 
-> **Importante:** as fontes utilizadas pelo agente deverão ser mantidas identificadas e atualizadas, permitindo maior rastreabilidade das informações utilizadas nas respostas.
+## 📑 Documentos utilizados na base inicial
+
+### Módulo 1 — Normas Gerais da Tributação do Consumo
+
+| Documento           | Tema                                   | Fonte oficial                                                                                                                                                                                                                                          |
+| ------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Módulo 1 — 1ª parte | Normas Gerais da Tributação do Consumo | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-cfc-rfb-modulo-1-mombelli_maio-2026-final.pdf/view) |
+| Módulo 1 — 2ª parte | Normas Gerais da Tributação do Consumo | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-cfc-rfb-modulo-1_roni_maio-2026.pdf/view)           |
+
+### Módulo 2 — CBS na Importação e Exportação
+
+| Documento           | Tema                                                                 | Fonte oficial                                                                                                                                                                                                                                                                         |
+| ------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 2 — 1ª parte | A CBS na importação e na exportação de bens materiais                | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/cbs-no-comercio-exterior-curso-cfc-rfb-26-05-2026.pdf/view)                              |
+| Módulo 2 — 2ª parte | A CBS na importação e na exportação de bens materiais — Aula prática | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/cbs-no-comercio-exterior-curso-cfc-rfb-26-05-2026_aula-pratica_sergio_completa.pdf/view) |
+
+### Módulo 3 — Fundo de Compensação de Benefícios Fiscais
+
+| Documento           | Tema                                              | Fonte oficial                                                                                                                                                                                                                                            |
+| ------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 3 — 1ª parte | Fundo de Compensação de Benefícios Fiscais — FCBF | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-rtc-cfc-rfb-3o-modulo-fcbf-gustavo-busato.pdf/view)   |
+| Módulo 3 — 2ª parte | Fundo de Compensação de Benefícios Fiscais — FCBF | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-rtc-cfc-rfb-3o-modulo-fcbf-fernando-kreisig.pdf/view) |
+
+### Módulo 4 — Cadastro
+
+| Documento           | Tema     | Fonte oficial                                                                                                                                                                                                                                                                  |
+| ------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Módulo 4 — 1ª parte | Cadastro | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/cadastronocontextodartc-modulo-4-roni-acertada-com-reriton-versao-final.pdf/view) |
+| Módulo 4 — 2ª parte | Cadastro | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/4o-modulo-apresentacao-final-cadastro.pdf/view)                                   |
+| Módulo 4 — 3ª parte | Cadastro | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/20260615-apresentacao-rtc-rev.pdf/view)                                           |
+
+### Módulo 5 — Obrigações Acessórias
+
+| Documento           | Tema                                                           | Fonte oficial                                                                                                                                                                                                                                                                                    |
+| ------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Módulo 5 — 1ª parte | Obrigações Acessórias — Documentos Fiscais / NF-e / NFS-e      | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/5deg-modulo-cfc-rfb-obrigacoes-acessorias-documentos-fiscais-nfs-e-hermano.pdf/view)                |
+| Módulo 5 — 2ª parte | Obrigações Acessórias — Calculadora / Motor Oficial de Cálculo | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/5o-modulo-cfc-rfb-obrigacoes-acessorias-calculadora-motor-oficial-de-calculo-ariel-bonzan.pdf/view) |
+| Módulo 5 — 3ª parte | Obrigações Acessórias — Documentos Fiscais                     | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/5o-modulo-cfc-rfb-obrigacoes-acessorias-documentos-fiscais-marco-duran.pdf/view)                    |
+| Módulo 5 — 4ª parte | Obrigações Acessórias — EFD Contribuições                      | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/5o-modulo-cfc-rfb-obrigacoes-acessorias-efd-contribuicoes-guilherme.pdf/view)                       |
+| Módulo 5 — 5ª parte | Obrigações Acessórias — Legislação CBS/IBS                     | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/5o-modulo-cfc-rfb-obrigacoes-acessorias-legislacao-cbs-ibs-wolney.pdf/view)                         |
+
+### Módulo 6 — Apuração Assistida da CBS
+
+| Documento           | Tema                      | Fonte oficial                                                                                                                                                                                                                                               |
+| ------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 6 — 1ª parte | Apuração Assistida da CBS | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-reforma-tributaria-rfb-e-cfc-modulo-6-1a-parte.pdf/view) |
+| Módulo 6 — 2ª parte | Apuração Assistida da CBS | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-reforma-tributaria-rfb-e-cfc-modulo-6-2a-parte.pdf/view) |
+
+### Módulo 7 — Compensação, Ressarcimento, Restituição e Transferências
+
+| Documento           | Tema                                                     | Fonte oficial                                                                                                                                                                                                                                               |
+| ------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 7 — 1ª parte | Compensação, Ressarcimento, Restituição e Transferências | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-reforma-tributaria-rfb-e-cfc-modulo-7-1a-parte.pdf/view) |
+| Módulo 7 — 2ª parte | Compensação, Ressarcimento, Restituição e Transferências | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-reforma-tributaria-rfb-e-cfc-modulo-7-2a-parte.pdf/view) |
+| Módulo 7 — 3ª parte | Compensação, Ressarcimento, Restituição e Transferências | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-reforma-tributaria-rfb-e-cfc-modulo-7-3a-parte.pdf/view) |
+| Módulo 7 — 4ª parte | Compensação, Ressarcimento, Restituição e Transferências | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/curso-reforma-tributaria-rfb-e-cfc-modulo-7-4a-parte.pdf/view) |
+
+### Módulo 8 — Simples Nacional e MEI
+
+| Documento           | Tema                                    | Fonte oficial                                                                                                                                                                                                                                                  |
+| ------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 8 — 1ª parte | PGDAS-D e sua evolução para o PGDAS-A   | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/modulo-8-cfc-rfb-simples-nacional-mei-fabio-de-tarsis.pdf/view)   |
+| Módulo 8 — 2ª parte | Mudanças nas normas do Simples Nacional | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/modulo-8-cfc-rtc-simples-nacional-mei-gustavo-salton-vf.pdf/view) |
+| Módulo 8 — 3ª parte | Opções — Simples Nacional e IBS/CBS     | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/modulo-8-cfc-rtc-simples-nacional-mei-tiago-sfreddo-vf.pdf/view)  |
+
+### Módulo 9 — Economia Digital
+
+| Documento           | Tema             | Fonte oficial                                                                                                                                                                                                                                                         |
+| ------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 9 — 1ª parte | Economia Digital | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/modulo-9-curso-rtc-cfc-rfb-economia-digital-joao-hamilton-rech.pdf/view) |
+| Módulo 9 — 2ª parte | Economia Digital | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/modulo-9-curso-rtc-cfc-rfb-economia-digital-fabricio-betto.pdf/view)     |
+
+### Módulo 10 — Regimes Específicos e Diferenciados
+
+| Documento            | Tema                                              | Fonte oficial                                                                                                                                                                                                                                                   |
+| -------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 10 — 1ª parte | Regimes Específicos e Diferenciados               | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/01_claudia_regimes_especificos_e_diferenciados_modulo_10.pdf/view) |
+| Módulo 10 — 2ª parte | Regimes Específicos e Diferenciados               | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/02_anelise_regimes_diferenciados_modulo_10.pdf/view)               |
+| Módulo 10 — 3ª parte | Normas sobre Regimes Específicos                  | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/03_gustavo_normas_sobre_regimes_especificos_modulo_10.pdf/view)    |
+| Módulo 10 — 4ª parte | Regimes Específicos e Diferenciados               | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/04_huning_regimes_especificos_e_diferenciados_modulo_10.pdf/view)  |
+| Módulo 10 — 5ª parte | Regimes Específicos e Diferenciados — Operacional | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/05_flores_operacional_modulo_10.pdf/view)                          |
+
+### Módulo 11 — Planos de Assistência à Saúde e Concursos de Prognóstico
+
+| Documento            | Tema                                                     | Fonte oficial                                                                                                                                                                                                   |
+| -------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Módulo 11 — 1ª parte | Planos de Assistência à Saúde e Concursos de Prognóstico | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/mdulo1-1.pdf/view) |
+| Módulo 11 — 2ª parte | Planos de Assistência à Saúde e Concursos de Prognóstico | [📄 PDF oficial](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso/mdulo1-2.pdf/view) |
+
+---
+
+## 📊 Organização temática da base
+
+A documentação selecionada permite estruturar a base de conhecimento em diferentes categorias:
+
+```text
+Reforma Tributária
+│
+├── Normas Gerais da Tributação do Consumo
+├── CBS
+│   └── Comércio Exterior
+├── IBS / CBS
+├── Fundo de Compensação de Benefícios Fiscais
+├── Cadastro
+├── Obrigações Acessórias
+├── Documentos Fiscais
+├── Apuração Assistida
+├── Compensação
+├── Ressarcimento
+├── Restituição
+├── Transferências
+├── Simples Nacional
+├── MEI
+├── Economia Digital
+├── Regimes Específicos
+├── Regimes Diferenciados
+└── Planos de Assistência à Saúde
+```
+
+Essa categorização será utilizada como referência para a organização dos documentos, geração de metadados e recuperação de informações pelo agente.
+
+---
+
+## 🔄 Atualização da base documental
+
+Como os materiais oficiais podem receber atualizações durante a implementação da Reforma Tributária, o projeto deverá considerar a **data de publicação ou última modificação do documento** como parte dos metadados da base.
+
+No momento da inclusão dos documentos, serão registrados, sempre que disponíveis:
+
+```text
+Fonte
+Módulo
+Título
+Tema
+Data de atualização
+URL oficial
+Página
+Tipo de documento
+```
+
+Essa abordagem permite identificar a versão do conteúdo utilizada pelo agente e facilita futuras atualizações da base de conhecimento.
 
 ---
 
 # 📄 Documentos
 
-### Formato inicial
+## Formato inicial
 
 O MVP será inicialmente desenvolvido para trabalhar com documentos em:
 
@@ -184,7 +328,7 @@ A ideia é permitir que diferentes formatos possam passar por uma camada de norm
 
 # 🗂️ Metadados dos documentos
 
-Além do conteúdo textual, os documentos poderão ser associados a metadados para melhorar a recuperação e a rastreabilidade das respostas.
+Além do conteúdo textual, os documentos serão associados a metadados para melhorar a recuperação e a rastreabilidade das respostas.
 
 Exemplo:
 
@@ -192,7 +336,9 @@ Exemplo:
 fonte
 nome_documento
 tipo_documento
+modulo
 data_publicacao
+data_atualizacao
 categoria
 tema
 pagina
@@ -219,11 +365,15 @@ O usuário poderá realizar perguntas como:
 
 > **Quais são as principais obrigações acessórias relacionadas à Reforma Tributária?**
 
-> **Segundo os materiais do CFC, quais são os principais pontos de atenção para os profissionais de Contabilidade?**
+> **Quais são os principais pontos de atenção para os profissionais de Contabilidade?**
 
-> **Quais orientações a Receita Federal disponibilizou para 2026?**
+> **Como funciona a apuração assistida da CBS?**
 
-A Receita Federal já disponibiliza orientações específicas para 2026, incluindo informações sobre CBS, IBS e documentos fiscais eletrônicos.
+> **Como funcionam os mecanismos de compensação, ressarcimento e restituição?**
+
+> **Quais são as mudanças relacionadas ao Simples Nacional?**
+
+> **Como a Reforma Tributária impacta a economia digital?**
 
 ---
 
@@ -247,12 +397,10 @@ Quais são as principais mudanças para 2026?
 📚 Fontes consultadas:
 
 • Receita Federal
-• Documento: Orientações da Reforma Tributária para 2026
+• Documento: [nome do documento]
+• Módulo: [número do módulo]
 • Página: XX
-
-• CFC
-• Documento: XXXXX
-• Página: XX
+• URL: [fonte oficial]
 ```
 
 Essa abordagem busca aumentar a **transparência, rastreabilidade e confiabilidade** das respostas.
@@ -305,7 +453,7 @@ A arquitetura proposta é:
             ↓
 ┌───────────────────────┐
 │  Base de Conhecimento │
-│   CFC / Fenacon / RFB │
+│      RFB / CFC        │
 └───────────────────────┘
 ```
 
@@ -388,15 +536,16 @@ A qualidade do agente será avaliada por meio de um conjunto de perguntas de tes
 
 Os testes deverão contemplar diferentes cenários:
 
-| Cenário                               | Objetivo                        |
-| ------------------------------------- | ------------------------------- |
-| Pergunta direta                       | Avaliar recuperação simples     |
-| Pergunta conceitual                   | Avaliar compreensão             |
-| Pergunta específica                   | Avaliar precisão                |
-| Pergunta envolvendo diferentes fontes | Avaliar recuperação múltipla    |
-| Pergunta sem resposta na base         | Avaliar controle de alucinação  |
-| Pergunta fora do escopo               | Avaliar comportamento do agente |
-| Pergunta com termos técnicos          | Avaliar recuperação semântica   |
+| Cenário                                   | Objetivo                        |
+| ----------------------------------------- | ------------------------------- |
+| Pergunta direta                           | Avaliar recuperação simples     |
+| Pergunta conceitual                       | Avaliar compreensão             |
+| Pergunta específica                       | Avaliar precisão                |
+| Pergunta envolvendo diferentes documentos | Avaliar recuperação múltipla    |
+| Pergunta sem resposta na base             | Avaliar controle de alucinação  |
+| Pergunta fora do escopo                   | Avaliar comportamento do agente |
+| Pergunta com termos técnicos              | Avaliar recuperação semântica   |
+| Pergunta solicitando fonte                | Avaliar rastreabilidade         |
 
 A avaliação permitirá identificar oportunidades de melhoria no processo de ingestão, chunking, recuperação e geração das respostas.
 
@@ -558,14 +707,17 @@ streamlit run app/app.py
 * [x] Definição do público-alvo
 * [x] Definição da abordagem RAG
 * [x] Definição das fontes iniciais
+* [x] Identificação dos documentos oficiais
+* [x] Organização inicial dos documentos por módulo
 * [ ] Definição da arquitetura final
 
 ### 🟡 Etapa 2 — Base de conhecimento
 
-* [ ] Seleção dos documentos
+* [ ] Seleção definitiva dos documentos
 * [ ] Download e organização dos PDFs
 * [ ] Extração de texto
 * [ ] Tratamento dos documentos
+* [ ] Criação dos metadados
 * [ ] Chunking
 * [ ] Geração dos embeddings
 * [ ] Implementação do banco vetorial
@@ -578,6 +730,7 @@ streamlit run app/app.py
 * [ ] Implementação do agente
 * [ ] Controle de respostas sem evidência
 * [ ] Apresentação das fontes
+* [ ] Referência por documento e página
 
 ### 🟡 Etapa 4 — Interface
 
@@ -594,6 +747,7 @@ streamlit run app/app.py
 * [ ] Testes de respostas
 * [ ] Testes de perguntas fora do escopo
 * [ ] Avaliação de alucinação
+* [ ] Avaliação das fontes recuperadas
 * [ ] Ajustes no RAG
 
 ### 🔵 Etapa 6 — Cloud
@@ -627,9 +781,11 @@ O agente não substitui a análise de profissionais habilitados nem constitui, p
 
 As respostas dependem da qualidade, atualização e abrangência dos documentos incorporados à base de conhecimento.
 
-Como a Reforma Tributária está em processo de implementação, documentos e orientações podem ser atualizados. A Receita Federal, por exemplo, mantém páginas específicas com orientações e marcos regulatórios que são atualizados ao longo da implementação.
+Como a Reforma Tributária está em processo de implementação, documentos e orientações oficiais podem ser atualizados.
 
 Por isso, a base documental deverá possuir mecanismos de atualização e identificação da origem dos conteúdos.
+
+> **Atenção:** as respostas geradas pelo agente devem ser utilizadas como apoio à consulta e capacitação, sendo recomendada a validação da informação diretamente na fonte oficial e, quando necessário, junto a profissionais habilitados.
 
 ---
 
@@ -648,34 +804,37 @@ Após a implementação do MVP, o projeto poderá evoluir para:
 * Avaliação automática das respostas;
 * Atualização automatizada da base documental;
 * Monitoramento do agente em produção;
-* Expansão para outros temas contábeis e tributários.
+* Expansão para outros temas contábeis e tributários;
+* Inclusão de documentos adicionais do CFC;
+* Inclusão de documentos da Fenacon;
+* Controle de versões dos documentos;
+* Atualização periódica da base de conhecimento.
 
 ---
 
 # 📚 Referências institucionais
 
-* **Receita Federal — Programa da Reforma Tributária do Consumo**
-* **Receita Federal — Orientações da Reforma Tributária para 2026**
-* **Receita Federal — Material de Apoio do Curso Reforma Tributária RFB e CFC**
-* **Conselho Federal de Contabilidade — CFC**
-* **Federação Nacional das Empresas de Serviços Contábeis — Fenacon**
+### Receita Federal do Brasil
 
-A Receita Federal disponibiliza materiais específicos do curso RFB/CFC sobre a Reforma Tributária, incluindo conteúdos sobre normas gerais, CBS, cadastro, obrigações acessórias, apuração assistida e outros temas.
+**Curso Reforma Tributária RFB e CFC — Módulos do Curso**
+
+[📖 Acessar página oficial dos módulos](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso)
+
+### Conselho Federal de Contabilidade — CFC
+
+Materiais institucionais relacionados à capacitação e atuação dos profissionais da Contabilidade poderão ser incorporados à base de conhecimento conforme a evolução do projeto.
+
+### Fenacon
+
+Materiais institucionais relacionados ao ambiente contábil, fiscal e empresarial poderão ser incorporados à base de conhecimento em etapas futuras.
 
 ---
 
 # 👩‍💻 Equipe
 
-Projeto desenvolvido como parte do desafio de desenvolvimento de soluções com **Inteligência Artificial, RAG e Oracle Cloud Infrastructure**.
-
-### Integrantes
-
-| Nome               | Atuação         |
-| ------------------ | --------------- |
-| Nome do integrante | IA / RAG        |
-| Nome do integrante | Desenvolvimento |
-| Nome do integrante | Dados           |
-| Nome do integrante | Cloud / OCI     |
+| Integrante | Atuação |
+|---|---|
+| **Kelly Costa** | IA / RAG • Desenvolvimento • Dados • Cloud / OCI |
 
 ---
 
@@ -687,7 +846,7 @@ A licença definitiva será definida pela equipe durante a publicação do proje
 
 ---
 
-## ⭐ Contribuição
+# ⭐ Contribuição
 
 Sugestões, melhorias e contribuições são bem-vindas.
 
