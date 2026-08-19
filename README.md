@@ -701,15 +701,20 @@ streamlit run app/app.py
 
 # 🗺️ Roadmap
 
-### 🟢 Etapa 1 — Definição
+### 🟢 Etapa 1 — Definição e coleta inicial
 
-* [x] Definição do problema
-* [x] Definição do público-alvo
-* [x] Definição da abordagem RAG
-* [x] Definição das fontes iniciais
-* [x] Identificação dos documentos oficiais
-* [x] Organização inicial dos documentos por módulo
-* [ ] Definição da arquitetura final
+- [x] Definição do problema
+- [x] Definição do público-alvo
+- [x] Definição da abordagem RAG
+- [x] Definição das fontes iniciais
+- [x] Identificação dos documentos oficiais
+- [x] Organização inicial dos documentos por módulo
+- [x] Criação do catálogo documental
+- [x] Registro da instituição responsável pela publicação
+- [x] Registro da última modificação informada pela fonte oficial
+- [x] Registro da data de acesso
+- [x] Registro do status de cada documento
+- [x] Definição da arquitetura final
 
 ### 🟡 Etapa 2 — Base de conhecimento
 
