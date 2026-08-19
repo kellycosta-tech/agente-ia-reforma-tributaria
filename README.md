@@ -1,4 +1,4 @@
-# 🤖 Reforma Tributária AI Agent
+#  1️⃣ 🤖 Reforma Tributária AI Agent
 
 > **Agente de Inteligência Artificial para consulta, capacitação e apoio à implementação da Reforma Tributária**
 
@@ -9,32 +9,101 @@
 
 ---
 
-## 📌 Sobre o projeto
+## 2️⃣ 🚧 Status do projeto
 
-O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar o acesso ao conhecimento relacionado à **Reforma Tributária**, apoiando principalmente profissionais e equipes da área de Contabilidade na compreensão e implementação das novas regras.
+**Status:** 🟡 Em desenvolvimento
 
-A solução utiliza uma abordagem baseada em **RAG — Retrieval-Augmented Generation**, permitindo que o agente consulte uma base de conhecimento construída a partir de documentos oficiais e institucionais relacionados à Reforma Tributária do Consumo.
+O projeto encontra-se na etapa de construção e validação do pipeline de RAG, incluindo:
 
-O objetivo é transformar documentos técnicos e regulatórios em uma **base de conhecimento conversacional**, permitindo que o usuário faça perguntas em linguagem natural e receba respostas contextualizadas e fundamentadas nas fontes disponíveis.
+- Curadoria e catalogação documental;
+- Organização dos documentos oficiais;
+- Preparação da base de conhecimento;
+- Implementação da ingestão;
+- Recuperação semântica;
+- Desenvolvimento do agente;
+- Avaliação das respostas;
+- Deploy em OCI.
+
+> Funcionalidades marcadas como futuras no roadmap ainda não fazem parte do MVP atual.
+
+---
+##  3️⃣ 📌 Sobre o projeto
+
+O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar a consulta, compreensão e capacitação sobre a **Reforma Tributária do Consumo**.
+
+A solução utiliza **RAG — Retrieval-Augmented Generation** para transformar documentos oficiais e institucionais em uma base de conhecimento consultável por linguagem natural.
+
+O usuário pode realizar perguntas sobre temas da Reforma Tributária e receber respostas contextualizadas a partir dos documentos recuperados, mantendo a **rastreabilidade da informação por meio dos metadados e das fontes documentais utilizadas**.
+
+O projeto foi concebido com foco em **curadoria documental, recuperação semântica e respostas fundamentadas**, buscando reduzir o tempo necessário para localizar informações relevantes em documentos técnicos extensos.
 
 ---
 
-## 🎯 Objetivo
+## 4️⃣⭐ Diferencial do projeto
+
+Uma solução de conhecimento documental baseada em RAG, com curadoria, catalogação, metadados, recuperação semântica e respostas fundamentadas em fontes oficiais.
+
+O diferencial da solução está na construção da base de conhecimento.
+
+Os documentos não são simplesmente disponibilizados ao modelo de linguagem. Antes da ingestão, passam por um processo de **seleção, identificação, catalogação e organização**, considerando informações como:
+
+- Instituição responsável pela publicação;
+- Módulo e tema;
+- Título do documento;
+- Data de publicação ou atualização;
+- Data de acesso;
+- URL oficial de origem;
+- Tipo de documento;
+- Status na curadoria;
+- Metadados necessários para rastreabilidade.
+
+Essa abordagem permite construir uma base documental estruturada e preparada para recuperação semântica, contribuindo para respostas mais contextualizadas e verificáveis.
+
+```
+🏛️ FONTES OFICIAIS
+        ↓
+📋 CATÁLOGO DOCUMENTAL
+        ↓
+🔎 CURADORIA
+        ↓
+🏷️ METADADOS
+        ↓
+📄 INGESTÃO
+        ↓
+✂️ CHUNKING
+        ↓
+🧮 EMBEDDINGS
+        ↓
+🗄️ VECTOR STORE
+        ↓
+🔍 RETRIEVAL
+        ↓
+🧠 LLM
+        ↓
+💬 RESPOSTA
+        ↓
+📚 FONTE + PÁGINA
+```
+---
+
+## 5️⃣ 🎯 Objetivo
 
 Desenvolver um agente de IA capaz de:
 
-* Responder perguntas relacionadas à Reforma Tributária;
+* Responder perguntas relacionadas à Reforma Tributária do Consumo;
 * Apoiar a capacitação de profissionais da Contabilidade;
 * Facilitar a consulta de documentos técnicos e institucionais;
-* Recuperar informações relevantes a partir de documentos PDF;
-* Apresentar respostas contextualizadas com base na documentação disponível;
-* Indicar as fontes utilizadas na construção das respostas;
+* Estruturar uma base de conhecimento a partir de documentos oficiais;
+* Recuperar informações relevantes por meio de busca semântica;
+* Gerar respostas contextualizadas a partir dos trechos recuperados;
+* Manter a rastreabilidade das informações por meio de metadados e fontes;
 * Reduzir o tempo necessário para localizar informações em documentos extensos;
-* Servir como uma base de conhecimento conversacional acessível aos usuários.
+* Controlar respostas quando não houver evidências suficientes na base;
+* Disponibilizar uma interface conversacional para consulta do conhecimento.
 
 ---
 
-## 💡 Problema
+## 6️⃣💡 Problema
 
 A Reforma Tributária envolve mudanças relevantes na estrutura tributária brasileira e demanda atualização contínua por parte dos profissionais de Contabilidade.
 
@@ -46,7 +115,7 @@ Em vez de o profissional precisar localizar manualmente determinada informação
 
 ---
 
-## 👥 Público-alvo
+## 7️⃣👥 Público-alvo
 
 O agente foi concebido principalmente para:
 
@@ -61,7 +130,28 @@ O acesso ao agente será **aberto**, não havendo necessidade de restringir sua 
 
 ---
 
-# 🧠 Como funciona?
+## 8️⃣🎯 Escopo do MVP
+
+A primeira versão do projeto terá como foco:
+
+- Documentos em formato PDF;
+- Materiais oficiais relacionados à Reforma Tributária do Consumo;
+- Base documental inicialmente concentrada nos materiais RFB/CFC;
+- Processamento e fragmentação dos documentos;
+- Geração de embeddings;
+- Recuperação semântica;
+- Geração de respostas por LLM;
+- Apresentação das fontes recuperadas;
+- Interface conversacional;
+- Disponibilização da aplicação em ambiente cloud.
+
+Formatos adicionais, novas instituições e funcionalidades avançadas serão incorporados em etapas posteriores.
+
+---
+
+---
+
+## 9️⃣🧠 Como funciona?
 
 A solução utiliza uma arquitetura baseada em **RAG — Retrieval-Augmented Generation**.
 
@@ -103,7 +193,7 @@ O fluxo conceitual é:
 
 ---
 
-## 🔎 RAG
+## 🔟🔎 RAG
 
 O **RAG (Retrieval-Augmented Generation)** permite que o modelo de linguagem consulte informações recuperadas da base documental antes de gerar uma resposta.
 
@@ -133,11 +223,15 @@ Modelo de linguagem
 Resposta contextualizada
 ```
 
----
 
-# 📚 Fontes de conhecimento
+# 📄 Documentos
 
-A base de conhecimento será construída a partir de documentos relacionados à **Reforma Tributária do Consumo**, priorizando fontes oficiais e institucionais.
+
+## 1️⃣1️⃣📚 Fontes de conhecimento
+
+A base documental inicial foi estruturada a partir de materiais relacionados à **Reforma Tributária do Consumo**, priorizando fontes oficiais e institucionais.
+
+A primeira etapa da curadoria concentra-se nos materiais disponibilizados pela **Receita Federal do Brasil (RFB)** em parceria com o **Conselho Federal de Contabilidade (CFC)**.
 
 ## 🏛️ Receita Federal do Brasil — RFB
 
@@ -155,7 +249,53 @@ Os documentos utilizados na primeira seleção foram identificados com atualiza�
 
 ---
 
-## 📑 Documentos utilizados na base inicial
+## 1️⃣2️⃣📋 Catálogo documental
+
+Antes da ingestão dos documentos na base de conhecimento, foi realizada uma etapa de **curadoria e catalogação documental**.
+
+O catálogo tem como objetivo registrar a origem, identificação, classificação e situação de cada documento, permitindo controlar quais materiais foram selecionados para o RAG e quais ainda estão previstos para incorporação.
+
+### Informações catalogadas
+
+| Campo | Descrição |
+|---|---|
+| Instituição | Organização responsável pelo documento |
+| Módulo | Módulo ou agrupamento temático |
+| Documento | Nome do material |
+| Tema | Assunto principal abordado |
+| Tipo | PDF, DOCX, XLSX etc. |
+| Data de publicação | Data disponibilizada pela fonte |
+| Última atualização | Data da última modificação informada pela fonte |
+| Data de acesso | Data em que o documento foi consultado |
+| URL oficial | Origem oficial do documento |
+| Status | Selecionado, em análise ou futuro |
+| Categoria | Classificação temática |
+| Observações | Informações adicionais da curadoria |
+
+### Processo de curadoria
+
+```text
+📚 Fonte institucional
+        ↓
+🔎 Identificação dos documentos
+        ↓
+📋 Catalogação
+        ↓
+🧹 Curadoria
+        ↓
+🏷️ Classificação e metadados
+        ↓
+✅ Seleção para ingestão
+        ↓
+📄 Processamento
+        ↓
+🧠 Base de conhecimento RAG
+```
+
+---
+
+
+## 1️⃣3️⃣📑 Documentos utilizados na base inicial
 
 ### Módulo 1 — Normas Gerais da Tributação do Consumo
 
@@ -246,39 +386,83 @@ Os documentos utilizados na primeira seleção foram identificados com atualiza�
 
 ---
 
-## 📊 Organização temática da base
+## 1️⃣4️⃣📊 Organização temática da base
 
-A documentação selecionada permite estruturar a base de conhecimento em diferentes categorias:
+A documentação catalogada está organizada por módulos e temas, permitindo associar cada fragmento recuperado ao seu contexto documental de origem.
 
 ```text
-Reforma Tributária
+Reforma Tributária do Consumo
 │
-├── Normas Gerais da Tributação do Consumo
-├── CBS
-│   └── Comércio Exterior
-├── IBS / CBS
-├── Fundo de Compensação de Benefícios Fiscais
-├── Cadastro
-├── Obrigações Acessórias
-├── Documentos Fiscais
-├── Apuração Assistida
-├── Compensação
-├── Ressarcimento
-├── Restituição
-├── Transferências
-├── Simples Nacional
-├── MEI
-├── Economia Digital
-├── Regimes Específicos
-├── Regimes Diferenciados
-└── Planos de Assistência à Saúde
+├── Módulo 1
+│   └── Normas Gerais da Tributação do Consumo
+│
+├── Módulo 2
+│   └── CBS na Importação e Exportação
+│
+├── Módulo 3
+│   └── Fundo de Compensação de Benefícios Fiscais
+│
+├── Módulo 4
+│   └── Cadastro
+│
+├── Módulo 5
+│   └── Obrigações Acessórias
+│
+├── Módulo 6
+│   └── Apuração Assistida da CBS
+│
+├── Módulo 7
+│   └── Compensação, Ressarcimento, Restituição e Transferências
+│
+├── Módulo 8
+│   └── Simples Nacional e MEI
+│
+├── Módulo 9
+│   └── Economia Digital
+│
+├── Módulo 10
+│   └── Regimes Específicos e Diferenciados
+│
+└── Módulo 11
+    └── Planos de Assistência à Saúde e Concursos de Prognóstico
 ```
 
-Essa categorização será utilizada como referência para a organização dos documentos, geração de metadados e recuperação de informações pelo agente.
+A organização temática é complementada pelos metadados documentais, permitindo recuperar não apenas o conteúdo, mas também seu contexto, origem e localização.
 
 ---
 
-## 🔄 Atualização da base documental
+## 1️⃣5️⃣🏛️ Governança documental
+
+A base de conhecimento foi projetada considerando que documentos relacionados à Reforma Tributária podem ser atualizados ao longo do tempo.
+
+Por isso, cada documento deverá possuir informações que permitam identificar:
+
+- sua instituição de origem;
+- sua versão ou data de atualização;
+- sua data de acesso;
+- seu endereço oficial;
+- seu módulo e tema;
+- seu status na base;
+- sua relação com os demais documentos.
+
+### Objetivos da governança
+
+```text
+📋 Identificação
+      ↓
+🏷️ Classificação
+      ↓
+🔎 Rastreabilidade
+      ↓
+🔄 Atualização
+      ↓
+🗄️ Controle da base
+      ↓
+🤖 Respostas mais confiáveis
+```
+
+---
+## 1️⃣6️⃣ 🔄 Atualização da base documental
 
 Como os materiais oficiais podem receber atualizações durante a implementação da Reforma Tributária, o projeto deverá considerar a **data de publicação ou última modificação do documento** como parte dos metadados da base.
 
@@ -299,9 +483,8 @@ Essa abordagem permite identificar a versão do conteúdo utilizada pelo agente 
 
 ---
 
-# 📄 Documentos
 
-## Formato inicial
+## 1️⃣7️⃣ Formato inicial
 
 O MVP será inicialmente desenvolvido para trabalhar com documentos em:
 
@@ -326,30 +509,123 @@ A ideia é permitir que diferentes formatos possam passar por uma camada de norm
 
 ---
 
-# 🗂️ Metadados dos documentos
+## 1️⃣8️⃣🗂️ Metadados dos documentos
 
 Além do conteúdo textual, os documentos serão associados a metadados para melhorar a recuperação e a rastreabilidade das respostas.
 
 Exemplo:
 
 ```text
+document_id
 fonte
+instituicao
 nome_documento
 tipo_documento
 modulo
-data_publicacao
-data_atualizacao
 categoria
 tema
+data_publicacao
+data_atualizacao
+data_acesso
 pagina
 url_origem
+status_documento
 ```
 
-Essas informações poderão ser utilizadas pelo agente para apresentar ao usuário a origem do conteúdo recuperado.
+### Exemplo de metadados
+
+```json
+{
+  "document_id": "RFB-CFC-M01-P01",
+  "instituicao": "Receita Federal / CFC",
+  "modulo": "Módulo 1",
+  "categoria": "Normas Gerais",
+  "tipo_documento": "PDF",
+  "data_atualizacao": "2026-07-29",
+  "pagina": 15,
+  "status_documento": "selecionado"
+}
+```
+
+Esses metadados acompanham os fragmentos durante o processo de recuperação e podem ser utilizados para apresentar a origem do conteúdo ao usuário.
 
 ---
 
-# 💬 Exemplos de perguntas
+## 1️⃣9️⃣🔄 Pipeline de ingestão
+
+O processo de preparação dos documentos seguirá, inicialmente, o seguinte fluxo:
+
+```text
+📄 PDF
+   ↓
+📥 Carregamento
+   ↓
+📝 Extração de texto
+   ↓
+✂️ Chunking
+   ↓
+🧮 Geração de embeddings
+   ↓
+🗄️ Armazenamento vetorial
+   ↓
+🔎 Recuperação semântica
+```
+
+O objetivo é transformar documentos extensos em unidades menores de conhecimento que possam ser recuperadas de acordo com a pergunta realizada pelo usuário.
+
+---
+
+## 2️⃣0️⃣🤖 Pipeline do agente
+
+Durante a interação:
+
+```text
+Pergunta do usuário
+        ↓
+Análise da pergunta
+        ↓
+Busca na base de conhecimento
+        ↓
+Recuperação dos trechos relevantes
+        ↓
+Construção do contexto
+        ↓
+LLM
+        ↓
+Resposta
+        ↓
+Referências / fontes
+```
+
+---
+## 2️⃣1️⃣🔗 Fluxo completo de dados
+
+O projeto pode ser dividido em dois fluxos principais:
+
+### 📥 Ingestão
+
+```text
+Fonte oficial
+    ↓
+Documento
+    ↓
+Catálogo documental
+    ↓
+Curadoria
+    ↓
+Extração
+    ↓
+Chunking
+    ↓
+Metadados
+    ↓
+Embeddings
+    ↓
+Vector Store
+```
+---
+
+## 2️⃣2️⃣💬 Exemplos de perguntas
 
 O usuário poderá realizar perguntas como:
 
@@ -377,7 +653,7 @@ O usuário poderá realizar perguntas como:
 
 ---
 
-# 📚 Respostas fundamentadas
+## 2️⃣3️⃣📚 Respostas fundamentadas
 
 Um dos principais objetivos do projeto é permitir que o usuário não receba apenas uma resposta gerada pela IA.
 
@@ -407,7 +683,7 @@ Essa abordagem busca aumentar a **transparência, rastreabilidade e confiabilida
 
 ---
 
-# 🛡️ Confiabilidade e controle de respostas
+## 2️⃣4️⃣🛡️ Confiabilidade e controle de respostas
 
 O agente deverá priorizar informações presentes na base documental disponibilizada.
 
@@ -421,7 +697,36 @@ Essa estratégia busca reduzir respostas sem fundamentação documental e minimi
 
 ---
 
-# 🏗️ Arquitetura do projeto
+## 2️⃣5️⃣🧩 Estratégia de controle de alucinação
+
+O agente foi projetado para priorizar respostas sustentadas pelos documentos recuperados na base de conhecimento.
+
+O fluxo esperado é:
+
+```text
+Pergunta
+   ↓
+Recuperação de documentos
+   ↓
+Avaliação da relevância
+   ↓
+Contexto disponível?
+   │
+   ├── NÃO → Informar ausência de evidência suficiente
+   │
+   └── SIM
+         ↓
+       LLM
+         ↓
+   Resposta fundamentada
+         ↓
+      Referências
+```
+Quando o contexto recuperado não apresentar evidências suficientes, o agente deverá evitar completar a resposta com informações não presentes na base documental.
+
+---
+
+## 2️⃣6️⃣🏗️ Arquitetura do projeto
 
 A arquitetura proposta é:
 
@@ -459,7 +764,7 @@ A arquitetura proposta é:
 
 ---
 
-# 🧰 Tecnologias
+## 2️⃣7️⃣🧰 Tecnologias
 
 As tecnologias serão definidas e evoluídas durante a implementação do projeto.
 
@@ -482,55 +787,7 @@ A stack prevista inclui:
 
 ---
 
-# 🔄 Pipeline de ingestão
-
-O processo de preparação dos documentos seguirá, inicialmente, o seguinte fluxo:
-
-```text
-📄 PDF
-   ↓
-📥 Carregamento
-   ↓
-📝 Extração de texto
-   ↓
-✂️ Chunking
-   ↓
-🧮 Geração de embeddings
-   ↓
-🗄️ Armazenamento vetorial
-   ↓
-🔎 Recuperação semântica
-```
-
-O objetivo é transformar documentos extensos em unidades menores de conhecimento que possam ser recuperadas de acordo com a pergunta realizada pelo usuário.
-
----
-
-# 🤖 Pipeline do agente
-
-Durante a interação:
-
-```text
-Pergunta do usuário
-        ↓
-Análise da pergunta
-        ↓
-Busca na base de conhecimento
-        ↓
-Recuperação dos trechos relevantes
-        ↓
-Construção do contexto
-        ↓
-LLM
-        ↓
-Resposta
-        ↓
-Referências / fontes
-```
-
----
-
-# 📊 Avaliação do agente
+## 2️⃣8️⃣📊 Avaliação do agente
 
 A qualidade do agente será avaliada por meio de um conjunto de perguntas de teste.
 
@@ -549,9 +806,24 @@ Os testes deverão contemplar diferentes cenários:
 
 A avaliação permitirá identificar oportunidades de melhoria no processo de ingestão, chunking, recuperação e geração das respostas.
 
+## 2️⃣9️⃣📏 Métricas - Critérios de avaliação
+
+A avaliação poderá considerar diferentes dimensões:
+
+| Métrica | Objetivo |
+|---|---|
+| Relevância da recuperação | Verificar se os trechos recuperados respondem à pergunta |
+| Precisão da resposta | Avaliar se a resposta está correta em relação ao contexto |
+| Fidelidade ao contexto | Verificar se a resposta é suportada pelos documentos |
+| Cobertura das fontes | Avaliar se documentos relevantes foram recuperados |
+| Taxa de respostas sem evidência | Identificar situações de possível alucinação |
+| Rastreabilidade | Verificar se a origem da informação pode ser identificada |
+
+O conjunto de avaliação deverá conter perguntas com respostas conhecidas, perguntas que exigem múltiplos documentos e perguntas para as quais não existe evidência suficiente na base.
+
 ---
 
-# ☁️ Deploy na Oracle Cloud Infrastructure
+## 3️⃣0️⃣☁️ Deploy na Oracle Cloud Infrastructure
 
 O projeto será disponibilizado na **Oracle Cloud Infrastructure (OCI)**, atendendo ao requisito de utilização de pelo menos um serviço OCI.
 
@@ -569,11 +841,13 @@ Deploy
 🌐 Agente disponível online
 ```
 
-O serviço OCI utilizado será documentado nesta seção após a definição e implementação da arquitetura de infraestrutura.
+O projeto utilizará a **Oracle Cloud Infrastructure (OCI)** como ambiente de execução da solução.
+
+O serviço OCI selecionado, sua configuração e arquitetura de deployment serão documentados nesta seção após a implementação.
 
 ---
 
-# 🎥 Demonstração
+## 3️⃣1️⃣🎥 Demonstração
 
 ## Agente funcionando em nuvem
 
@@ -595,7 +869,7 @@ Após o deploy na OCI, será adicionada aqui uma demonstração do agente funcio
 
 ---
 
-# 📁 Estrutura do projeto
+## 3️⃣2️⃣📁 Estrutura do projeto
 
 Estrutura inicial proposta:
 
@@ -612,12 +886,21 @@ reforma-tributaria-ai-agent/
 │   ├── raw/
 │   └── processed/
 │
+├── catalog/
+│   └── catalogo_documental.csv
+│
 ├── ingestion/
-│   ├── pdf_loader.py
+│   ├── loaders/
+│   │   └── pdf_loader.py
 │   ├── chunking.py
-│   └── embeddings.py
+│   ├── embeddings.py
+│   └── metadata.py
 │
 ├── vectorstore/
+│
+├── evaluation/
+│   ├── questions.json
+│   └── evaluation.py
 │
 ├── notebooks/
 │   └── exploracao_rag.ipynb
@@ -625,6 +908,7 @@ reforma-tributaria-ai-agent/
 ├── tests/
 │
 ├── requirements.txt
+├── .env.example
 ├── .gitignore
 └── README.md
 ```
@@ -633,7 +917,7 @@ A estrutura poderá ser ajustada conforme a evolução da arquitetura.
 
 ---
 
-# 🚀 Como executar localmente
+## 3️⃣3️⃣🚀 Como executar localmente
 
 ## 1. Clonar o repositório
 
@@ -697,9 +981,11 @@ LLM_API_KEY=sua_chave
 streamlit run app/app.py
 ```
 
+
 ---
 
-# 🗺️ Roadmap
+
+## 3️⃣4️⃣🗺️ Roadmap
 
 ### 🟢 Etapa 1 — Definição e coleta inicial
 
@@ -714,7 +1000,7 @@ streamlit run app/app.py
 - [x] Registro da última modificação informada pela fonte oficial
 - [x] Registro da data de acesso
 - [x] Registro do status de cada documento
-- [x] Definição da arquitetura final
+- [x] Definição da arquitetura proposta
 
 ### 🟡 Etapa 2 — Base de conhecimento
 
@@ -766,7 +1052,7 @@ streamlit run app/app.py
 
 ---
 
-# 🔐 Segurança
+## 3️⃣5️⃣🔐 Segurança
 
 O projeto deverá seguir boas práticas de segurança, incluindo:
 
@@ -780,7 +1066,7 @@ O projeto deverá seguir boas práticas de segurança, incluindo:
 
 ---
 
-# ⚠️ Limitações
+## 3️⃣6️⃣⚠️ Limitações
 
 O agente não substitui a análise de profissionais habilitados nem constitui, por si só, orientação ou parecer contábil, fiscal ou jurídico.
 
@@ -794,7 +1080,7 @@ Por isso, a base documental deverá possuir mecanismos de atualização e identi
 
 ---
 
-# 🌱 Possíveis evoluções
+## 3️⃣7️⃣🌱 Possíveis evoluções
 
 Após a implementação do MVP, o projeto poderá evoluir para:
 
@@ -817,7 +1103,7 @@ Após a implementação do MVP, o projeto poderá evoluir para:
 
 ---
 
-# 📚 Referências institucionais
+## 3️⃣8️⃣📚 Referências institucionais
 
 ### Receita Federal do Brasil
 
@@ -835,7 +1121,7 @@ Materiais institucionais relacionados ao ambiente contábil, fiscal e empresaria
 
 ---
 
-# 👩‍💻 Equipe
+## 3️⃣9️⃣👩‍💻 Equipe
 
 | Integrante | Atuação |
 |---|---|
@@ -843,7 +1129,7 @@ Materiais institucionais relacionados ao ambiente contábil, fiscal e empresaria
 
 ---
 
-# 📄 Licença
+## 4️⃣0️⃣📄 Licença
 
 Este projeto será disponibilizado para fins de estudo, demonstração e desenvolvimento tecnológico.
 
@@ -851,7 +1137,7 @@ A licença definitiva será definida pela equipe durante a publicação do proje
 
 ---
 
-# ⭐ Contribuição
+## 4️⃣1️⃣⭐ Contribuição
 
 Sugestões, melhorias e contribuições são bem-vindas.
 
@@ -860,5 +1146,50 @@ Caso encontre algum problema ou tenha uma sugestão para evolução do projeto, 
 ---
 
 <p align="center">
+
+
+### Indice
+
+1. 🤖 Título
+2. Status
+3. Sobre o projeto
+4. ⭐ Diferencial
+5. 🎯 Objetivo
+6. 💡 Problema
+7. 👥 Público-alvo
+8. 🎯 Escopo do MVP
+9. 🧠 Como funciona
+10. 🔎 RAG
+11. 📚 Fontes de conhecimento
+12. 📋 Catálogo documental
+13. 📑 Documentos utilizados
+14. 📊 Organização temática
+15. 🏛️ Governança documental
+16. 🔄 Atualização da base
+17. 📄 Formatos
+18. 🗂️ Metadados
+19. 📥 Pipeline de ingestão
+20. 📤 Pipeline do agente
+21. 🔗 Fluxo completo de dados
+22. 💬 Exemplos de perguntas
+23. 📚 Respostas fundamentadas
+24. 🛡️ Confiabilidade
+25. 🧩 Controle de alucinação
+26. 🏗️ Arquitetura
+27. 🧰 Tecnologias
+28. 📊 Avaliação
+29. 📏 Métricas
+30. ☁️ OCI
+31. 🎥 Demonstração
+32. 📁 Estrutura
+33. 🚀 Execução local
+34. 🗺️ Roadmap
+35. 🔐 Segurança
+36. ⚠️ Limitações
+37. 🌱 Evoluções
+38. 📚 Referências
+39. 👩‍💻 Equipe
+40. 📄 Licença
+41. ⭐ Contribuição
   Desenvolvido com 🤖 Inteligência Artificial, RAG, Python e Oracle Cloud
 </p>
