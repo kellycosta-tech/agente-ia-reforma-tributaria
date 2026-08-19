@@ -26,7 +26,39 @@ O projeto encontra-se na etapa de construção e validação do pipeline de RAG,
 
 > Funcionalidades marcadas como futuras no roadmap ainda não fazem parte do MVP atual.
 
+
+### 📊 Status atual do MVP
+
+### ✅ Implementado
+
+- [x] Levantamento das fontes oficiais
+- [x] Curadoria documental inicial
+- [x] Catálogo documental
+- [x] Organização dos documentos por módulo
+- [x] Definição dos metadados
+- [x] Arquitetura RAG
+- [x] Estrutura inicial do projeto
+
+### 🚧 Em desenvolvimento
+
+- [ ] Ingestão dos PDFs
+- [ ] Chunking
+- [ ] Embeddings
+- [ ] Vector Store
+- [ ] Retriever
+- [ ] Integração com LLM
+- [ ] Interface conversacional
+- [ ] Avaliação do agente
+- [ ] Deploy na OCI
+
+### 🔮 Próximas etapas
+
+- [ ] Citações por página
+- [ ] Busca híbrida
+- [ ] Re-ranking
+- [ ] Atualização automatizada da base
 ---
+
 ##  3️⃣ 📌 Sobre o projeto
 
 O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar a consulta, compreensão e capacitação sobre a **Reforma Tributária do Consumo**.
@@ -204,11 +236,21 @@ O processo ocorre em duas etapas principais:
 ### Retrieval
 
 ```text
-Pergunta do usuário
-        ↓
-Busca semântica
-        ↓
-Trechos relevantes dos documentos
+Pergunta
+   ↓
+Query Processing
+   ↓
+Retriever
+   ↓
+Top-K documentos
+   ↓
+Re-ranking
+   ↓
+Contexto relevante
+   ↓
+LLM
+   ↓
+Resposta + citações
 ```
 
 ### Generation
@@ -250,6 +292,10 @@ Os documentos utilizados na primeira seleção foram identificados com atualiza�
 ---
 
 ## 1️⃣2️⃣📋 Catálogo documental
+
+> 📌 **O catálogo documental é a camada de governança da base de conhecimento.**
+> Ele permite saber quais documentos foram selecionados, por quê,
+> de onde vieram, qual versão foi utilizada e qual é o seu status no RAG.
 
 Antes da ingestão dos documentos na base de conhecimento, foi realizada uma etapa de **curadoria e catalogação documental**.
 
@@ -697,7 +743,7 @@ Essa estratégia busca reduzir respostas sem fundamentação documental e minimi
 
 ---
 
-## 2️⃣5️⃣🧩 Estratégia de controle de alucinação
+## 2️⃣5️⃣🧩 Estratégia de redução de alucinações
 
 O agente foi projetado para priorizar respostas sustentadas pelos documentos recuperados na base de conhecimento.
 
