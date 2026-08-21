@@ -51,6 +51,7 @@ O projeto encontra-se na etapa de construção e validação do pipeline de RAG,
 - [ ] Avaliação do agente
 - [ ] Deploy na OCI
 
+```
 📄 PDF oficial
       ↓
 📥 PDF Loader              ✅
@@ -72,6 +73,7 @@ O projeto encontra-se na etapa de construção e validação do pipeline de RAG,
 🔍 Retriever               ⏳
       ↓
 🤖 RAG                     ⏳
+```
 
 ### 🔮 Próximas etapas
 
