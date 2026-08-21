@@ -51,6 +51,28 @@ O projeto encontra-se na etapa de construção e validação do pipeline de RAG,
 - [ ] Avaliação do agente
 - [ ] Deploy na OCI
 
+📄 PDF oficial
+      ↓
+📥 PDF Loader              ✅
+      ↓
+🔎 Extraction              ✅
+      ↓
+🧹 Cleaning                ✅
+      ↓
+✂️ Chunking                ✅
+      ↓
+🏷️ Metadata                ⏳← próximo
+      ↓
+🔄 Pipeline                ⏳
+      ↓
+🧠 Embeddings              ⏳
+      ↓
+🗄️ Vector Store            ⏳
+      ↓
+🔍 Retriever               ⏳
+      ↓
+🤖 RAG                     ⏳
+
 ### 🔮 Próximas etapas
 
 - [ ] Citações por página
