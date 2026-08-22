@@ -28,6 +28,13 @@ from ingestion.chunking import (
 from ingestion.extraction import extract_document
 from ingestion.cleaning import clean_document
 
+TEST_DOCUMENT_METADATA = {
+    "document_id": "test-document-001",
+    "document_name": "Documento de Teste",
+    "document_type": "PDF",
+    "source_organization": "CFC",
+    "publication_date": None,
+}
 
 # =========================================================
 # CONFIGURAÇÃO
@@ -197,10 +204,11 @@ def test_chunk_page():
     }
 
     chunks = chunk_page(
-        page,
-        chunk_size=200,
-        chunk_overlap=30,
-    )
+    page,
+    document_metadata=TEST_DOCUMENT_METADATA,
+    chunk_size=200,
+    chunk_overlap=30,
+)
 
     assert len(chunks) > 1
 
@@ -250,10 +258,11 @@ def test_chunk_document():
     ]
 
     chunks = chunk_document(
-        document,
-        chunk_size=200,
-        chunk_overlap=30,
-    )
+    document,
+    document_metadata=TEST_DOCUMENT_METADATA,
+    chunk_size=200,
+    chunk_overlap=30,
+)
 
     assert len(chunks) > 1
 
@@ -301,10 +310,11 @@ def test_chunk_ids_are_unique():
     ]
 
     chunks = chunk_document(
-        document,
-        chunk_size=200,
-        chunk_overlap=30,
-    )
+    document,
+    document_metadata=TEST_DOCUMENT_METADATA,
+    chunk_size=200,
+    chunk_overlap=30,
+)
 
     chunk_ids = [
         chunk["chunk_id"]
@@ -360,10 +370,11 @@ def test_chunking_real_pdf():
     # -----------------------------------------------------
 
     chunks = chunk_document(
-        cleaned_document,
-        chunk_size=1000,
-        chunk_overlap=150,
-    )
+    cleaned_document,
+    document_metadata=TEST_DOCUMENT_METADATA,
+    chunk_size=1000,
+    chunk_overlap=150,
+)
 
     # -----------------------------------------------------
     # Valida existência de chunks

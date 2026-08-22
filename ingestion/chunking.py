@@ -26,6 +26,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from ingestion.metadata import validate_document_metadata
+
 
 # ============================================================
 # CONFIGURAÇÕES
@@ -33,7 +35,6 @@ from typing import Any
 
 DEFAULT_CHUNK_SIZE = 1000
 DEFAULT_CHUNK_OVERLAP = 150
-
 
 # ============================================================
 # FUNÇÕES AUXILIARES
@@ -336,75 +337,63 @@ def create_chunk(
     text: str,
     page: int,
     chunk_index: int,
+    document_metadata: dict[str, Any],
+    section: str | None = None,
+    topic: str | None = None,
 ) -> dict[str, Any]:
     """
-    Cria um chunk padronizado.
+    Cria um chunk padronizado com conteúdo,
+    metadados documentais e indicadores de qualidade.
     """
 
     text = text.strip()
 
     flags = []
 
+    # --------------------------------------------------------
+    # FLAGS DE QUALIDADE
+    # --------------------------------------------------------
+
     if is_numeric_heavy(text):
-        flags.append(
-            "numeric_heavy"
-        )
+        flags.append("numeric_heavy")
 
     if is_heading(text):
-        flags.append(
-            "heading"
-        )
+        flags.append("heading")
 
     if len(text) < 50:
-        flags.append(
-            "short"
-        )
+        flags.append("short")
+
+    # --------------------------------------------------------
+    # CHUNK
+    # --------------------------------------------------------
 
     return {
         "chunk_id": f"chunk_{chunk_index:04d}",
+
+        # Identificação documental
+        "document_id": document_metadata["document_id"],
+        "document_name": document_metadata["document_name"],
+        "document_type": document_metadata["document_type"],
+        "source_organization": document_metadata["source_organization"],
+        "publication_date": document_metadata.get("publication_date"),
+        "source_url": document_metadata.get("source_url"),
+
+        # Localização e contexto
         "page": page,
+        "section": section,
+        "topic": topic,
+
+        # Controle do chunk
         "chunk_index": chunk_index,
+
+        # Conteúdo
         "text": text,
         "char_count": len(text),
-        "quality_score": calculate_quality_score(
-            text
-        ),
+
+        # Qualidade
+        "quality_score": calculate_quality_score(text),
         "quality_flags": flags,
     }
-
-
-    # --------------------------------------------------------
-    # Texto pequeno
-    # --------------------------------------------------------
-
-    if len(text) <= chunk_size:
-        return [text]
-
-    # --------------------------------------------------------
-    # Janela deslizante
-    # --------------------------------------------------------
-
-    chunks = []
-
-    step = chunk_size - chunk_overlap
-
-    start = 0
-
-    while start < len(text):
-
-        end = start + chunk_size
-
-        chunk = text[start:end].strip()
-
-        if chunk:
-            chunks.append(chunk)
-
-        if end >= len(text):
-            break
-
-        start += step
-
-    return chunks
 
 # ============================================================
 # CHUNKING DE UMA PÁGINA
@@ -412,6 +401,7 @@ def create_chunk(
 
 def chunk_page(
     page: dict[str, Any],
+    document_metadata: dict[str, Any],
     chunk_size: int = DEFAULT_CHUNK_SIZE,
     chunk_overlap: int = DEFAULT_CHUNK_OVERLAP,
 ) -> list[dict[str, Any]]:
@@ -468,6 +458,8 @@ def chunk_page(
             "chunk_overlap deve ser menor que chunk_size."
         )
 
+
+
     # ========================================================
     # 2. DADOS DA PÁGINA
     # ========================================================
@@ -482,10 +474,12 @@ def chunk_page(
         0,
     )
 
-    if not isinstance(text, str):
-        raise TypeError(
-            "page['text'] deve ser uma string."
-        )
+    # ========================================================
+    # 2.1 METADADOS DO DOCUMENTO
+    # ========================================================
+
+    section = page.get("section")
+    topic = page.get("topic")
 
     # ========================================================
     # 3. PARÁGRAFOS
@@ -714,7 +708,10 @@ def chunk_page(
                 text=chunk_text,
                 page=page_number,
                 chunk_index=index,
-            )
+                document_metadata=document_metadata,
+                section=section,
+                topic=topic,
+)
         )
 
     return result
@@ -725,30 +722,18 @@ def chunk_page(
 
 def chunk_document(
     document: list[dict[str, Any]],
+    document_metadata: dict[str, Any],
     chunk_size: int = DEFAULT_CHUNK_SIZE,
     chunk_overlap: int = DEFAULT_CHUNK_OVERLAP,
 ) -> list[dict[str, Any]]:
-    """
-    Divide um documento completo em chunks.
 
-    Parameters
-    ----------
-    document:
-        Lista de páginas extraídas e limpas.
+    # --------------------------------------------------------
+    # Validação dos metadados
+    # --------------------------------------------------------
 
-    chunk_size:
-        Tamanho aproximado máximo de cada chunk.
-
-    chunk_overlap:
-        Quantidade aproximada de contexto reutilizado
-        entre chunks consecutivos.
-
-    Returns
-    -------
-    list[dict]
-        Lista de chunks estruturados.
-    """
-
+    validate_document_metadata(
+    document_metadata
+)
     # --------------------------------------------------------
     # Validação
     # --------------------------------------------------------
@@ -785,12 +770,12 @@ def chunk_document(
 
         page_chunks = chunk_page(
             page,
+            document_metadata=document_metadata,
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
         )
 
         for chunk in page_chunks:
-
             global_index += 1
 
             chunk["chunk_id"] = (

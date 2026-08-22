@@ -54,25 +54,43 @@ O projeto encontra-se na etapa de construção e validação do pipeline de RAG,
 ```
 📄 PDF oficial
       ↓
-📥 PDF Loader              ✅
+📥 PDF Loader                                       ✅
       ↓
-🔎 Extraction              ✅
+🔎 Extraction     Arquivo → páginas                 ✅
       ↓
-🧹 Cleaning                ✅
+🧹 Cleaning       Páginas → páginas limpas          ✅
       ↓
-✂️ Chunking                ✅
+✂️ Chunking       Texto + metadata → chunks         ✅
       ↓
-🏷️ Metadata                ⏳← próximo
+🏷️ Metadata      Documento → metadata padronizado   ✅
       ↓
-🔄 Pipeline                ⏳
+🔄 Pipeline       Orquestração                      ✅  
       ↓
-🧠 Embeddings              ⏳
+🧠 Embeddings                                       ✅
       ↓
-🗄️ Vector Store            ⏳
+🗄️ Vector Store                                    ⏳ ← próximo
       ↓
 🔍 Retriever               ⏳
       ↓
 🤖 RAG                     ⏳
+🔍 Retriever                                       ⏳
+      ↓        
+🤖 RAG                                             ⏳
+
+
+```
+| Módulo                  | Testes | Status      |
+| ----------------------- | -----: | ----------- |
+| ✂️ Chunking             |     10 | ✅           |
+| 🧠 Qualidade dos chunks |      5 | ✅           |
+| 🧹 Cleaning             |      7 | ✅           |
+| 🔢 Embeddings           |      6 | ✅           |
+| 📄 Extraction           |      7 | ✅           |
+| 📥 Ingestion            |      2 | ✅           |
+| 🏷️ Metadata             |     10 | ✅           |
+| 🔄 Pipeline             |      6 | ✅           |
+| **Total**               | **53** | **✅ 53/53**  |
+
 ```
 
 ### 🔮 Próximas etapas
@@ -139,6 +157,66 @@ Essa abordagem permite construir uma base documental estruturada e preparada par
 💬 RESPOSTA
         ↓
 📚 FONTE + PÁGINA
+```
+
+```
+ingestion/ → prepara o documento;
+vectorstore/ → transforma chunks em vetores, armazena e recupera;
+retriever.py → futuramente busca os chunks relevantes;
+store.py → futuramente controla o banco vetorial.
+
+O embeddings.py será responsável somente por:
+
+carregar o modelo de embeddings;
+                    │
+                    ▼
+transformar texto em vetores;
+                    │
+                    ▼
+transformar vários chunks em vetores;
+                    │
+                    ▼
+validar entradas;
+                    │
+                    ▼
+manter a dimensão dos embeddings consistente.
+
+paraphrase-multilingual-MiniLM-L12-v2 = porque o  projeto está em português e os documentos são da Reforma Tributária.
+normalize_embeddings= deixa os vetores normalizados, o que é útil para buscas por similaridade posteriormente.
+
+                DOCUMENTO
+                    │
+                    ▼
+            ┌───────────────┐
+            │  Extraction   │
+            └───────┬───────┘
+                    ▼
+            ┌───────────────┐
+            │   Cleaning    │
+            └───────┬───────┘
+                    ▼
+            ┌───────────────┐
+            │   Metadata    │
+            └───────┬───────┘
+                    ▼
+            ┌───────────────┐
+            │   Chunking    │
+            └───────┬───────┘
+                    ▼
+             🧬 EMBEDDINGS
+                    │
+                    ▼
+            ┌───────────────┐
+            │ Vector Store  │
+            └───────┬───────┘
+                    ▼
+               Retriever
+                    │
+                    ▼
+                 RAG
+                    │
+                    ▼
+                 Agent
 ```
 ---
 

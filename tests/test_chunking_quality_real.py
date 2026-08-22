@@ -43,6 +43,13 @@ PDF_PATH = (
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 150
 
+TEST_DOCUMENT_METADATA = {
+    "document_id": "test-document-001",
+    "document_name": "Modulo_1_parte_1.pdf",
+    "document_type": "PDF",
+    "source_organization": "CFC",
+    "publication_date": None,
+}
 
 # ============================================================
 # TESTE INTEGRADO
@@ -75,10 +82,11 @@ def test_chunking_quality_real_pdf():
     # ========================================================
 
     chunks = chunk_document(
-        cleaned_document,
-        chunk_size=CHUNK_SIZE,
-        chunk_overlap=CHUNK_OVERLAP,
-    )
+    cleaned_document,
+    document_metadata=TEST_DOCUMENT_METADATA,
+    chunk_size=CHUNK_SIZE,
+    chunk_overlap=CHUNK_OVERLAP,
+)
 
     assert len(chunks) > 0
 
