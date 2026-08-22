@@ -48,6 +48,15 @@ A primeira versão do projeto tem como foco documentos em **formato PDF**, prior
 - [ ] Avaliação da qualidade das respostas
 - [ ] Deploy na OCI
 
+
+| Requisito da etapa 3                 | Seu projeto                                                 | Status |
+| ------------------------------------ | ----------------------------------------------------------- | ------ |
+| Armazenar vetores                    | **Precisa confirmar a implementação**                       | ⚠️     |
+| Criar índice/busca vetorial          | **Precisa confirmar a implementação**                       | ⚠️     |
+| Permitir busca por similaridade      | Isso é necessário para considerar a etapa realmente fechada | ⚠️     |
+
+
+
 ### 🔄 Pipeline atual
 
 ```text
@@ -77,7 +86,32 @@ A primeira versão do projeto tem como foco documentos em **formato PDF**, prior
 🤖 RAG                                             ⏳
 
 ```
++
 
+```
+Documentos
+   ↓
+Extração
+   ↓
+Limpeza
+   ↓
+Chunking
+   ↓
+Chunks + Metadados
+   ↓
+Embeddings
+   ↓
+🟢 Indexação Vetorial
+   ↓
+Banco/Vector Store
+   ↓
+Busca por similaridade
+   ↓
+🔵 Recuperação (RAG)
+   ↓
+LLM/Agente
+
+```
 ## 🧪 Cobertura de testes
 
 A camada de processamento possui 53 testes automatizados, com 53/53 testes passando.
