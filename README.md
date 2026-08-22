@@ -13,45 +13,44 @@
 
 **Status:** 🟡 Em desenvolvimento
 
-O projeto encontra-se na etapa de construção e validação do pipeline de RAG, incluindo:
+O projeto está em fase de construção e validação do pipeline de **RAG (Retrieval-Augmented Generation)** para consulta inteligente a documentos oficiais relacionados à Reforma Tributária.
 
-- Curadoria e catalogação documental;
-- Organização dos documentos oficiais;
-- Preparação da base de conhecimento;
-- Implementação da ingestão;
-- Recuperação semântica;
-- Desenvolvimento do agente;
-- Avaliação das respostas;
-- Deploy em OCI.
-
-> Funcionalidades marcadas como futuras no roadmap ainda não fazem parte do MVP atual.
-
+A primeira versão do projeto tem como foco documentos em **formato PDF**, priorizando qualidade de processamento, rastreabilidade das fontes e confiabilidade das respostas.
 
 ### 📊 Status atual do MVP
 
-### ✅ Implementado
+#### ✅ Concluído
 
-- [x] Levantamento das fontes oficiais
+- [x] Levantamento e seleção das fontes oficiais
 - [x] Curadoria documental inicial
 - [x] Catálogo documental
 - [x] Organização dos documentos por módulo
-- [x] Definição dos metadados
-- [x] Arquitetura RAG
-- [x] Estrutura inicial do projeto
+- [x] Definição e padronização dos metadados
+- [x] Definição da arquitetura RAG
+- [x] Estruturação do projeto
+- [x] Ingestão de documentos PDF
+- [x] Extração de conteúdo
+- [x] Limpeza e normalização do texto
+- [x] Chunking
+- [x] Validação da qualidade dos chunks
+- [x] Geração de embeddings
+- [x] Pipeline de processamento
+- [x] Testes automatizados do pipeline
 
-### 🚧 Em desenvolvimento
+#### 🚧 Em desenvolvimento
 
-- [ ] Ingestão dos PDFs
-- [ ] Chunking
-- [ ] Embeddings
-- [ ] Vector Store
+- [ ] Indexação vetorial com Vector Store
+- [ ] Busca por similaridade semântica
 - [ ] Retriever
 - [ ] Integração com LLM
+- [ ] Geração de respostas fundamentadas nas fontes
 - [ ] Interface conversacional
-- [ ] Avaliação do agente
+- [ ] Avaliação da qualidade das respostas
 - [ ] Deploy na OCI
 
-```
+### 🔄 Pipeline atual
+
+```text
 📄 PDF oficial
       ↓
 📥 PDF Loader                                       ✅
@@ -77,31 +76,49 @@ O projeto encontra-se na etapa de construção e validação do pipeline de RAG,
       ↓        
 🤖 RAG                                             ⏳
 
-
-```
-| Módulo                  | Testes | Status      |
-| ----------------------- | -----: | ----------- |
-| ✂️ Chunking             |     10 | ✅           |
-| 🧠 Qualidade dos chunks |      5 | ✅           |
-| 🧹 Cleaning             |      7 | ✅           |
-| 🔢 Embeddings           |      6 | ✅           |
-| 📄 Extraction           |      7 | ✅           |
-| 📥 Ingestion            |      2 | ✅           |
-| 🏷️ Metadata             |     10 | ✅           |
-| 🔄 Pipeline             |      6 | ✅           |
-| **Total**               | **53** | **✅ 53/53**  |
-
 ```
 
-### 🔮 Próximas etapas
+## 🧪 Cobertura de testes
 
-- [ ] Citações por página
-- [ ] Busca híbrida
-- [ ] Re-ranking
-- [ ] Atualização automatizada da base
----
+A camada de processamento possui 53 testes automatizados, com 53/53 testes passando.
 
-##  3️⃣ 📌 Sobre o projeto
+| Módulo                  | Testes |    Status   |
+| ----------------------- | -----: | :---------: |
+| ✂️ Chunking             |     10 |      ✅      |
+| 🧠 Qualidade dos chunks |      5 |      ✅      |
+| 🧹 Cleaning             |      7 |      ✅      |
+| 🔢 Embeddings           |      6 |      ✅      |
+| 📄 Extraction           |      7 |      ✅      |
+| 📥 Ingestion            |      2 |      ✅      |
+| 🏷️ Metadata            |     10 |      ✅      |
+| 🔄 Pipeline             |      6 |      ✅      |
+| **Total**               | **53** | **✅ 53/53** |
+
+Marco atual: o pipeline de processamento documental está validado por testes automatizados. A próxima etapa é concluir a indexação vetorial e validar a recuperação semântica.
+
+
+### 🎯 Próxima etapa
+
+Etapa 3 — Indexação vetorial
+
+ Armazenamento dos embeddings no Vector Store
+ Persistência da base vetorial
+ Indexação para busca por similaridade
+ Validação da recuperação dos chunks
+ Preservação e utilização dos metadados
+ Testes de busca semântica
+🔮 Roadmap futuro
+
+Após a consolidação do MVP:
+
+ Citações das fontes por página
+ Busca híbrida (semântica + lexical)
+ Re-ranking
+ Atualização automatizada da base documental
+ Expansão para outros formatos de documentos
+ Monitoramento e avaliação contínua do agente
+
+###  3️⃣ 📌 Sobre o projeto
 
 O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar a consulta, compreensão e capacitação sobre a **Reforma Tributária do Consumo**.
 
