@@ -184,9 +184,9 @@ def test_create_llm():
 # TESTE 11
 # ============================================================
 
-def test_create_llm_generates_response():
+def test_fake_llm_generates_response():
 
-    llm = create_llm()
+    llm = FakeLLM()
 
     response = llm.generate(
         "Explique a Reforma Tributária."

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "q001",
+    "category": "factual",
+    "question": "Quais são os dois principais tributos que compõem o IVA Dual da Reforma Tributária do Consumo?",
+    "expected_answer": "O IVA Dual é composto pelo IBS (Imposto sobre Bens e Serviços), de competência dos Estados e Municípios, e pela CBS (Contribuição sobre Bens e Serviços), de competência federal.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [22],
+    "expected_topics": [
+      "IVA Dual",
+      "IBS",
+      "CBS",
+      "Estados",
+      "Municípios",
+      "União"
+    ]
+  },
+  {
+    "id": "q002",
+    "category": "conceptual",
+    "question": "Quais são os princípios constitucionais da Reforma Tributária do Consumo?",
+    "expected_answer": "Os princípios constitucionais da Reforma Tributária do Consumo são simplicidade, transparência, justiça tributária, cooperação e defesa do meio ambiente.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [6, 7, 8, 9, 10, 11, 12],
+    "expected_topics": [
+      "simplicidade",
+      "transparência",
+      "justiça tributária",
+      "cooperação",
+      "defesa do meio ambiente"
+    ]
+  },
+  {
+    "id": "q003",
+    "category": "procedural",
+    "question": "Como funcionará o mecanismo de cashback para famílias de baixa renda?",
+    "expected_answer": "O cashback é um mecanismo de devolução de tributos destinado a famílias de baixa renda, com renda mensal de até meio salário mínimo per capita, integradas ao Cadastro Único. O mecanismo prevê a devolução de parte dos tributos pagos, conforme as regras estabelecidas para cada tipo de consumo.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [36],
+    "expected_topics": [
+      "cashback",
+      "baixa renda",
+      "Cadastro Único",
+      "devolução de tributos"
+    ]
+  },
+  {
+    "id": "q004",
+    "category": "legal",
+    "question": "Quais fornecimentos são imunes ao IBS e à CBS segundo a Lei Complementar nº 214?",
+    "expected_answer": "São imunes ao IBS e à CBS as exportações de bens e serviços e os fornecimentos abrangidos pelas hipóteses de imunidade previstas na Lei Complementar nº 214, incluindo as hipóteses relacionadas a entes públicos, entidades religiosas, partidos políticos, sindicatos, instituições de educação e assistência social sem fins lucrativos, livros, jornais, periódicos, fonogramas e videofonogramas musicais brasileiros, radiodifusão sonora e de sons e imagens de recepção livre e gratuita e ouro como ativo financeiro ou instrumento cambial.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [56, 57],
+    "expected_topics": [
+      "IBS",
+      "CBS",
+      "imunidade",
+      "Lei Complementar nº 214",
+      "exportações"
+    ]
+  },
+  {
+    "id": "q005",
+    "category": "factual",
+    "question": "Como será feita a distribuição da receita do IBS entre Estados e Municípios durante a transição?",
+    "expected_answer": "Durante a transição, uma parcela decrescente da receita será distribuída de acordo com a participação atual na receita e uma parcela crescente seguirá o novo sistema. Também estão previstos um Fundo de Desenvolvimento Regional e um Fundo de Compensação para os benefícios fiscais do ICMS, provido pela União.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [24],
+    "expected_topics": [
+      "IBS",
+      "transição",
+      "Estados",
+      "Municípios",
+      "Fundo de Desenvolvimento Regional",
+      "Fundo de Compensação",
+      "ICMS"
+    ]
+  },
+
+{
+  "id": "q006",
+  "category": "no_evidence",
+  "question": "Qual será exatamente a alíquota definitiva do IVA Dual em 2040?",
+  "expected_answer": "Não foram encontradas evidências suficientes nos documentos fornecidos para responder com precisão.",
+  "expected_document": null,
+  "expected_source": null,
+  "expected_pages": [],
+  "expected_topics": []
+},
+
+{
+  "id": "q007",
+  "category": "no_evidence",
+  "question": "Qual será o impacto da Reforma Tributária no salário de cada colaborador da empresa?",
+  "expected_answer": "Não foram encontradas evidências suficientes nos documentos fornecidos para responder.",
+  "expected_document": null,
+  "expected_source": null,
+  "expected_pages": [],
+  "expected_topics": []
+}
+]

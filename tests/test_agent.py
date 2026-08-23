@@ -112,8 +112,9 @@ class RecordingLLM:
 def test_create_agent():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     assert agent is not None
 
@@ -138,8 +139,9 @@ def test_create_agent_invalid_rag():
 def test_query():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "O que é a Reforma Tributária?"
@@ -164,8 +166,9 @@ def test_query():
 def test_query_preserves_question():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "O que é a Reforma Tributária?"
@@ -183,8 +186,9 @@ def test_query_preserves_question():
 def test_query_preserves_results():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "O que é a Reforma Tributária?"
@@ -207,8 +211,9 @@ def test_query_preserves_results():
 def test_query_preserves_sources():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "O que é a Reforma Tributária?"
@@ -236,8 +241,9 @@ def test_query_preserves_sources():
 def test_query_empty_question():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     with pytest.raises(ValueError):
 
@@ -251,8 +257,9 @@ def test_query_empty_question():
 def test_query_whitespace_question():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     with pytest.raises(ValueError):
 
@@ -266,8 +273,9 @@ def test_query_whitespace_question():
 def test_query_invalid_question():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     with pytest.raises(TypeError):
 
@@ -281,8 +289,9 @@ def test_query_invalid_question():
 def test_query_invalid_k():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     with pytest.raises(ValueError):
 
@@ -299,8 +308,9 @@ def test_query_invalid_k():
 def test_query_invalid_k_type():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     with pytest.raises(TypeError):
 
@@ -317,8 +327,9 @@ def test_query_invalid_k_type():
 def test_query_with_source_organization():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "Reforma Tributária",
@@ -339,8 +350,9 @@ def test_query_with_source_organization():
 def test_query_with_module():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "Reforma Tributária",
@@ -357,8 +369,9 @@ def test_query_with_module():
 def test_query_with_document():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "Reforma Tributária",
@@ -375,8 +388,9 @@ def test_query_with_document():
 def test_query_with_combined_filters():
 
     agent = Agent(
-        rag=FakeRAG()
-    )
+    rag=FakeRAG(),
+    llm=RecordingLLM(),
+)
 
     result = agent.query(
         "Reforma Tributária",
@@ -739,3 +753,105 @@ def test_agent_returns_sources():
     assert source["page"] == 10
 
     assert source["source_organization"] == "CFC"
+
+# ============================================================
+# TESTE 31
+# ============================================================
+
+def test_agent_returns_answer_as_string():
+
+    llm = RecordingLLM(
+        response="Resposta fundamentada."
+    )
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert isinstance(
+        result["answer"],
+        str,
+    )
+
+    assert result["answer"] == (
+        "Resposta fundamentada."
+    )
+
+
+# ============================================================
+# TESTE 32
+# ============================================================
+
+def test_agent_preserves_context():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert (
+        "A Reforma Tributária altera"
+        in result["context"]
+    )
+
+
+# ============================================================
+# TESTE 33
+# ============================================================
+
+def test_agent_returns_formatted_sources():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert result["sources"] == [
+        {
+            "document_name": "Modulo_1_parte_1.pdf",
+            "page": 10,
+            "section": None,
+            "source_organization": "CFC",
+        }
+    ]
+
+
+# ============================================================
+# TESTE 34
+# ============================================================
+
+def test_agent_does_not_call_llm_without_context():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=EmptyRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "Qual é a alíquota do IBS?"
+    )
+
+    assert llm.received_prompt is None
+
+    assert result["answer"].startswith(
+        "Não encontrei evidências suficientes"
+    )

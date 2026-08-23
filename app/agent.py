@@ -358,6 +358,18 @@ class Agent:
             prompt,
         )
 
+        if not isinstance(answer, str):
+            raise TypeError(
+                "O LLM deve retornar uma string."
+            )
+
+        answer = answer.strip()
+
+        if not answer:
+            raise ValueError(
+                "O LLM retornou uma resposta vazia."
+            )
+
         # ----------------------------------------------------
         # 10. Extrair fontes
         # ----------------------------------------------------

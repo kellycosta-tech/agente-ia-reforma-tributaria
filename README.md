@@ -1,9 +1,10 @@
-#  1️⃣ 🤖 Reforma Tributária AI Agent
+# 1️⃣ 🤖 Reforma Tributária AI Agent
 
 > **Agente de Inteligência Artificial para consulta, capacitação e apoio à implementação da Reforma Tributária**
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)
 [![RAG](https://img.shields.io/badge/AI-RAG-purple)]()
+[![Tests](https://img.shields.io/badge/Tests-204%20passed-success)]()
 [![GitHub](https://img.shields.io/badge/Code-GitHub-black?logo=github)](https://github.com/)
 [![Oracle Cloud](https://img.shields.io/badge/Cloud-Oracle%20Cloud-red?logo=oracle)](https://www.oracle.com/cloud/)
 
@@ -13,722 +14,174 @@
 
 **Status:** 🟡 Em desenvolvimento
 
-O projeto está em fase de construção e validação do pipeline de **RAG (Retrieval-Augmented Generation)** para consulta inteligente a documentos oficiais relacionados à Reforma Tributária.
-
-A primeira versão do projeto tem como foco documentos em **formato PDF**, priorizando qualidade de processamento, rastreabilidade das fontes e confiabilidade das respostas.
-
-| Item                      |    Resultado |
-| ------------------------- | -----------: |
-| PDFs processados          |       **34** |
-| Chunks criados            |    **1.302** |
-| Registros no Vector Store |    **1.302** |
-| `index.json`              |     ✅ Criado |
-| Embeddings                |    ✅ Gerados |
-| Vector Store              | ✅ Persistido |
-
-Deploy atual
-→ Docker
-→ OCI Container Registry
-→ OCI Container Instance
-→ Streamlit
-
-Evoluções futuras
-→ OCI Object Storage
-→ OCI Vault
-→ Autonomous Database / Vector Search
-→ CI/CD
-→ monitoramento
-→ escalabilidade
-→ integração Teams/Slack
-
-### 📊 Status atual do MVP
-
-#### ✅ Concluído
-
-- [x] Levantamento e seleção das fontes oficiais
-- [x] Curadoria documental inicial
-- [x] Catálogo documental
-- [x] Organização dos documentos por módulo
-- [x] Definição e padronização dos metadados
-- [x] Definição da arquitetura RAG
-- [x] Estruturação do projeto
-- [x] Ingestão de documentos PDF
-- [x] Extração de conteúdo
-- [x] Limpeza e normalização do texto
-- [x] Chunking
-- [x] Validação da qualidade dos chunks
-- [x] Geração de embeddings
-- [x] Implementação do Vector Store
-- [x] Persistência dos vetores
-- [x] Busca por similaridade vetorial
-- [x] Implementação do Retriever
-- [x] Testes automatizados do pipeline
-- [x] Testes automatizados de embeddings
-- [x] Testes automatizados do Vector Store
-- [x] Testes automatizados do Retriever
-
-#### 🚧 Em desenvolvimento
-
-
-- [ ] Integração do Retriever com o pipeline RAG
-- [ ] Implementação de reranking
-- [ ] Integração com LLM
-- [ ] Geração de respostas fundamentadas nas fontes
-- [ ] Avaliação da qualidade das respostas
-- [ ] Interface conversacional
-- [ ] Testes de integração
-- [ ] Configuração para produção
-- [ ] Deploy na OCI
-
-| Arquivo                         | Prioridade | Motivo                                 |
-| ------------------------------- | ---------: | -------------------------------------- |
-| `app/rag.py`                    |   🔴 **1** | Melhorar recuperação/reranking         |
-| `vectorstore/embeddings.py`     |   🔴 **2** | Melhorar representação semântica       |
-| `ingestion/chunking.py`         |   🟠 **3** | Preservar contexto nos chunks          |
-| `ingestion/metadata.py`         |   🟠 **4** | Corrigir `module=None`, `section=None` |
-| `ingestion/pipeline.py`         |   🟡 **5** | Reconstrução consistente do índice     |
-| `evaluation/run_evaluation.py`  |   🟡 **6** | Métricas mais rigorosas                |
-| `evaluation/debug_retrieval.py` |   🟡 **7** | Diagnóstico detalhado                  |
-| `evaluation_questions.json`     |   🟢 **8** | Já está adequado                       |
-
-
-### 🔄 Pipeline etapas
-
-ETAPA 1 — COLETA E ORGANIZAÇÃO
-🏛️ Fontes
-   ↓
-📋 Catálogo
-   ↓
-🔎 Curadoria
-   ↓
-🏷️ Governança
-   ↓
-📁 Organização
-
-
-ETAPA 2 — PROCESSAMENTO
-📄 Ingestão
-   ↓
-📖 Extração
-   ↓
-🧹 Limpeza
-   ↓
-🏷️ Metadados
-   ↓
-✂️ Chunking
-
-
-ETAPA 3 — INDEXAÇÃO
-🧮 Embeddings
-   ↓
-🗄️ Vector Store
-
-
-ETAPA 4 — RECUPERAÇÃO RAG
-🔢 Query Embedding
-   ↓
-🔍 Retriever
-   ↓
-🏷️ Filtros
-   ↓
-🔄 Reranking
-   ↓
-📝 Contexto
-
-
-ETAPA 5 — GERAÇÃO
-🧠 LLM
-   ↓
-💬 Resposta fundamentada
-   ↓
-📚 Documento + Página
-
-
-ETAPA 6 — AVALIAÇÃO
-🧪 Retrieval
-   ↓
-📊 Qualidade
-   ↓
-🎯 Precisão
-
-
-ETAPA 7 — ENTREGA
-🖥️ Interface
-   ↓
-☁️ OCI
-
-
-ETAPA 1 — COLETA E ORGANIZAÇÃO DE DOCUMENTOS
-
-
-Fontes Oficiais
-
-├── Identificação das fontes oficiais          ✅
-├── Receita Federal                            ✅
-├── Conselho Federal de Contabilidade (CFC)    ✅
-├── Fenacon                                    ✅
-└── Seleção das fontes relevantes              ✅
-
-
-Coleta Documental
-
-├── Levantamento dos documentos oficiais       ✅
-├── Download dos documentos                    ✅
-├── Organização dos arquivos                   ✅
-├── Armazenamento na base documental           ✅
-└── Padronização dos nomes dos arquivos        ✅
-
-
-Curadoria Documental
-
-├── Seleção dos documentos relevantes           ✅
-├── Verificação da origem oficial               ✅
-├── Identificação dos módulos                   ✅
-├── Identificação das partes dos documentos     ✅
-├── Verificação de duplicidades                 ✅
-└── Organização da base documental              ✅
-
-
-Catálogo Documental
-
-├── Catálogo em CSV                             ✅
-├── Catálogo em JSON                            ✅
-├── Identificação do documento                  ✅
-├── Identificação da organização de origem      ✅
-├── Identificação do módulo                     ✅
-├── Identificação do arquivo                    ✅
-└── Registro das informações documentais        ✅
-
-
-Governança Documental
-
-├── Definição dos critérios de inclusão         ✅
-├── Definição dos critérios de curadoria        ✅
-├── Padronização dos metadados                  ✅
-├── Rastreabilidade da origem documental        ✅
-└── Documentação da metodologia                 ✅
-
-
-Organização da Base
-
-├── Separação por módulos                       ✅
-├── Diretório de documentos brutos              ✅
-├── Estrutura para documentos processados       ✅
-├── Estrutura para Vector Store                 ✅
-└── Versionamento da estrutura no Git           ✅
-
-
-Integrações com Fontes
-
-├── Conexão automática com Receita Federal      🚧
-├── Conexão automática com CFC                  🚧
-├── Conexão automática com Fenacon              🚧
-└── Atualização automática da base documental   🚧
-
-
-Testes e Validações
-
-├── Validação do catálogo                       ✅
-├── Validação dos metadados                     ✅
-├── Validação da organização documental         ✅
-└── Integração automática com fontes            🚧
-
-
-ETAPA 2 — PROCESSAMENTO E EXTRAÇÃO DE CONTEÚDO
-
-Extração
-
-├── Ingestão de documentos PDF             ✅
-├── PDF nativo                             ✅
-├── Extração de texto por página           ✅
-├── Preservação da numeração das páginas   ✅
-├── Validação do conteúdo extraído         ✅
-└── Tratamento de arquivos inválidos       ✅
-
-
-Limpeza e Normalização
-
-├── Normalização de espaços                ✅
-├── Remoção de numeração de páginas        ✅
-├── Preservação de números no conteúdo     ✅
-├── Remoção de linhas repetidas            ✅
-├── Limpeza de ruídos textuais             ✅
-└── Validação da qualidade do texto        ✅
-
-
-Chunking
-
-├── Divisão do texto em chunks             ✅
-├── Controle do tamanho dos chunks         ✅
-├── Controle de overlap                    ✅
-├── Chunking por página                    ✅
-├── Chunking de documentos                 ✅
-├── Geração de IDs únicos                  ✅
-└── Validação da qualidade dos chunks      ✅
-
-
-Metadados
-
-├── Identificação do documento             ✅
-├── Nome do documento                      ✅
-├── Tipo do documento                      ✅
-├── Organização de origem                  ✅
-├── Localização/página                     ✅
-├── Metadados opcionais                    ✅
-└── Validação dos metadados                ✅
-
-
-Pipeline
-
-├── Integração das etapas                  ✅
-├── Processamento completo do documento    ✅
-├── Preservação dos metadados nos chunks   ✅
-├── Estatísticas do processamento          ✅
-└── Tratamento de arquivos inválidos       ✅
-
-
-Formatos adicionais
-
-├── Word                                   🚧
-├── Excel                                  🚧
-├── PowerPoint                             🚧
-├── Markdown                               🚧
-├── CSV                                    🚧
-├── JSON                                   🚧
-└── HTML                                   🚧
-
-
-Testes
-
-├── Testes de Extraction                   ✅
-├── Testes de Ingestion                    ✅
-├── Testes de Cleaning                     ✅
-├── Testes de Chunking                     ✅
-├── Testes de qualidade dos chunks         ✅
-├── Testes de Metadata                     ✅
-├── Testes do Pipeline                     ✅
-└── Suíte completa                         ✅
-
-
-ETAPA 3 — INDEXAÇÃO VETORIAL
-
-Embeddings
-├── Modelo SentenceTransformer         ✅
-├── Geração dos embeddings             ✅
-├── Normalização                       ✅
-└── Preservação dos metadados          ✅
-
-Vector Store
-├── Armazenamento                      ✅
-├── Persistência                       ✅
-├── Carregamento                       ✅
-├── Preservação dos metadados          ✅
-├── Similaridade de cosseno            ✅
-├── Ranking dos resultados             ✅
-└── Validações                         ✅
-
-Testes
-├── Embeddings                         ✅
-├── Vector Store                       ✅
-└── Suíte completa                     ✅
-
-ETAPA 4 — CAMADA DE RECUPERAÇÃO (RAG)
-
-
-Query Embedding
-
-├── Recebimento da pergunta               🚧
-├── Geração do embedding da consulta      ✅
-├── Uso do mesmo modelo de embeddings     ✅
-└── Normalização do vetor                 ✅
-
-Retriever
-
-├── Consulta ao Vector Store              ✅
-├── Busca por similaridade                ✅
-├── Recuperação dos Top-K resultados      ✅
-├── Ordenação por relevância              ✅
-└── Preservação dos metadados             ✅
-
-Filtros por Metadados
-
-├── Filtro por organização                ✅
-├── Filtro por módulo                     ✅
-├── Filtro por documento                  ✅
-└── Combinação de filtros                 ✅
-
-Reranking
-
-├── Recuperação de candidatos             🔮
-├── Reordenação por relevância            🔮
-└── Seleção dos melhores resultados       🔮
-
-Montagem do Contexto
-
-├── Seleção dos chunks relevantes         ✅
-├── Organização dos trechos               ✅
-├── Inclusão dos metadados de origem      ✅
-├── Inclusão de documento e página        ✅
-└── Construção do contexto para o LLM     ✅
-
-
-Testes
-
-├── Testes do Retriever                    ✅
-├── Testes de recuperação semântica        ✅
-├── Testes de validação                    ✅
-├── Testes de filtros                      ✅
-├── Testes de montagem do contexto         ✅
-└── Suíte completa                         ✅
-```
-
-ETAPA 5 — GERAÇÃO E VALIDAÇÃO DE RESPOSTAS
-🧠 LLM
-
-├── Definição da interface do LLM .................... ✅
-├── Configuração do modelo ........................... 🟡
-├── Integração com provedor de LLM ................... 🔮
-├── Envio de pergunta + contexto ..................... 🧪
-└── Recebimento da resposta .......................... 🧪
-
-📝 Geração da resposta
-
-├── Integração RAG → Prompt → LLM .................... 🧪
-├── Geração de resposta baseada no contexto .......... 🧪
-├── Restrição ao contexto recuperado ................. 🧪
-├── Tratamento de contexto insuficiente .............. ✅
-└── Controle de respostas fora do escopo ............. 🚧
-
-📚 Citação das fontes
-
-├── Preservação dos metadados recuperados ............ ✅
-├── Documento de origem .............................. ✅
-├── Página ............................................✅
-├── Seção .............................................✅
-├── Formatação das citações .......................... ✅
-└── Vinculação entre afirmação e fonte ................ 🚧
-
-🛡️ Validação e controle de alucinação
-
-├── Limiar mínimo de similaridade .................... 🚧
-├── Validação da existência de contexto .............. ✅
-├── Verificação da resposta contra o contexto ........ 🚧
-├── Detecção de resposta sem evidência ............... 🚧
-├── Bloqueio de resposta sem suporte documental ...... ✅
-└── Regeneração/rejeição de respostas inválidas ...... 🚧
-
-🚫 Fallback
-
-├── Nenhum resultado recuperado .......................✅
-├── Contexto insuficiente ............................ ✅
-├── Pergunta fora do escopo .......................... 🚧
-├── Mensagem de fallback ............................. ✅
-└── Encaminhamento para área responsável ............. 🔮
-
-💬 Formatação final
-
-├── Resposta objetiva ................................ 🟡
-├── Estrutura da resposta ............................ 🟡
-├── Referências documentais .......................... ✅
-├── Documento + página ............................... ✅
-└── Formato preparado para interface conversacional .  🟡
-
-🧪 Testes
-
-├── Testes da integração com LLM ..................... 🧪
-├── Testes de geração de resposta .................... 🧪
-├── Testes de citações ............................... ✅
-├── Testes de fallback ............................... ✅
-├── Testes de ausência de evidência .................. ✅
-├── Testes de controle de alucinação ................. 🚧
-└── Testes de integração RAG → LLM ................... 🧪
-
-### Legenda 
-
-- ✅ **Concluído** — Implementado e validado por testes automatizados.
-- 🧪 **Validado com Mock** — Implementado e validado utilizando `FakeLLM`, sem dependência de um provedor externo.
-- 🟡 **Parcial** — Implementação iniciada, mas ainda requer integração ou validação adicional.
-- 🚧 **Em desenvolvimento** — Funcionalidade ainda em implementação.
-- 🔮 **Planejado** — Funcionalidade prevista para uma etapa futura.
-
-> **Nota:** Os itens marcados com 🧪 estão implementados e foram
-> validados utilizando `FakeLLM`. Essa abordagem permite testar
-> o fluxo completo **RAG → Prompt → LLM → Resposta** sem depender
-> de um provedor externo. A integração com um LLM real será realizada
-> em uma etapa posterior.
-
-```text
-📄 PDF oficial
-      ↓
-📥 PDF Loader                                       ✅
-      ↓
-🔎 Extraction     Arquivo → páginas                 ✅
-      ↓
-🧹 Cleaning       Páginas → páginas limpas          ✅
-      ↓
-✂️ Chunking       Texto + metadata → chunks         ✅
-      ↓
-🏷️ Metadata      Documento → metadata padronizado   ✅
-      ↓
-🔄 Pipeline      Orquestração                       ✅
-      ↓
-🗄️ vectorstore/
-│
-├── 🧠embeddings.py                                 ✅
-│      ↓
-│   gera vetores
-│
-├── store.py                                        ✅
-│      ↓
-│   armazena + busca vetores
-│
-└── 🔍retriever.py                                 ✅
-       ↓
-    transforma pergunta
-    em embedding
-       ↓
-    consulta Vector Store
-       ↓
-    retorna chunks
-
-      ↓
-Reranking
-🤖 RAG                                             ⏳ ← próximo
-
-
-```
-+
-
-```
-Documentos
-   ↓
-Ingestão
-   ↓
-Extração
-   ↓
-Limpeza
-   ↓
-Chunking
-   ↓
-Chunks + Metadados
-   ↓
-Embeddings
-   ↓
-🟢 Indexação Vetorial
-   ↓
-Banco/Vector Store
-   ↓
-Busca por similaridade
-   ↓
-🔵 Recuperação (RAG)
-   ↓
-LLM/Agente
-
-```
-## 🧪 Cobertura de testes
-
-O projeto possui **81 testes automatizados**, cobrindo as principais camadas do pipeline de processamento documental, geração de embeddings, indexação vetorial e recuperação semântica.
-
-**Resultado atual: 81/81 testes passando ✅**
-
-| Módulo                  | Testes |    Status   |
-| ----------------------- | -----: | :---------: |
-| ✂️ Chunking             |     10 |      ✅      |
-| 🧠 Qualidade dos chunks |      5 |      ✅      |
-| 🧹 Cleaning             |      7 |      ✅      |
-| 🔢 Embeddings           |      6 |      ✅      |
-| 📄 Extraction           |      7 |      ✅      |
-| 📥 Ingestion            |      2 |      ✅      |
-| 🏷️ Metadata             |     10 |      ✅      |
-| 🔄 Pipeline             |      6 |      ✅      |
-| 🗄️ Vector Store         |      15|      ✅      |
-| 🔎 Retriever            |      13|      ✅      |
-| **Total**                | **81**|    **✅ 81/81** |
-
-
-### 🔍 O que é validado
-
-Os testes automatizados verificam:
-
-- processamento e extração dos documentos;
-- limpeza e normalização do conteúdo;
-- geração e validação dos chunks;
-- preservação dos metadados documentais;
-- geração e validação dos embeddings;
-- persistência dos vetores;
-- carregamento do Vector Store;
-- busca por similaridade vetorial;
-- ordenação dos resultados por similaridade;
-- recuperação dos chunks relevantes;
-- preservação dos metadados durante a recuperação;
-- tratamento de entradas inválidas;
-- integração entre embeddings, Vector Store e Retriever.
-
-
-
-###  3️⃣ 📌 Sobre o projeto
+O projeto encontra-se em fase de construção e validação de um pipeline de **RAG (Retrieval-Augmented Generation)** para consulta inteligente a documentos oficiais relacionados à **Reforma Tributária do Consumo**.
+
+A primeira versão prioriza documentos em **formato PDF**, com foco em:
+
+- Curadoria documental;
+- Organização da base de conhecimento;
+- Extração e normalização de conteúdo;
+- Chunking;
+- Geração de embeddings;
+- Busca semântica;
+- Recuperação Top-K;
+- Filtros por metadados;
+- Controle de similaridade;
+- Montagem de contexto;
+- Geração de respostas com LLM;
+- Rastreabilidade das fontes;
+- Avaliação automatizada;
+- Controle de respostas sem evidência.
+
+Imagem Docker       ✅
+Container iniciou   ✅
+Streamlit iniciou   ✅
+Porta 8501          ✅
+
+⚠️ Para depois da entrega:
+
+reranking avançado;
+Autonomous Database / Vector Search;
+Teams;
+Slack;
+CI/CD completo;
+observabilidade avançada;
+atualização automática dos documentos;
+múltiplos formatos;
+arquitetura distribuída;
+fine-tuning;
+melhorias cosméticas grandes.
+
+### 📊 Indicadores atuais
+
+| Indicador | Resultado |
+|---|---:|
+| 📄 PDFs processados | **34** |
+| ✂️ Chunks criados | **1.302** |
+| 🗄️ Registros no Vector Store | **1.302** |
+| 📋 `index.json` | ✅ Criado |
+| 🧠 Embeddings | ✅ Gerados |
+| 🗄️ Vector Store | ✅ Persistido |
+| 🧪 Testes automatizados | **204 aprovados** |
+| 📊 Perguntas de avaliação RAG | **7** |
+| 📚 Recuperação de documento esperado | **100%** |
+| 🏛️ Recuperação da fonte esperada | **100%** |
+| 📄 Recuperação da página esperada | **100%** |
+| 🎯 Cobertura média dos tópicos | **91,2%** |
+
+---
+
+## 3️⃣ 📌 Sobre o projeto
 
 O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar a consulta, compreensão e capacitação sobre a **Reforma Tributária do Consumo**.
 
 A solução utiliza **RAG — Retrieval-Augmented Generation** para transformar documentos oficiais e institucionais em uma base de conhecimento consultável por linguagem natural.
 
-O usuário pode realizar perguntas sobre temas da Reforma Tributária e receber respostas contextualizadas a partir dos documentos recuperados, mantendo a **rastreabilidade da informação por meio dos metadados e das fontes documentais utilizadas**.
+O usuário pode realizar perguntas sobre temas da Reforma Tributária e receber respostas contextualizadas a partir dos documentos recuperados, mantendo a **rastreabilidade das informações por meio dos metadados, documentos e páginas utilizadas**.
 
-O projeto foi concebido com foco em **curadoria documental, recuperação semântica e respostas fundamentadas**, buscando reduzir o tempo necessário para localizar informações relevantes em documentos técnicos extensos.
+O projeto foi concebido com foco em:
+
+- Curadoria documental;
+- Governança da informação;
+- Recuperação semântica;
+- Respostas fundamentadas;
+- Rastreabilidade;
+- Controle de evidências;
+- Avaliação contínua da qualidade.
 
 ---
 
-## 4️⃣⭐ Diferencial do projeto
+# 4️⃣ ⭐ Diferencial do projeto
 
-Uma solução de conhecimento documental baseada em RAG, com curadoria, catalogação, metadados, recuperação semântica e respostas fundamentadas em fontes oficiais.
+O principal diferencial da solução está na **construção e governança da base de conhecimento**.
 
-O diferencial da solução está na construção da base de conhecimento.
+Os documentos não são simplesmente baixados e enviados para um modelo de linguagem.
 
-Os documentos não são simplesmente disponibilizados ao modelo de linguagem. Antes da ingestão, passam por um processo de **seleção, identificação, catalogação e organização**, considerando informações como:
+Antes da ingestão, os documentos passam por um processo estruturado de:
 
-- Instituição responsável pela publicação;
-- Módulo e tema;
-- Título do documento;
-- Data de publicação ou atualização;
-- Data de acesso;
-- URL oficial de origem;
-- Tipo de documento;
-- Status na curadoria;
-- Metadados necessários para rastreabilidade.
-
-Essa abordagem permite construir uma base documental estruturada e preparada para recuperação semântica, contribuindo para respostas mais contextualizadas e verificáveis.
-
-#  Pipeline Oficial
-
-🏛️ FONTES OFICIAIS
-        ↓
-📋 CATÁLOGO DOCUMENTAL
-        ↓
-🔎 CURADORIA
-        ↓
-📄 INGESTÃO
-        ↓
-📖 EXTRAÇÃO
-        ↓
-🧹 CLEANING | LIMPEZA
-        ↓
-🏷️ METADADOS
-        ↓
-✂️ CHUNKING
-        ↓
-🧮 EMBEDDINGS
-        ↓
-🗄️ VECTOR STORE
-        ↓
-🔍 RETRIEVER
-        ↓
-    FILTROS
-       ↓
-MONTAGEM DO CONTEXTO
-       ↓
-     PROMPT
+```text
+Fontes oficiais
       ↓
-🔄 RERANKING
-        ↓
-📝 CONTEXTO
-        ↓
-🧠 LLM
-        ↓
-💬 RESPOSTA FUNDAMENTADA
-        ↓
-📚 FONTE + PÁGINA
+Seleção
+      ↓
+Curadoria
+      ↓
+Catalogação
+      ↓
+Organização
+      ↓
+Extração
+      ↓
+Limpeza
+      ↓
+Metadados
+      ↓
+Chunking
+      ↓
+Embeddings
+      ↓
+Vector Store
+````
 
-```
-ingestion/ → prepara o documento;
-vectorstore/ → transforma chunks em vetores, armazena e recupera;
-retriever.py →  busca os chunks relevantes;
-store.py →  controla o banco vetorial.
+Cada documento pode possuir informações como:
 
-O embeddings.py será responsável somente por:
+* Instituição responsável;
+* Módulo;
+* Tema;
+* Título;
+* Data de publicação;
+* Data de atualização;
+* Data de acesso;
+* URL oficial;
+* Tipo de documento;
+* Status de curadoria;
+* Página;
+* Seção;
+* Identificador documental.
 
-carregar o modelo de embeddings;
-                    │
-                    ▼
-transformar texto em vetores;
-                    │
-                    ▼
-transformar vários chunks em vetores;
-                    │
-                    ▼
-validar entradas;
-                    │
-                    ▼
-manter a dimensão dos embeddings consistente.
+Essa abordagem permite construir uma base documental estruturada e preparada para recuperação semântica e rastreabilidade.
 
-paraphrase-multilingual-MiniLM-L12-v2 = porque o  projeto está em português e os documentos são da Reforma Tributária.
-normalize_embeddings= deixa os vetores normalizados, o que é útil para buscas por similaridade posteriormente.
-
-                DOCUMENTO
-                    │
-                    ▼
-            ┌───────────────┐
-            │  Extraction   │
-            └───────┬───────┘
-                    ▼
-            ┌───────────────┐
-            │   Cleaning    │
-            └───────┬───────┘
-                    ▼
-            ┌───────────────┐
-            │   Metadata    │
-            └───────┬───────┘
-                    ▼
-            ┌───────────────┐
-            │   Chunking    │
-            └───────┬───────┘
-                    ▼
-             🧬 EMBEDDINGS
-                    │
-                    ▼
-            ┌───────────────┐
-            │ Vector Store  │
-            └───────┬───────┘
-                    ▼
-               Retriever
-                    │
-                    ▼
-                 RAG
-                    │
-                    ▼
-                 Agent
-```
 ---
 
-## 5️⃣ 🎯 Objetivo
+# 5️⃣ 🎯 Objetivo
 
 Desenvolver um agente de IA capaz de:
 
 * Responder perguntas relacionadas à Reforma Tributária do Consumo;
 * Apoiar a capacitação de profissionais da Contabilidade;
 * Facilitar a consulta de documentos técnicos e institucionais;
-* Estruturar uma base de conhecimento a partir de documentos oficiais;
-* Recuperar informações relevantes por meio de busca semântica;
-* Gerar respostas contextualizadas a partir dos trechos recuperados;
-* Manter a rastreabilidade das informações por meio de metadados e fontes;
-* Reduzir o tempo necessário para localizar informações em documentos extensos;
-* Controlar respostas quando não houver evidências suficientes na base;
-* Disponibilizar uma interface conversacional para consulta do conhecimento.
+* Estruturar uma base de conhecimento documental;
+* Recuperar informações relevantes por busca semântica;
+* Gerar respostas contextualizadas;
+* Apresentar as fontes utilizadas;
+* Identificar documento e página;
+* Controlar respostas quando não houver evidências suficientes;
+* Reduzir o tempo necessário para localizar informações;
+* Disponibilizar uma interface conversacional.
 
 ---
 
-## 6️⃣💡 Problema
+# 6️⃣ 💡 Problema
 
 A Reforma Tributária envolve mudanças relevantes na estrutura tributária brasileira e demanda atualização contínua por parte dos profissionais de Contabilidade.
 
-Informações importantes podem estar distribuídas em diferentes documentos, materiais técnicos, orientações e regulamentações, tornando a busca manual mais demorada e dificultando a localização rápida de informações específicas.
+As informações podem estar distribuídas em diferentes:
 
-Diante desse cenário, surge a oportunidade de utilizar Inteligência Artificial para criar uma camada conversacional sobre essa base documental.
+* Documentos;
+* Materiais técnicos;
+* Orientações;
+* Publicações institucionais;
+* Regulamentações.
 
-Em vez de o profissional precisar localizar manualmente determinada informação em diversos documentos, o agente permite realizar uma pergunta em linguagem natural e receber uma resposta baseada nos conteúdos disponíveis.
+Isso pode tornar a busca manual demorada e dificultar a localização rápida de informações específicas.
+
+Nesse cenário, o projeto propõe uma camada conversacional sobre uma base documental estruturada.
+
+Em vez de procurar manualmente uma informação em diversos documentos, o usuário pode realizar uma pergunta em linguagem natural e receber uma resposta baseada nas evidências recuperadas.
 
 ---
 
-## 7️⃣👥 Público-alvo
+# 7️⃣ 👥 Público-alvo
 
 O agente foi concebido principalmente para:
 
@@ -736,134 +189,1627 @@ O agente foi concebido principalmente para:
 * Profissionais da área contábil;
 * Equipes fiscais e tributárias;
 * Profissionais envolvidos na implementação da Reforma Tributária;
-* Estudantes e profissionais que desejam compreender o tema;
+* Estudantes;
+* Profissionais que desejam compreender o tema;
 * Usuários interessados em consultar informações sobre a Reforma Tributária.
 
 O acesso ao agente será **aberto**, não havendo necessidade de restringir sua utilização a um grupo específico de usuários.
 
 ---
 
-## 8️⃣🎯 Escopo do MVP
+# 8️⃣ 🎯 Escopo do MVP
 
-A primeira versão do projeto terá como foco:
+A primeira versão do projeto tem como foco:
 
-- Documentos em formato PDF;
-- Materiais oficiais relacionados à Reforma Tributária do Consumo;
-- Base documental inicialmente concentrada nos materiais RFB/CFC;
-- Processamento e fragmentação dos documentos;
-- Geração de embeddings;
-- Recuperação semântica;
-- Geração de respostas por LLM;
-- Apresentação das fontes recuperadas;
-- Interface conversacional;
-- Disponibilização da aplicação em ambiente cloud.
+* Documentos em formato PDF;
+* Materiais oficiais relacionados à Reforma Tributária do Consumo;
+* Materiais inicialmente concentrados em RFB/CFC;
+* Curadoria documental;
+* Processamento dos documentos;
+* Extração de conteúdo;
+* Limpeza e normalização;
+* Chunking;
+* Geração de embeddings;
+* Vector Store;
+* Recuperação semântica;
+* Filtros por metadados;
+* Montagem do contexto;
+* Geração de respostas por LLM;
+* Apresentação das fontes;
+* Controle de evidências;
+* Interface conversacional;
+* Disponibilização em ambiente cloud.
 
-Formatos adicionais, novas instituições e funcionalidades avançadas serão incorporados em etapas posteriores.
+Formatos adicionais e novas integrações serão incorporados posteriormente.
 
 ---
 
----
-
-## 9️⃣🧠 Como funciona?
-
-A solução utiliza uma arquitetura baseada em **RAG — Retrieval-Augmented Generation**.
-
-O fluxo conceitual é:
+# 9️⃣ 🧠 Arquitetura da solução
 
 ```text
-                    📄 DOCUMENTOS
-                         │
-          ┌──────────────┼──────────────┐
-          │              │              │
-         CFC          FENACON      RECEITA FEDERAL
-          │              │              │
-          └──────────────┼──────────────┘
-                         ↓
-                  📚 Base documental
-                         ↓
-                  🔎 Extração de texto
-                         ↓
-                    ✂️ Chunking
-                         ↓
-                   🧮 Embeddings
-                         ↓
-                  🗄️ Banco vetorial
-                         ↓
-                     🔍 Retriever
-                         ↓
-                 📑 Contexto relevante
-                         ↓
-                     🧠 Agente IA
-                         ↓
-                    🤖 Modelo LLM
-                         ↓
-                   💬 Resposta
-                         ↓
-                 📚 Fontes consultadas
+                    REFORMA TRIBUTÁRIA AI AGENT
+                              │
+                              ▼
+                    🖥️ Interface Streamlit
+                              │
+                              ▼
+                    ❓ Pergunta do usuário
+                              │
+                              ▼
+                         🤖 Agent
+                              │
+                  ┌───────────┴───────────┐
+                  ▼                       ▼
+             🔎 Retriever              🧠 Gemini
+                  │                       │
+                  ▼                       │
+            🗄️ Vector Store               │
+                  │                       │
+                  ▼                       │
+          📑 Contexto relevante ─────────┘
+                              │
+                              ▼
+                       💬 Resposta
+                              │
+                              ▼
+                     📚 Fontes + páginas
 ```
-
-```
-                    RAG
-                     │
-          ┌──────────┴──────────┐
-          ↓                     ↓
-     RETRIEVAL                LLM
-          │                     │
-     Hit@K                  Faithfulness
-     MRR                    Answer Relevancy
-     Recall@K               Context Precision
-     Page Hit               Context Recall
-```
-
-> **Nota:** os documentos inicialmente selecionados para o MVP são materiais oficiais do **Curso Reforma Tributária RFB e CFC**, disponibilizados no portal da Receita Federal. Materiais do CFC e da Fenacon poderão ser incorporados posteriormente, conforme a evolução da base de conhecimento.
 
 ---
 
-## 🔟🔎 RAG
+# 🔟 🔎 Pipeline RAG
 
-O **RAG (Retrieval-Augmented Generation)** permite que o modelo de linguagem consulte informações recuperadas da base documental antes de gerar uma resposta.
+O fluxo completo da solução é:
 
-Dessa forma, o agente não depende exclusivamente do conhecimento previamente aprendido pelo modelo.
+```text
+🏛️ Fontes oficiais
+        ↓
+📋 Catálogo documental
+        ↓
+🔎 Curadoria
+        ↓
+📄 Ingestão
+        ↓
+📖 Extração
+        ↓
+🧹 Cleaning
+        ↓
+🏷️ Metadados
+        ↓
+✂️ Chunking
+        ↓
+🧮 Embeddings
+        ↓
+🗄️ Vector Store
+        ↓
+🔍 Retriever
+        ↓
+🏷️ Filtros
+        ↓
+📊 Controle de similaridade
+        ↓
+📝 Montagem do contexto
+        ↓
+🔄 Reranking
+        ↓
+🧠 LLM
+        ↓
+💬 Resposta fundamentada
+        ↓
+📚 Fonte + página
+```
 
-O processo ocorre em duas etapas principais:
+---
 
-### Retrieval
+# 1️⃣1️⃣ 📚 Base documental
+
+A primeira versão utiliza documentos oficiais relacionados à Reforma Tributária do Consumo.
+
+As principais fontes consideradas são:
+
+* **Receita Federal do Brasil (RFB)**
+* **Conselho Federal de Contabilidade (CFC)**
+* **Fenacon**
+
+Os documentos inicialmente selecionados para o MVP são materiais oficiais do **Curso Reforma Tributária RFB e CFC**, disponibilizados no portal da Receita Federal.
+
+### Fonte oficial
+
+[Material de apoio — Reforma Tributária do Consumo — Receita Federal](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso)
+
+---
+
+# 1️⃣2️⃣ 📋 Catálogo documental
+
+O projeto possui uma camada específica de catalogação documental.
+
+O catálogo tem como objetivo garantir:
+
+* Identificação dos documentos;
+* Origem institucional;
+* Organização por módulo;
+* Identificação das partes;
+* Controle de duplicidades;
+* Rastreabilidade;
+* Governança documental.
+
+Exemplo conceitual:
+
+```text
+Documento
+    │
+    ├── ID
+    ├── Instituição
+    ├── Módulo
+    ├── Título
+    ├── Arquivo
+    ├── Tipo
+    ├── Data de publicação
+    ├── Data de atualização
+    ├── Data de acesso
+    ├── URL oficial
+    └── Status de curadoria
+```
+
+---
+
+# 1️⃣3️⃣ ⚙️ Processamento documental
+
+O processamento dos documentos segue o pipeline:
+
+```text
+📄 PDF
+   ↓
+📥 Ingestion
+   ↓
+📖 Extraction
+   ↓
+🧹 Cleaning
+   ↓
+🏷️ Metadata
+   ↓
+✂️ Chunking
+   ↓
+🧪 Quality Validation
+   ↓
+🧮 Embeddings
+   ↓
+🗄️ Vector Store
+```
+
+### Extração
+
+A etapa de extração realiza:
+
+* Leitura dos documentos PDF;
+* Extração de texto por página;
+* Preservação da numeração das páginas;
+* Validação do conteúdo;
+* Tratamento de arquivos inválidos.
+
+### Cleaning
+
+A limpeza contempla:
+
+* Normalização de espaços;
+* Remoção de ruídos;
+* Remoção de elementos repetitivos;
+* Tratamento da numeração de páginas;
+* Preservação de números relevantes;
+* Validação da qualidade do texto.
+
+### Chunking
+
+Os documentos são divididos em unidades menores para permitir recuperação semântica mais eficiente.
+
+São considerados:
+
+* Tamanho dos chunks;
+* Overlap;
+* Página de origem;
+* Documento;
+* Identificadores únicos;
+* Metadados.
+
+---
+
+# 1️⃣4️⃣ 🧬 Embeddings
+
+O projeto utiliza o modelo:
+
+```text
+paraphrase-multilingual-MiniLM-L12-v2
+```
+
+A escolha considera que:
+
+* O projeto está em português;
+* Os documentos são predominantemente em português;
+* O conteúdo possui vocabulário técnico;
+* A recuperação depende da similaridade semântica.
+
+O módulo de embeddings é responsável por:
+
+```text
+Texto
+  ↓
+Modelo de Embedding
+  ↓
+Vetor
+```
+
+Também suporta:
+
+```text
+Vários chunks
+      ↓
+Embeddings
+      ↓
+Matriz de vetores
+```
+
+Os vetores são normalizados para facilitar operações de similaridade.
+
+---
+
+# 1️⃣5️⃣ 🗄️ Vector Store
+
+O Vector Store é responsável pelo armazenamento e recuperação dos embeddings.
+
+```text
+Chunks
+  ↓
+Embeddings
+  ↓
+Vector Store
+  ↓
+Busca por similaridade
+  ↓
+Resultados Top-K
+```
+
+O projeto implementa:
+
+* Persistência dos embeddings;
+* Carregamento do índice;
+* Busca por similaridade;
+* Similaridade de cosseno;
+* Ranking dos resultados;
+* Preservação dos metadados.
+
+Atualmente:
+
+```text
+PDFs processados:       34
+Chunks:              1.302
+Vetores:             1.302
+```
+
+---
+
+# 1️⃣6️⃣ 🔍 Retriever
+
+O Retriever recebe a pergunta do usuário e realiza a recuperação semântica.
 
 ```text
 Pergunta
    ↓
-Query Processing
+Query Embedding
+   ↓
+Vector Store
+   ↓
+Busca semântica
+   ↓
+Top-K
+   ↓
+Filtros
+   ↓
+Controle de similaridade
+   ↓
+Chunks relevantes
+```
+
+O Retriever suporta filtros por:
+
+* Organização;
+* Módulo;
+* Documento.
+
+Também preserva:
+
+* Documento;
+* Página;
+* Seção;
+* Instituição;
+* Conteúdo;
+* Similaridade.
+
+---
+
+# 1️⃣7️⃣ 📊 Controle de similaridade
+
+Foi implementado um controle mínimo de similaridade para reduzir a entrada de resultados pouco relacionados à pergunta.
+
+Exemplo atual:
+
+```python
+MIN_SIMILARITY = 0.55
+```
+
+Somente resultados que atendem ao limiar mínimo são utilizados na montagem do contexto.
+
+```text
+Pergunta
    ↓
 Retriever
    ↓
-Top-K documentos
+Top-K
    ↓
-Re-ranking
+Similaridade
    ↓
-Contexto relevante
+┌──────────────────────┐
+│ similarity >= 0.55   │
+└──────────────────────┘
    ↓
-LLM
-   ↓
-Resposta + citações
+Contexto
 ```
 
-### Generation
+Essa camada contribui para reduzir a recuperação de trechos semanticamente fracos.
+
+---
+
+# 1️⃣8️⃣ 📝 Montagem do contexto
+
+Após a recuperação, os chunks são organizados em um contexto estruturado.
+
+Cada fonte preserva informações como:
+
+```text
+[Fonte 1]
+
+Documento: ...
+Instituição: ...
+Página: ...
+Seção: ...
+
+Conteúdo:
+...
+```
+
+Isso permite que o LLM receba não apenas o conteúdo recuperado, mas também informações necessárias para rastreabilidade.
+
+---
+
+# 1️⃣9️⃣ 🧠 LLM
+
+O projeto possui uma abstração para o modelo de linguagem:
+
+```text
+BaseLLM
+   │
+   ├── FakeLLM
+   │
+   └── Gemini
+```
+
+Essa arquitetura permite separar:
+
+* Pipeline RAG;
+* Prompt;
+* Modelo de linguagem;
+* Testes;
+* Integração com provedores externos.
+
+O `FakeLLM` permite validar o fluxo sem depender de uma API externa.
+
+O ambiente de desenvolvimento também possui integração com o **Gemini** para geração de respostas reais.
+
+---
+
+# 2️⃣0️⃣ 🔄 Fluxo RAG → LLM
+
+```text
+Pergunta do usuário
+        ↓
+Query Embedding
+        ↓
+Retriever
+        ↓
+Top-K
+        ↓
+Filtros
+        ↓
+Limiar de similaridade
+        ↓
+Contexto relevante
+        ↓
+Prompt
+        ↓
+LLM
+        ↓
+Resposta
+        ↓
+Fontes + páginas
+```
+
+---
+
+# 2️⃣1️⃣ 🛡️ Controle de evidências
+
+O agente foi projetado para evitar respostas baseadas apenas no conhecimento geral do modelo.
+
+Quando não existe contexto suficiente, o pipeline pode utilizar um fallback.
 
 ```text
 Pergunta
-   +
-Contexto recuperado
    ↓
-Modelo de linguagem
+Recuperação
    ↓
-Resposta contextualizada
+Existem evidências?
+   │
+   ├── SIM → Contexto → LLM → Resposta
+   │
+   └── NÃO → Fallback
 ```
+
+Esse mecanismo é importante principalmente para perguntas fora do escopo documental.
+
+---
+
+# 2️⃣2️⃣ 🧪 Validação do RAG
+
+O pipeline RAG foi submetido a um conjunto inicial de **7 perguntas de avaliação**, cobrindo diferentes tipos de consulta:
+
+* Factual;
+* Conceitual;
+* Procedural;
+* Jurídica;
+* Perguntas sem evidência suficiente na base.
+
+### Resultados
+
+| Métrica                       | Resultado |
+| ----------------------------- | --------: |
+| Perguntas avaliadas           |     **7** |
+| Respostas válidas             |  **100%** |
+| Documento esperado recuperado |  **100%** |
+| Fonte esperada recuperada     |  **100%** |
+| Página esperada recuperada    |  **100%** |
+| Cobertura média dos tópicos   | **91,2%** |
+
+A avaliação também contempla perguntas sem evidência suficiente na base documental, permitindo verificar o comportamento de fallback.
+
+---
+
+# 2️⃣3️⃣ 🧪 Cobertura de testes
+
+O projeto possui atualmente:
+
+```text
+204 testes automatizados aprovados
+```
+
+Resultado:
+
+```text
+204 passed
+```
+
+### Cobertura por camada
+
+| Camada             | Status |
+| ------------------ | :----: |
+| 📄 Extraction      |    ✅   |
+| 📥 Ingestion       |    ✅   |
+| 🧹 Cleaning        |    ✅   |
+| ✂️ Chunking        |    ✅   |
+| 🏷️ Metadata        |    ✅   |
+| 🧮 Embeddings      |    ✅   |
+| 🗄️ Vector Store    |    ✅   |
+| 🔎 Retriever       |    ✅   |
+| Filtros            |    ✅   |
+| 📝 Context Builder |    ✅   |
+| 🤖 Agent           |    ✅   |
+| 🧠 Prompt          |    ✅   |
+| 🧠 LLM             |    ✅   |
+| FakeLLM             |   ✅   |
+| Gemini              |   ✅   |
+| 🔄 RAG             |    ✅   |
+| 🛡️ Fallback        |    ✅   |
+| Fontes              |    ✅   |
+| Testes              |    ✅ 204/204
+| Avaliação RAG       |    ✅   |
+| Interface           |    🚧   |
+| Docker              |    🚧   |
+| OCI                 |    🚧   |
+
+### Resultado
+
+```text
+=============================
+204 passed
+=============================
+```
+
+A suíte cobre processamento documental, embeddings, Vector Store, recuperação semântica, Agent, prompts, LLM, RAG e mecanismos de fallback.
+
+---
+
+# 2️⃣4️⃣ 🔬 O que os testes validam
+
+Os testes automatizados verificam:
+
+* Processamento dos documentos;
+* Extração do conteúdo;
+* Limpeza e normalização;
+* Geração dos chunks;
+* Qualidade dos chunks;
+* Preservação dos metadados;
+* Geração dos embeddings;
+* Normalização dos vetores;
+* Persistência;
+* Carregamento do Vector Store;
+* Busca por similaridade;
+* Ordenação dos resultados;
+* Recuperação Top-K;
+* Filtros por metadados;
+* Montagem do contexto;
+* Prompts;
+* Agent;
+* LLM;
+* Fallback;
+* Ausência de evidência;
+* Integração entre as camadas do pipeline.
+
+---
+
+# 2️⃣5️⃣ 🏗️ Organização das etapas de desenvolvimento
+
+## ETAPA 1 — Coleta e organização
+
+### Fontes oficiais
+
+* [x] Identificação das fontes oficiais
+* [x] Receita Federal
+* [x] Conselho Federal de Contabilidade
+* [x] Fenacon
+* [x] Seleção das fontes relevantes
+
+### Coleta documental
+
+* [x] Levantamento dos documentos
+* [x] Download
+* [x] Organização
+* [x] Armazenamento
+* [x] Padronização dos nomes
+
+### Curadoria
+
+* [x] Seleção dos documentos relevantes
+* [x] Verificação da origem oficial
+* [x] Identificação dos módulos
+* [x] Identificação das partes
+* [x] Verificação de duplicidades
+
+### Catálogo
+
+* [x] Catálogo CSV
+* [x] Catálogo JSON
+* [x] Identificação documental
+* [x] Organização institucional
+* [x] Registro das informações
+
+### Governança
+
+* [x] Critérios de inclusão
+* [x] Critérios de curadoria
+* [x] Padronização dos metadados
+* [x] Rastreabilidade
+* [x] Documentação da metodologia
+
+---
+
+# 2️⃣6️⃣ 📄 ETAPA 2 — Processamento e extração
+
+### Extração
+
+* [x] Ingestão PDF
+* [x] PDF nativo
+* [x] Extração por página
+* [x] Preservação da numeração
+* [x] Validação
+* [x] Tratamento de arquivos inválidos
+
+### Limpeza
+
+* [x] Normalização de espaços
+* [x] Remoção de ruídos
+* [x] Tratamento da numeração
+* [x] Preservação de números
+* [x] Remoção de linhas repetidas
+* [x] Validação da qualidade
+
+### Chunking
+
+* [x] Divisão em chunks
+* [x] Controle de tamanho
+* [x] Overlap
+* [x] Chunking por página
+* [x] IDs únicos
+* [x] Validação
+
+### Metadados
+
+* [x] Documento
+* [x] Nome
+* [x] Tipo
+* [x] Organização
+* [x] Página
+* [x] Seção
+* [x] Metadados opcionais
+* [x] Validação
+
+### Formatos adicionais
+
+* [ ] Word
+* [ ] Excel
+* [ ] PowerPoint
+* [ ] Markdown
+* [ ] CSV
+* [ ] JSON
+* [ ] HTML
+
+---
+
+# 2️⃣7️⃣ 🧮 ETAPA 3 — Indexação vetorial
+
+### Embeddings
+
+* [x] SentenceTransformer
+* [x] Geração dos embeddings
+* [x] Normalização
+* [x] Preservação dos metadados
+
+### Vector Store
+
+* [x] Armazenamento
+* [x] Persistência
+* [x] Carregamento
+* [x] Similaridade de cosseno
+* [x] Ranking
+* [x] Preservação dos metadados
+* [x] Validações
+
+---
+
+# 2️⃣8️⃣ 🔎 ETAPA 4 — Recuperação RAG
+
+### Query Embedding
+
+* [x] Geração do embedding da consulta
+* [x] Uso do mesmo modelo
+* [x] Normalização
+
+### Retriever
+
+* [x] Consulta ao Vector Store
+* [x] Busca por similaridade
+* [x] Top-K
+* [x] Ordenação
+* [x] Preservação dos metadados
+
+### Filtros
+
+* [x] Organização
+* [x] Módulo
+* [x] Documento
+* [x] Combinação de filtros
+
+### Controle de similaridade
+
+* [x] Definição do limiar mínimo
+* [x] Filtragem dos resultados
+* [x] Controle de contexto insuficiente
+
+### Reranking
+
+* [ ] Recuperação de candidatos
+* [ ] Reordenação por relevância
+* [ ] Seleção dos melhores resultados
+
+### Contexto
+
+* [x] Seleção dos chunks
+* [x] Organização dos trechos
+* [x] Metadados
+* [x] Documento
+* [x] Página
+* [x] Seção
+* [x] Construção do contexto
+
+---
+
+# 2️⃣9️⃣ 🧠 ETAPA 5 — Geração e validação
+
+### LLM
+
+* [x] Interface `BaseLLM`
+* [x] `FakeLLM`
+* [x] Integração com Gemini
+* [x] Geração de respostas
+* [x] Testes da integração
+
+### Respostas
+
+* [x] RAG → Prompt → LLM
+* [x] Resposta baseada no contexto
+* [x] Contexto insuficiente
+* [x] Fallback
+
+### Fontes
+
+* [x] Preservação dos metadados
+* [x] Documento
+* [x] Página
+* [x] Seção
+* [x] Formatação das fontes
+* [ ] Vinculação de cada afirmação à fonte específica
+
+### Controle de alucinação
+
+* [x] Validação da existência de contexto
+* [x] Limiar mínimo de similaridade
+* [x] Bloqueio quando não há evidência
+* [ ] Verificação da resposta contra o contexto
+* [ ] Detecção avançada de respostas sem evidência
+* [ ] Regeneração/rejeição automática
+
+---
+
+# 3️⃣0️⃣ 🖥️ ETAPA 6 — Interface e experiência
+
+### Interface
+
+- [x] Interface web
+- [x] Campo para perguntas
+- [x] Exibição da resposta
+- [x] Identidade visual
+- [x] Exibição das fontes
+- [x] Documento e página
+- [x] Histórico
+* [ ] Contexto da sessão
+* [ ] Interface responsiva
+
+### Experiência conversacional
+
+- [x] Indicador de processamento
+- [x] Histórico
+- [x] Tratamento de erros
+* [ ] Fallback visual
+- [x] Nova pergunta na mesma sessão
+
+### Feedback
+
+* [ ] 👍 Avaliação positiva
+* [ ] 👎 Avaliação negativa
+* [ ] Registro do feedback
+* [ ] Identificação da pergunta
+* [ ] Identificação da resposta
+* [ ] Análise dos feedbacks
+
+---
+
+# 3️⃣1️⃣ ☁️ ETAPA 7 — Deploy na OCI
+
+A estratégia planejada de implantação utiliza:
+
+```text
+Streamlit
+    ↓
+Docker
+    ↓
+OCI Container Registry
+    ↓
+OCI Container Instance
+    ↓
+🌐 Streamlit público
+```
+
+### Preparação
+
+* [ ] Validação local
+* [ ] Validação da API
+* [ ] Variáveis de ambiente
+* [ ] Configuração de produção
+
+### Containerização
+
+* [ ] Dockerfile
+* [ ] `.dockerignore`
+* [ ] Imagem Docker
+* [ ] Dependências
+* [ ] Execução local
+* [ ] Validação do container
+
+### OCI Container Registry
+
+* [ ] Criar repositório
+* [ ] Autenticação
+* [ ] Build da imagem
+* [ ] Tag
+* [ ] Push
+* [ ] Validação
+
+### OCI
+
+* [ ] Configurar Container Instance
+* [ ] CPU
+* [ ] Memória
+* [ ] Porta
+* [ ] Variáveis de ambiente
+* [ ] Deploy
+* [ ] Validação
+
+
+###🔥 O que NÃO fazer agora
+
+❌ domínio próprio
+❌ HTTPS customizado
+❌ Load Balancer
+❌ CI/CD
+❌ Terraform
+❌ Kubernetes
+❌ monitoramento avançado
+❌ feedback 👍/👎
+❌ autenticação de usuários
+❌ arquitetura de produção
+❌ banco vetorial gerenciado na OCI
+---
+
+# 3️⃣2️⃣ 🔐 Segurança
+
+Planejamento de segurança:
+
+* [ ] Remover credenciais do código
+* [x] Validar `.gitignore`
+* [ ] Variáveis de ambiente
+* [ ] OCI Vault
+* [ ] IAM
+* [ ] Políticas de acesso
+* [ ] Validação das permissões
+
+---
+
+# 3️⃣3️⃣ 📚 Armazenamento documental em produção
+
+Evolução planejada:
+
+```text
+Documentos
+    ↓
+OCI Object Storage
+    ↓
+Pipeline de ingestão
+    ↓
+Embeddings
+    ↓
+Vector Store
+```
+
+Itens planejados:
+
+* [ ] Object Storage
+* [ ] Bucket
+* [ ] Organização documental
+* [ ] Controle de acesso
+* [ ] Upload
+* [ ] Leitura
+* [ ] Sincronização
+
+---
+
+# 3️⃣4️⃣ 🔄 Atualização da base documental
+
+Planejamento para atualização automática:
+
+```text
+Fonte oficial
+     ↓
+Verificação
+     ↓
+Novo documento?
+     │
+     ├── SIM → Ingestão
+     │          ↓
+     │       Embeddings
+     │          ↓
+     │       Vector Store
+     │
+     └── NÃO → Manter índice
+```
+
+Funcionalidades planejadas:
+
+* [ ] Identificação de novos documentos
+* [ ] Identificação de documentos alterados
+* [ ] Identificação de documentos removidos
+* [ ] Reprocessamento
+* [ ] Novos embeddings
+* [ ] Atualização do Vector Store
+* [ ] Remoção de conteúdo obsoleto
+* [ ] Sincronização
+
+---
+
+# 3️⃣5️⃣ 📊 Monitoramento de qualidade
+
+Indicadores planejados:
+
+* [ ] Perguntas sem resposta
+* [ ] Feedback negativo
+* [ ] Tempo de resposta
+* [ ] Qualidade da recuperação
+* [ ] Qualidade das citações
+* [ ] Falhas recorrentes
+* [ ] Métricas de qualidade
+* [ ] Faithfulness
+* [ ] Answer Relevancy
+* [ ] Context Precision
+* [ ] Context Recall
+
+---
+
+# 3️⃣6️⃣ 🔄 CI/CD
+
+Planejamento futuro:
+
+```text
+Git Push
+   ↓
+GitHub Actions
+   ↓
+Instalação das dependências
+   ↓
+Pytest
+   ↓
+Build Docker
+   ↓
+Push OCIR
+   ↓
+Deploy OCI
+```
+
+Funcionalidades planejadas:
+
+* [ ] CI
+* [ ] Execução automática dos testes
+* [ ] Build automático
+* [ ] Push para OCIR
+* [ ] Deploy automático
+* [ ] Rollback
+
+---
+
+# 3️⃣7️⃣ 📈 Observabilidade
+
+Evoluções futuras:
+
+* [ ] Logs estruturados
+* [ ] Monitoramento da aplicação
+* [ ] Monitoramento de recursos
+* [ ] Monitoramento de erros
+* [ ] Alertas
+* [ ] Métricas de uso
+* [ ] Métricas de recuperação
+* [ ] Métricas de qualidade
+
+---
+
+# 3️⃣8️⃣ 🔮 Evoluções futuras
+
+Após a conclusão do MVP, estão previstas:
+
+* [ ] Reranking avançado;
+* [ ] Avaliação avançada de faithfulness;
+* [ ] Controle de perguntas fora do escopo;
+* [ ] Atualização automática da base documental;
+* [ ] Integração com fontes oficiais;
+* [ ] Microsoft Teams;
+* [ ] Slack;
+* [ ] Intranet corporativa;
+* [ ] Monitoramento contínuo;
+* [ ] Reindexação automática;
+* [ ] CI/CD;
+* [ ] Observabilidade;
+* [ ] Escalabilidade;
+* [ ] Vector Search gerenciado;
+* [ ] OCI Object Storage;
+* [ ] OCI Vault;
+* [ ] Autonomous Database.
+
+---
+
+# 3️⃣9️⃣ 🗂️ Estrutura do projeto
+
+```text
+reforma-tributaria-ai-agent/
+│
+├── app/
+│   ├── agent.py
+│   ├── app.py
+│   ├── llm.py
+│   ├── prompts.py
+│   └── rag.py
+│
+├── catalog/
+│   ├── catalog.csv
+│   └── catalog.json
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── evaluation/
+│
+├── ingestion/
+│   ├── cleaning.py
+│   ├── chunking.py
+│   ├── extraction.py
+│   ├── metadata.py
+│   └── pipeline.py
+│
+├── vectorstore/
+│   ├── embeddings.py
+│   ├── retriever.py
+│   └── store.py
+│
+├── tests/
+│   ├── test_agent.py
+│   ├── test_chunking.py
+│   ├── test_cleaning.py
+│   ├── test_embeddings.py
+│   ├── test_extraction.py
+│   ├── test_ingestion.py
+│   ├── test_llm.py
+│   ├── test_metadata.py
+│   ├── test_pipeline.py
+│   ├── test_prompts.py
+│   ├── test_rag.py
+│   ├── test_retriever.py
+│   └── test_vectorstore.py
+│
+├── .env.example
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
+```
+
+---
+
+# 4️⃣0️⃣ 🧩 Responsabilidades dos principais módulos
+
+### `ingestion/`
+
+Responsável por preparar os documentos:
+
+```text
+Documento
+   ↓
+Extraction
+   ↓
+Cleaning
+   ↓
+Metadata
+   ↓
+Chunking
+```
+
+### `vectorstore/`
+
+Responsável por transformar os chunks em vetores e disponibilizar a recuperação:
+
+```text
+Chunks
+   ↓
+Embeddings
+   ↓
+Vector Store
+   ↓
+Retriever
+```
+
+### `embeddings.py`
+
+Responsável exclusivamente por:
+
+* Carregar o modelo;
+* Transformar texto em vetores;
+* Transformar múltiplos chunks em vetores;
+* Validar entradas;
+* Garantir consistência dimensional;
+* Normalizar embeddings.
+
+### `store.py`
+
+Responsável por:
+
+* Armazenar vetores;
+* Persistir dados;
+* Carregar índice;
+* Executar busca;
+* Ordenar resultados.
+
+### `retriever.py`
+
+Responsável por:
+
+* Receber a consulta;
+* Gerar embedding;
+* Consultar o Vector Store;
+* Aplicar filtros;
+* Recuperar Top-K;
+* Retornar chunks relevantes.
+
+### `app/rag.py`
+
+Responsável pela camada RAG:
+
+```text
+Pergunta
+   ↓
+Retriever
+   ↓
+Filtros
+   ↓
+Similaridade
+   ↓
+Contexto
+```
+
+### `app/agent.py`
+
+Responsável pela orquestração:
+
+```text
+Pergunta
+   ↓
+RAG
+   ↓
+Prompt
+   ↓
+LLM
+   ↓
+Resposta
+```
+
+---
+
+# 4️⃣1️⃣ 🔬 Métricas de avaliação
+
+O projeto utiliza métricas relacionadas à recuperação e geração.
+
+## Retrieval
+
+```text
+Hit@K
+MRR
+Recall@K
+Page Hit
+```
+
+## Generation
+
+```text
+Faithfulness
+Answer Relevancy
+Context Precision
+Context Recall
+```
+
+Essas métricas permitem avaliar não apenas se o documento correto foi recuperado, mas também a qualidade da resposta produzida.
+
+---
+
+# 4️⃣2️⃣ 📊 Fluxo de avaliação
+
+```text
+Pergunta de avaliação
+        ↓
+Retriever
+        ↓
+Top-K
+        ↓
+Documento esperado?
+        ↓
+Página esperada?
+        ↓
+Fonte esperada?
+        ↓
+Cobertura dos tópicos
+        ↓
+LLM
+        ↓
+Resposta
+        ↓
+Avaliação
+```
+
+---
+
+# 4️⃣3️⃣ 🚦 Legenda de status
+
+| Símbolo | Significado               |
+| ------- | ------------------------- |
+| ✅       | Concluído e validado      |
+| 🧪      | Validado com Mock/FakeLLM |
+| 🟡      | Implementação parcial     |
+| 🚧      | Em desenvolvimento        |
+| 🔮      | Planejado                 |
+| ⏳       | Próxima etapa             |
+
+> **Nota:** funcionalidades marcadas com 🧪 foram implementadas e validadas utilizando `FakeLLM`, permitindo testar o fluxo completo sem depender exclusivamente de um provedor externo.
+
+---
+
+# 4️⃣4️⃣ 🛠️ Tecnologias
+
+### Linguagem
+
+* Python 3.x
+
+### Inteligência Artificial
+
+* RAG
+* LLM
+* Sentence Transformers
+* Embeddings
+* Busca semântica
+
+### Processamento
+
+* PDF
+* Extração de texto
+* Cleaning
+* Chunking
+* Metadata
+
+### Vector Search
+
+* Vector Store
+* Similaridade de cosseno
+* Recuperação Top-K
+
+### LLM
+
+* Gemini
+* FakeLLM para testes
+
+### Interface
+
+* Streamlit
+
+### DevOps / Cloud
+
+* Docker
+* Oracle Cloud Infrastructure
+* OCI Container Registry
+* OCI Container Instance
+
+### Qualidade
+
+* Pytest
+* Testes automatizados
+* Dataset de avaliação
+* Métricas de recuperação
+
+---
+
+# 4️⃣5️⃣ ▶️ Como executar
+
+## 1. Clonar o repositório
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd reforma-tributaria-ai-agent
+```
+
+## 2. Criar ambiente virtual
+
+### Windows
+
+```powershell
+python -m venv .venv
+```
+
+Ativar:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+## 3. Instalar dependências
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+## 4. Configurar variáveis de ambiente
+
+Criar:
+
+```text
+.env
+```
+
+A partir de:
+
+```text
+.env.example
+```
+
+## 5. Executar os testes
+
+```bash
+python -m pytest -q
+```
+
+Resultado esperado:
+
+```text
+204 passed
+```
+
+## 6. Executar a aplicação
+
+```bash
+streamlit run app/app.py
+```
+
+---
+
+# 4️⃣6️⃣ 🧪 Exemplo de recuperação
+
+Exemplo de consulta:
+
+```text
+Quais são os dois principais tributos que compõem
+o IVA Dual da Reforma Tributária do Consumo?
+```
+
+O Retriever realiza:
+
+```text
+Pergunta
+   ↓
+Embedding
+   ↓
+Vector Store
+   ↓
+Top-K
+   ↓
+Ranking
+   ↓
+Filtro de similaridade
+   ↓
+Contexto
+```
+
+Exemplo de resultados recuperados:
+
+```text
+Modulo_1_parte_1.pdf | página 8
+Modulo_1_parte_1.pdf | página 22
+Modulo_10_parte_1.pdf | página 3
+Modulo_12_parte_2.pdf | página 25
+Modulo_1_parte_1.pdf | página 9
+```
+
+A recuperação preserva os metadados necessários para rastreabilidade.
+
+---
+
+# 4️⃣7️⃣ ⚠️ Limitações atuais
+
+O projeto ainda está em desenvolvimento e possui algumas limitações:
+
+* Base documental predominantemente em PDF;
+* Reranking ainda não implementado;
+* Interface conversacional ainda em evolução;
+* Atualização automática da base ainda não implementada;
+* Monitoramento ainda não implementado;
+* Deploy em produção ainda em desenvolvimento;
+* Integrações com Teams e Slack ainda planejadas;
+* Avaliação avançada de faithfulness ainda pendente.
+
+---
+
+# 4️⃣8️⃣ 🚀 Roadmap
+
+```text
+                 MVP
+                  │
+                  ▼
+        ┌──────────────────┐
+        │ Pipeline RAG     │
+        │ ✅ 204 testes    │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ Reranking        │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ Interface        │
+        │ Conversacional   │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ Docker           │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ OCI              │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ CI/CD            │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ Monitoramento    │
+        └────────┬─────────┘
+                 │
+                 ▼
+        ┌──────────────────┐
+        │ Escalabilidade   │
+        └──────────────────┘
+```
+
+---
+
+# 4️⃣9️⃣ 📌 Próximas prioridades
+
+A sequência recomendada para evolução do projeto é:
+
+### Prioridade 1 — RAG
+
+* [ ] Reranking;
+* [x] Limiar mínimo de similaridade;
+* [ ] Validação da resposta contra o contexto;
+* [ ] Detecção avançada de ausência de evidência;
+* [ ] Avaliação de faithfulness.
+
+### Prioridade 2 — Interface
+
+* [ ] Streamlit final;
+* [ ] Histórico;
+* [ ] Fontes;
+* [ ] Feedback;
+* [ ] Tratamento de erros.
+
+### Prioridade 3 — Deploy
+
+* [ ] Dockerfile;
+* [ ] Build;
+* [ ] OCIR;
+* [ ] OCI Container Instance;
+* [ ] URL pública.
+
+### Prioridade 4 — Engenharia
+
+* [ ] CI/CD;
+* [ ] Logs;
+* [ ] Monitoramento;
+* [ ] Atualização documental;
+* [ ] Observabilidade.
+
+---
+
+# 5️⃣0️⃣ 🏁 Visão da solução
+
+O objetivo final é evoluir de:
+
+```text
+Documentos
+    ↓
+RAG
+    ↓
+Resposta
+```
+
+para uma plataforma de conhecimento documental:
+
+```text
+                 FONTES OFICIAIS
+                        │
+                        ▼
+                CURADORIA DOCUMENTAL
+                        │
+                        ▼
+                  BASE GOVERNADA
+                        │
+                        ▼
+                 PIPELINE DE RAG
+                        │
+             ┌──────────┴──────────┐
+             ▼                     ▼
+        RETRIEVAL                LLM
+             │                     │
+             └──────────┬──────────┘
+                        ▼
+               RESPOSTA FUNDAMENTADA
+                        │
+                        ▼
+                 FONTE + PÁGINA
+                        │
+                        ▼
+                  FEEDBACK
+                        │
+                        ▼
+              MELHORIA CONTÍNUA
+```
+
+A visão é construir uma solução de IA **rastreável, avaliável, governada e preparada para evolução em ambiente corporativo**.
+
+---
+
+# 5️⃣1️⃣ 📜 Licença
+
+Este projeto está disponibilizado sob a licença definida no arquivo [`LICENSE`](LICENSE).
+
+---
+
+# 5️⃣2️⃣ 👩‍💻 Autoria
+
+Desenvolvido como projeto de **Inteligência Artificial, RAG, Engenharia de Dados e aplicação de LLMs**, com foco em conhecimento documental aplicado à Reforma Tributária do Consumo.
+
+---
+
+## ⭐ Projeto em evolução
+
+> **Da documentação oficial à resposta fundamentada.**
+>
+> O objetivo não é apenas criar um chatbot, mas construir uma **base de conhecimento governada**, capaz de recuperar evidências, contextualizar informações e apresentar respostas com rastreabilidade documental.
+
+```
+```
+---
+
+## 👩‍💻 Equipe
+
+| Integrante | Atuação |
+|---|---|
+| **Kelly Costa** | IA / RAG • Desenvolvimento • Dados • Cloud / OCI |
+
+---
+
+## 📄 Licença
+
+Este projeto será disponibilizado para fins de estudo, demonstração e desenvolvimento tecnológico.
+
+A licença definitiva será definida pela equipe durante a publicação do projeto.
+
+---
+
+## ⭐ Contribuição
+
+Sugestões, melhorias e contribuições são bem-vindas.
+
+Caso encontre algum problema ou tenha uma sugestão para evolução do projeto, abra uma **Issue** ou envie um **Pull Request**.
+
+---
 
 
 # 📄 Documentos
 
 
-## 1️⃣1️⃣📚 Fontes de conhecimento
+## 📚 Fontes de conhecimento
 
 A base documental inicial foi estruturada a partir de materiais relacionados à **Reforma Tributária do Consumo**, priorizando fontes oficiais e institucionais.
 
@@ -885,7 +1831,7 @@ Os documentos utilizados na primeira seleção foram identificados com atualiza�
 
 ---
 
-## 1️⃣2️⃣📋 Catálogo documental
+## 📋 Catálogo documental
 
 > 📌 **O catálogo documental é a camada de governança da base de conhecimento.**
 > Ele permite saber quais documentos foram selecionados, por quê,
@@ -935,7 +1881,7 @@ O catálogo tem como objetivo registrar a origem, identificação, classificaç�
 ---
 
 
-## 1️⃣3️⃣📑 Documentos utilizados na base inicial
+## 📑 Documentos utilizados na base inicial
 
 ### Módulo 1 — Normas Gerais da Tributação do Consumo
 
@@ -1071,721 +2017,9 @@ A organização temática é complementada pelos metadados documentais, permitin
 
 ---
 
-## 1️⃣5️⃣🏛️ Governança documental
-
-A base de conhecimento foi projetada considerando que documentos relacionados à Reforma Tributária podem ser atualizados ao longo do tempo.
-
-Por isso, cada documento deverá possuir informações que permitam identificar:
-
-- sua instituição de origem;
-- sua versão ou data de atualização;
-- sua data de acesso;
-- seu endereço oficial;
-- seu módulo e tema;
-- seu status na base;
-- sua relação com os demais documentos.
-
-### Objetivos da governança
-
-```text
-📋 Identificação
-      ↓
-🏷️ Classificação
-      ↓
-🔎 Rastreabilidade
-      ↓
-🔄 Atualização
-      ↓
-🗄️ Controle da base
-      ↓
-🤖 Respostas mais confiáveis
-```
-
----
-## 1️⃣6️⃣ 🔄 Atualização da base documental
-
-Como os materiais oficiais podem receber atualizações durante a implementação da Reforma Tributária, o projeto deverá considerar a **data de publicação ou última modificação do documento** como parte dos metadados da base.
-
-No momento da inclusão dos documentos, serão registrados, sempre que disponíveis:
-
-```text
-Fonte
-Módulo
-Título
-Tema
-Data de atualização
-URL oficial
-Página
-Tipo de documento
-```
-
-Essa abordagem permite identificar a versão do conteúdo utilizada pelo agente e facilita futuras atualizações da base de conhecimento.
-
----
-
-
-## 1️⃣7️⃣ Formato inicial
-
-O MVP será inicialmente desenvolvido para trabalhar com documentos em:
-
-```text
-PDF
-```
-
-A arquitetura será preparada para permitir a expansão futura para outros formatos:
-
-```text
-PDF
-DOCX
-XLSX
-PPTX
-Markdown
-CSV
-JSON
-HTML
-```
-
-A ideia é permitir que diferentes formatos possam passar por uma camada de normalização antes de serem incorporados à base de conhecimento.
-
----
-
-## 1️⃣8️⃣🗂️ Metadados dos documentos
-
-Além do conteúdo textual, os documentos serão associados a metadados para melhorar a recuperação e a rastreabilidade das respostas.
-
-Exemplo:
-
-```text
-document_id
-fonte
-instituicao
-nome_documento
-tipo_documento
-modulo
-categoria
-tema
-data_publicacao
-data_atualizacao
-data_acesso
-pagina
-url_origem
-status_documento
-```
-
-### Exemplo de metadados
-
-```json
-{
-  "document_id": "RFB-CFC-M01-P01",
-  "instituicao": "Receita Federal / CFC",
-  "modulo": "Módulo 1",
-  "categoria": "Normas Gerais",
-  "tipo_documento": "PDF",
-  "data_atualizacao": "2026-07-29",
-  "pagina": 15,
-  "status_documento": "selecionado"
-}
-```
-
-Esses metadados acompanham os fragmentos durante o processo de recuperação e podem ser utilizados para apresentar a origem do conteúdo ao usuário.
-
----
-
-## 1️⃣9️⃣🔄 Pipeline de ingestão
-
-O processo de preparação dos documentos seguirá, inicialmente, o seguinte fluxo:
-
-```text
-📄 PDF
-   ↓
-📥 Carregamento
-   ↓
-📝 Extração de texto
-   ↓
-✂️ Chunking
-   ↓
-🧮 Geração de embeddings
-   ↓
-🗄️ Armazenamento vetorial
-   ↓
-🔎 Recuperação semântica
-```
-
-O objetivo é transformar documentos extensos em unidades menores de conhecimento que possam ser recuperadas de acordo com a pergunta realizada pelo usuário.
-
----
-
-## 2️⃣0️⃣🤖 Pipeline do agente
-
-Durante a interação:
-
-```text
-Pergunta do usuário
-        ↓
-Análise da pergunta
-        ↓
-Busca na base de conhecimento
-        ↓
-Recuperação dos trechos relevantes
-        ↓
-Construção do contexto
-        ↓
-LLM
-        ↓
-Resposta
-        ↓
-Referências / fontes
-```
-
----
-## 2️⃣1️⃣🔗 Fluxo completo de dados
-
-O projeto pode ser dividido em dois fluxos principais:
-
-### 📥 Ingestão
-
-```text
-Fonte oficial
-    ↓
-Documento
-    ↓
-Catálogo documental
-    ↓
-Curadoria
-    ↓
-Extração
-    ↓
-Chunking
-    ↓
-Metadados
-    ↓
-Embeddings
-    ↓
-Vector Store
-```
----
-
-## 2️⃣2️⃣💬 Exemplos de perguntas
-
-O usuário poderá realizar perguntas como:
-
-> **O que muda com a Reforma Tributária?**
-
-> **Quais são os principais impactos da Reforma Tributária para a Contabilidade?**
-
-> **Como funciona a transição para o novo modelo tributário?**
-
-> **O que é o IBS?**
-
-> **O que é a CBS?**
-
-> **Quais são as principais obrigações acessórias relacionadas à Reforma Tributária?**
-
-> **Quais são os principais pontos de atenção para os profissionais de Contabilidade?**
-
-> **Como funciona a apuração assistida da CBS?**
-
-> **Como funcionam os mecanismos de compensação, ressarcimento e restituição?**
-
-> **Quais são as mudanças relacionadas ao Simples Nacional?**
-
-> **Como a Reforma Tributária impacta a economia digital?**
-
----
-
-## 2️⃣3️⃣📚 Respostas fundamentadas
-
-Um dos principais objetivos do projeto é permitir que o usuário não receba apenas uma resposta gerada pela IA.
-
-A resposta deverá, sempre que possível, estar acompanhada das referências utilizadas.
-
-Exemplo conceitual:
-
-```text
-💬 Pergunta:
-
-Quais são as principais mudanças para 2026?
-
-🤖 Resposta:
-
-[Resposta gerada pelo agente com base nos documentos recuperados.]
-
-📚 Fontes consultadas:
-
-• Receita Federal
-• Documento: [nome do documento]
-• Módulo: [número do módulo]
-• Página: XX
-• URL: [fonte oficial]
-```
-
-Essa abordagem busca aumentar a **transparência, rastreabilidade e confiabilidade** das respostas.
-
----
-
-## 2️⃣4️⃣🛡️ Confiabilidade e controle de respostas
-
-O agente deverá priorizar informações presentes na base documental disponibilizada.
-
-Quando não houver informações suficientes para responder determinada pergunta, o comportamento esperado será informar ao usuário que não foram encontrados elementos suficientes na base de conhecimento.
-
-Exemplo:
-
-> ⚠️ Não foram encontradas informações suficientes nos documentos disponíveis para responder a essa pergunta com segurança.
-
-Essa estratégia busca reduzir respostas sem fundamentação documental e minimizar o risco de geração de informações não suportadas pelas fontes.
-
----
-
-## 2️⃣5️⃣🧩 Estratégia de redução de alucinações
-
-O agente foi projetado para priorizar respostas sustentadas pelos documentos recuperados na base de conhecimento.
-
-O fluxo esperado é:
-
-```text
-Pergunta
-   ↓
-Recuperação de documentos
-   ↓
-Avaliação da relevância
-   ↓
-Contexto disponível?
-   │
-   ├── NÃO → Informar ausência de evidência suficiente
-   │
-   └── SIM
-         ↓
-       LLM
-         ↓
-   Resposta fundamentada
-         ↓
-      Referências
-```
-Quando o contexto recuperado não apresentar evidências suficientes, o agente deverá evitar completar a resposta com informações não presentes na base documental.
-
----
-
-## 2️⃣6️⃣🏗️ Arquitetura do projeto
-
-A arquitetura proposta é:
-
-```text
-┌───────────────────────┐
-│       Usuário         │
-└───────────┬───────────┘
-            │
-            ↓
-┌───────────────────────┐
-│   Interface Web       │
-└───────────┬───────────┘
-            │
-            ↓
-┌───────────────────────┐
-│      Agente IA        │
-└───────────┬───────────┘
-            │
-            ↓
-┌───────────────────────┐
-│       Retriever       │
-└───────────┬───────────┘
-            │
-            ↓
-┌───────────────────────┐
-│    Banco Vetorial     │
-└───────────┬───────────┘
-            │
-            ↓
-┌───────────────────────┐
-│  Base de Conhecimento │
-│      RFB / CFC        │
-└───────────────────────┘
-```
-
----
-
-## 2️⃣7️⃣🧰 Tecnologias
-
-As tecnologias serão definidas e evoluídas durante a implementação do projeto.
-
-A stack prevista inclui:
-
-| Tecnologia                            | Finalidade                             |
-| ------------------------------------- | -------------------------------------- |
-| **Python**                            | Desenvolvimento da aplicação           |
-| **LangChain**                         | Construção do pipeline de RAG          |
-| **LangGraph**                         | Orquestração do agente                 |
-| **LLM**                               | Interpretação e geração das respostas  |
-| **Embeddings**                        | Representação semântica dos documentos |
-| **Vector Store**                      | Armazenamento e recuperação semântica  |
-| **PDF Loader**                        | Extração dos documentos                |
-| **Streamlit**                         | Interface web                          |
-| **GitHub**                            | Versionamento e colaboração            |
-| **Oracle Cloud Infrastructure (OCI)** | Deploy da solução                      |
-
-> A definição final dos modelos, banco vetorial e serviços específicos da OCI será realizada durante a implementação e validação da arquitetura.
-
----
-
-## 2️⃣8️⃣📊 Avaliação do agente
-
-A qualidade do agente será avaliada por meio de um conjunto de perguntas de teste.
-
-Os testes deverão contemplar diferentes cenários:
-
-| Cenário                                   | Objetivo                        |
-| ----------------------------------------- | ------------------------------- |
-| Pergunta direta                           | Avaliar recuperação simples     |
-| Pergunta conceitual                       | Avaliar compreensão             |
-| Pergunta específica                       | Avaliar precisão                |
-| Pergunta envolvendo diferentes documentos | Avaliar recuperação múltipla    |
-| Pergunta sem resposta na base             | Avaliar controle de alucinação  |
-| Pergunta fora do escopo                   | Avaliar comportamento do agente |
-| Pergunta com termos técnicos              | Avaliar recuperação semântica   |
-| Pergunta solicitando fonte                | Avaliar rastreabilidade         |
-
-A avaliação permitirá identificar oportunidades de melhoria no processo de ingestão, chunking, recuperação e geração das respostas.
-
-## 2️⃣9️⃣📏 Métricas - Critérios de avaliação
-
-A avaliação poderá considerar diferentes dimensões:
-
-| Métrica | Objetivo |
-|---|---|
-| Relevância da recuperação | Verificar se os trechos recuperados respondem à pergunta |
-| Precisão da resposta | Avaliar se a resposta está correta em relação ao contexto |
-| Fidelidade ao contexto | Verificar se a resposta é suportada pelos documentos |
-| Cobertura das fontes | Avaliar se documentos relevantes foram recuperados |
-| Taxa de respostas sem evidência | Identificar situações de possível alucinação |
-| Rastreabilidade | Verificar se a origem da informação pode ser identificada |
-
-O conjunto de avaliação deverá conter perguntas com respostas conhecidas, perguntas que exigem múltiplos documentos e perguntas para as quais não existe evidência suficiente na base.
-
----
-
-## 3️⃣0️⃣☁️ Deploy na Oracle Cloud Infrastructure
-
-O projeto será disponibilizado na **Oracle Cloud Infrastructure (OCI)**, atendendo ao requisito de utilização de pelo menos um serviço OCI.
-
-Fluxo esperado:
-
-```text
-GitHub
-   ↓
-Aplicação
-   ↓
-Oracle Cloud Infrastructure
-   ↓
-Deploy
-   ↓
-🌐 Agente disponível online
-```
-
-O projeto utilizará a **Oracle Cloud Infrastructure (OCI)** como ambiente de execução da solução.
-
-O serviço OCI selecionado, sua configuração e arquitetura de deployment serão documentados nesta seção após a implementação.
-
----
-
-## 3️⃣1️⃣🎥 Demonstração
-
-## Agente funcionando em nuvem
-
-> 📌 **Em construção**
-
-Após o deploy na OCI, será adicionada aqui uma demonstração do agente funcionando em ambiente online.
-
-### Screenshot
-
-```text
-[ INSERIR IMAGEM DO AGENTE FUNCIONANDO NA OCI ]
-```
-
-### Vídeo
-
-```text
-[ INSERIR LINK DO VÍDEO / GIF DE DEMONSTRAÇÃO ]
-```
-
----
-
-## 3️⃣2️⃣📁 Estrutura do projeto
-
-Estrutura inicial proposta:
-
-```text
-reforma-tributaria-ai-agent/
-│
-├── app/
-│   ├── app.py
-│   ├── agent.py
-│   ├── rag.py
-│   └── prompts.py
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── catalog/
-│   └── catalogo_documental.csv
-│
-├── ingestion/
-│   ├── loaders/
-│   │   └── pdf_loader.py
-│   ├── chunking.py
-│   ├── embeddings.py
-│   └── metadata.py
-│
-├── vectorstore/
-│
-├── evaluation/
-│   ├── questions.json
-│   └── evaluation.py
-│
-├── notebooks/
-│   └── exploracao_rag.ipynb
-│
-├── tests/
-│
-├── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
-```
-
-A estrutura poderá ser ajustada conforme a evolução da arquitetura.
-
----
-
-## 3️⃣3️⃣🚀 Como executar localmente
-
-## 1. Clonar o repositório
-
-```bash
-git clone https://github.com/SEU-USUARIO/reforma-tributaria-ai-agent.git
-```
-
-## 2. Acessar o projeto
-
-```bash
-cd reforma-tributaria-ai-agent
-```
-
-## 3. Criar ambiente virtual
-
-### Windows
-
-```bash
-python -m venv .venv
-```
-
-```bash
-.venv\Scripts\activate
-```
-
-### Linux / macOS
-
-```bash
-python3 -m venv .venv
-```
-
-```bash
-source .venv/bin/activate
-```
-
-## 4. Instalar dependências
-
-```bash
-pip install -r requirements.txt
-```
-
-## 5. Configurar variáveis de ambiente
-
-Criar um arquivo:
-
-```text
-.env
-```
-
-Exemplo:
-
-```text
-LLM_API_KEY=sua_chave
-```
-
-> Nunca publique chaves de API, senhas ou credenciais no GitHub.
-
-## 6. Executar a aplicação
-
-```bash
-streamlit run app/app.py
-```
-
-
----
-
-
-## 3️⃣4️⃣🗺️ Roadmap
-
-### 🟢 Etapa 1 — Definição e coleta inicial
-
-- [x] Definição do problema
-- [x] Definição do público-alvo
-- [x] Definição da abordagem RAG
-- [x] Definição das fontes iniciais
-- [x] Identificação dos documentos oficiais
-- [x] Organização inicial dos documentos por módulo
-- [x] Criação do catálogo documental
-- [x] Registro da instituição responsável pela publicação
-- [x] Registro da última modificação informada pela fonte oficial
-- [x] Registro da data de acesso
-- [x] Registro do status de cada documento
-- [x] Definição da arquitetura proposta
-
-### 🟡 Etapa 2 — Base de conhecimento
-
-* [ ] Seleção definitiva dos documentos
-* [ ] Download e organização dos PDFs
-* [ ] Extração de texto
-* [ ] Tratamento dos documentos
-* [ ] Criação dos metadados
-* [ ] Chunking
-* [ ] Geração dos embeddings
-* [ ] Implementação do banco vetorial
-
-### 🟡 Etapa 3 — Agente
-
-* [ ] Implementação do Retriever
-* [ ] Implementação do prompt
-* [ ] Integração com LLM
-* [ ] Implementação do agente
-* [ ] Controle de respostas sem evidência
-* [ ] Apresentação das fontes
-* [ ] Referência por documento e página
-
-### 🟡 Etapa 4 — Interface
-
-* [ ] Desenvolvimento da interface
-* [ ] Campo de perguntas
-* [ ] Exibição das respostas
-* [ ] Exibição das fontes
-* [ ] Melhorias de UX
-
-### 🟠 Etapa 5 — Avaliação
-
-* [ ] Criação do conjunto de perguntas
-* [ ] Testes de recuperação
-* [ ] Testes de respostas
-* [ ] Testes de perguntas fora do escopo
-* [ ] Avaliação de alucinação
-* [ ] Avaliação das fontes recuperadas
-* [ ] Ajustes no RAG
-
-### 🔵 Etapa 6 — Cloud
-
-* [ ] Configuração da OCI
-* [ ] Deploy
-* [ ] Testes em ambiente cloud
-* [ ] Disponibilização online
-* [ ] Registro da demonstração
-* [ ] Atualização do README
-
----
-
-## 3️⃣5️⃣🔐 Segurança
-
-O projeto deverá seguir boas práticas de segurança, incluindo:
-
-* Não versionar chaves de API;
-* Utilizar variáveis de ambiente;
-* Não armazenar credenciais no código;
-* Utilizar `.gitignore`;
-* Avaliar cuidadosamente os documentos incorporados à base;
-* Manter identificadas as fontes utilizadas;
-* Evitar respostas não fundamentadas nos documentos disponíveis.
-
----
-
-## 3️⃣6️⃣⚠️ Limitações
-
-O agente não substitui a análise de profissionais habilitados nem constitui, por si só, orientação ou parecer contábil, fiscal ou jurídico.
-
-As respostas dependem da qualidade, atualização e abrangência dos documentos incorporados à base de conhecimento.
-
-Como a Reforma Tributária está em processo de implementação, documentos e orientações oficiais podem ser atualizados.
-
-Por isso, a base documental deverá possuir mecanismos de atualização e identificação da origem dos conteúdos.
-
-> **Atenção:** as respostas geradas pelo agente devem ser utilizadas como apoio à consulta e capacitação, sendo recomendada a validação da informação diretamente na fonte oficial e, quando necessário, junto a profissionais habilitados.
-
----
-
-## 3️⃣7️⃣🌱 Possíveis evoluções
-
-Após a implementação do MVP, o projeto poderá evoluir para:
-
-* Suporte a múltiplos formatos de documentos;
-* Busca híbrida;
-* Re-ranking dos resultados;
-* Memória conversacional;
-* Agentes especializados por tema;
-* Comparação entre documentos;
-* Respostas com citações por página;
-* Dashboard de utilização;
-* Avaliação automática das respostas;
-* Atualização automatizada da base documental;
-* Monitoramento do agente em produção;
-* Expansão para outros temas contábeis e tributários;
-* Inclusão de documentos adicionais do CFC;
-* Inclusão de documentos da Fenacon;
-* Controle de versões dos documentos;
-* Atualização periódica da base de conhecimento.
-
----
-
-## 3️⃣8️⃣📚 Referências institucionais
-
-### Receita Federal do Brasil
-
-**Curso Reforma Tributária RFB e CFC — Módulos do Curso**
-
-[📖 Acessar página oficial dos módulos](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/curso/material-de-apoio/modulos-do-curso)
-
-### Conselho Federal de Contabilidade — CFC
-
-Materiais institucionais relacionados à capacitação e atuação dos profissionais da Contabilidade poderão ser incorporados à base de conhecimento conforme a evolução do projeto.
-
-### Fenacon
-
-Materiais institucionais relacionados ao ambiente contábil, fiscal e empresarial poderão ser incorporados à base de conhecimento em etapas futuras.
-
----
-
-## 3️⃣9️⃣👩‍💻 Equipe
-
-| Integrante | Atuação |
-|---|---|
-| **Kelly Costa** | IA / RAG • Desenvolvimento • Dados • Cloud / OCI |
-
----
-
-## 4️⃣0️⃣📄 Licença
-
-Este projeto será disponibilizado para fins de estudo, demonstração e desenvolvimento tecnológico.
-
-A licença definitiva será definida pela equipe durante a publicação do projeto.
-
----
-
-## 4️⃣1️⃣⭐ Contribuição
-
-Sugestões, melhorias e contribuições são bem-vindas.
-
-Caso encontre algum problema ou tenha uma sugestão para evolução do projeto, abra uma **Issue** ou envie um **Pull Request**.
-
----
-
 <p align="center">
+  Desenvolvido com 🤖 Inteligência Artificial, RAG, Python e Oracle Cloud
+</p>
 
 
 ### Indice
@@ -1831,5 +2065,3 @@ Caso encontre algum problema ou tenha uma sugestão para evolução do projeto, 
 39. 👩‍💻 Equipe
 40. 📄 Licença
 41. ⭐ Contribuição
-  Desenvolvido com 🤖 Inteligência Artificial, RAG, Python e Oracle Cloud
-</p>

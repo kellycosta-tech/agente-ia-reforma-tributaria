@@ -65,3 +65,8 @@ data/vector_store/*
 *.tmp
 *.bak
 *.swp
+
+# Environment variables
+.env
+.env.*
+!.env.example

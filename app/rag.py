@@ -256,6 +256,18 @@ class RAG:
             document_name=document_name,
         )
 
+        # ========================================================
+        # FILTRO DE SIMILARIDADE
+        # ========================================================
+
+        MIN_SIMILARITY = 0.55
+
+        results = [
+            result
+            for result in results
+            if result.get("similarity", 0) >= MIN_SIMILARITY
+        ]
+
         context = self.build_context(
             results
         )
