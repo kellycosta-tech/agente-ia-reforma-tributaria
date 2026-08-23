@@ -33,10 +33,35 @@ A primeira versão prioriza documentos em **formato PDF**, com foco em:
 - Avaliação automatizada;
 - Controle de respostas sem evidência.
 
-Imagem Docker       ✅
-Container iniciou   ✅
-Streamlit iniciou   ✅
-Porta 8501          ✅
+📌 Checkpoint atual
+
+Concluído:
+
+✅ Pipeline de ingestão
+✅ Extração, limpeza e chunking
+✅ Metadados
+✅ Embeddings
+✅ Vector Store
+✅ Retriever + Reranker
+✅ RAG
+✅ Agent
+✅ Abstração de LLM
+✅ Interface Streamlit
+✅ Estrutura app como pacote Python
+✅ Dockerfile
+✅ .dockerignore
+✅ Docker Desktop
+✅ Build da imagem Docker
+✅ Execução do container
+✅ GitHub atualizado
+✅ Working tree limpa
+
+Pendências técnicas:
+
+🔧 Corrigir google-genai no container
+🔧 Validar chamada real ao Gemini
+☁️ Deploy na OCI
+🔗 Validar aplicação publicada
 
 ⚠️ Para depois da entrega:
 
