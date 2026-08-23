@@ -38,7 +38,7 @@ from sentence_transformers import SentenceTransformer
 
 from vectorstore.embeddings import (
     DEFAULT_EMBEDDING_MODEL,
-    generate_embedding,
+    generate_query_embedding,
     load_embedding_model,
 )
 
@@ -180,10 +180,10 @@ class Retriever:
         # GERAÇÃO DO EMBEDDING
         # ----------------------------------------------------
 
-        query_embedding = generate_embedding(
-            query,
-            self.embedding_model,
-        )
+        query_embedding = generate_query_embedding(
+    query,
+    self.embedding_model,
+)
 
         # ----------------------------------------------------
         # RECUPERAÇÃO DE CANDIDATOS
@@ -350,9 +350,6 @@ def create_retriever(
     embedding_model_name: str = DEFAULT_EMBEDDING_MODEL,
     reranker_model_name: str = DEFAULT_RERANKER_MODEL,
 ) -> Retriever:
-    """
-    Cria um Retriever configurado.
-    """
 
     if vector_store is None:
         vector_store = VectorStore(

@@ -385,63 +385,77 @@ Testes
 ETAPA 5 — GERAÇÃO E VALIDAÇÃO DE RESPOSTAS
 🧠 LLM
 
-├── Definição da interface do LLM .................... 🚧
-├── Configuração do modelo ........................... 🚧
-├── Integração com provedor de LLM ................... 🚧
-├── Envio de pergunta + contexto ..................... 🚧
-└── Recebimento da resposta .......................... 🚧
+├── Definição da interface do LLM .................... ✅
+├── Configuração do modelo ........................... 🟡
+├── Integração com provedor de LLM ................... 🔮
+├── Envio de pergunta + contexto ..................... 🧪
+└── Recebimento da resposta .......................... 🧪
 
 📝 Geração da resposta
 
-├── Integração RAG → Prompt → LLM .................... 🚧
-├── Geração de resposta baseada no contexto .......... 🚧
-├── Restrição ao contexto recuperado ................. 🚧
-├── Tratamento de contexto insuficiente .............. 🚧
+├── Integração RAG → Prompt → LLM .................... 🧪
+├── Geração de resposta baseada no contexto .......... 🧪
+├── Restrição ao contexto recuperado ................. 🧪
+├── Tratamento de contexto insuficiente .............. ✅
 └── Controle de respostas fora do escopo ............. 🚧
 
 📚 Citação das fontes
 
 ├── Preservação dos metadados recuperados ............ ✅
-├── Documento de origem .............................. 🚧
-├── Página ............................................ 🚧
-├── Seção ............................................. 🚧
-├── Formatação das citações .......................... 🚧
+├── Documento de origem .............................. ✅
+├── Página ............................................✅
+├── Seção .............................................✅
+├── Formatação das citações .......................... ✅
 └── Vinculação entre afirmação e fonte ................ 🚧
 
 🛡️ Validação e controle de alucinação
 
 ├── Limiar mínimo de similaridade .................... 🚧
-├── Validação da existência de contexto .............. 🚧
+├── Validação da existência de contexto .............. ✅
 ├── Verificação da resposta contra o contexto ........ 🚧
 ├── Detecção de resposta sem evidência ............... 🚧
-├── Bloqueio de resposta sem suporte documental ...... 🚧
+├── Bloqueio de resposta sem suporte documental ...... ✅
 └── Regeneração/rejeição de respostas inválidas ...... 🚧
 
 🚫 Fallback
 
-├── Nenhum resultado recuperado ....................... 🚧
-├── Contexto insuficiente ............................ 🚧
+├── Nenhum resultado recuperado .......................✅
+├── Contexto insuficiente ............................ ✅
 ├── Pergunta fora do escopo .......................... 🚧
-├── Mensagem de fallback ............................. 🚧
+├── Mensagem de fallback ............................. ✅
 └── Encaminhamento para área responsável ............. 🔮
 
 💬 Formatação final
 
-├── Resposta objetiva ................................ 🚧
-├── Estrutura da resposta ............................ 🚧
-├── Referências documentais .......................... 🚧
-├── Documento + página ............................... 🚧
-└── Formato preparado para interface conversacional . 🚧
+├── Resposta objetiva ................................ 🟡
+├── Estrutura da resposta ............................ 🟡
+├── Referências documentais .......................... ✅
+├── Documento + página ............................... ✅
+└── Formato preparado para interface conversacional .  🟡
 
 🧪 Testes
 
-├── Testes da integração com LLM ..................... 🚧
-├── Testes de geração de resposta .................... 🚧
-├── Testes de citações ............................... 🚧
-├── Testes de fallback ............................... 🚧
-├── Testes de ausência de evidência .................. 🚧
+├── Testes da integração com LLM ..................... 🧪
+├── Testes de geração de resposta .................... 🧪
+├── Testes de citações ............................... ✅
+├── Testes de fallback ............................... ✅
+├── Testes de ausência de evidência .................. ✅
 ├── Testes de controle de alucinação ................. 🚧
-└── Testes de integração RAG → LLM ................... 🚧
+└── Testes de integração RAG → LLM ................... 🧪
+
+### Legenda 
+
+- ✅ **Concluído** — Implementado e validado por testes automatizados.
+- 🧪 **Validado com Mock** — Implementado e validado utilizando `FakeLLM`, sem dependência de um provedor externo.
+- 🟡 **Parcial** — Implementação iniciada, mas ainda requer integração ou validação adicional.
+- 🚧 **Em desenvolvimento** — Funcionalidade ainda em implementação.
+- 🔮 **Planejado** — Funcionalidade prevista para uma etapa futura.
+
+> **Nota:** Os itens marcados com 🧪 estão implementados e foram
+> validados utilizando `FakeLLM`. Essa abordagem permite testar
+> o fluxo completo **RAG → Prompt → LLM → Resposta** sem depender
+> de um provedor externo. A integração com um LLM real será realizada
+> em uma etapa posterior.
 
 ```text
 📄 PDF oficial

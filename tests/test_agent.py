@@ -10,9 +10,17 @@ Valida a integração entre:
     Retriever
       ↓
     Vector Store
+      ↓
+    Contexto
+      ↓
+    Prompt
+      ↓
+    LLM
 
-Nesta etapa, o LLM ainda não é utilizado.
+O LLM utilizado nos testes é uma implementação
+controlada/falsa, sem chamadas externas.
 """
+
 
 import pytest
 
@@ -67,7 +75,36 @@ class FakeRAG:
             ),
         }
 
+# ============================================================
+# FAKE LLM PARA TESTE DE INTEGRAÇÃO
+# ============================================================
 
+class RecordingLLM:
+    """
+    LLM falso utilizado para verificar a integração
+    entre Agent → Prompt → LLM.
+    """
+
+    def __init__(
+        self,
+        response: str = "Resposta baseada no contexto.",
+    ):
+        self.response = response
+        self.received_prompt = None
+
+    def generate(
+        self,
+        prompt: str,
+    ) -> str:
+
+        if not isinstance(prompt, str):
+            raise TypeError(
+                "prompt deve ser uma string."
+            )
+
+        self.received_prompt = prompt
+
+        return self.response
 # ============================================================
 # TESTE 1
 # ============================================================
@@ -540,3 +577,165 @@ def test_create_agent_with_fake_rag():
     )
 
     assert agent.rag is not None
+# ============================================================
+# TESTE 25
+# ============================================================
+
+def test_agent_calls_llm():
+
+    llm = RecordingLLM(
+        response="A Reforma Tributária altera a tributação."
+    )
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert result["answer"] == (
+        "A Reforma Tributária altera a tributação."
+    )
+
+    assert llm.received_prompt is not None
+# ============================================================
+# TESTE 26
+# ============================================================
+
+def test_agent_prompt_contains_question():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    agent.ask(
+        "O que é o IBS?"
+    )
+
+    assert "O que é o IBS?" in (
+        llm.received_prompt
+    )
+# ============================================================
+# TESTE 27
+# ============================================================
+
+def test_agent_prompt_contains_context():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert (
+        "A Reforma Tributária altera"
+        in llm.received_prompt
+    )
+# ============================================================
+# TESTE 28
+# ============================================================
+
+def test_agent_prompt_contains_system_instructions():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert (
+        "Utilize somente informações presentes no contexto"
+        in llm.received_prompt
+    )
+# ============================================================
+# FAKE RAG SEM CONTEXTO
+# ============================================================
+
+class EmptyRAG:
+
+    def retrieve_context(
+        self,
+        query: str,
+        k: int = 5,
+        source_organization=None,
+        module=None,
+        document_name=None,
+    ):
+
+        return {
+            "query": query,
+            "results": [],
+            "context": "",
+        }
+# ============================================================
+# TESTE 29
+# ============================================================
+
+def test_agent_fallback_without_context():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=EmptyRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "Pergunta sem evidência documental."
+    )
+
+    assert (
+        "Não encontrei evidências suficientes"
+        in result["answer"]
+    )
+
+    assert result["sources"] == []
+
+    assert result["context"] == ""
+
+    assert llm.received_prompt is None
+
+# ============================================================
+# TESTE 30
+# ============================================================
+
+def test_agent_returns_sources():
+
+    llm = RecordingLLM()
+
+    agent = Agent(
+        rag=FakeRAG(),
+        llm=llm,
+    )
+
+    result = agent.ask(
+        "O que é a Reforma Tributária?"
+    )
+
+    assert len(result["sources"]) == 1
+
+    source = result["sources"][0]
+
+    assert source["document_name"] == (
+        "Modulo_1_parte_1.pdf"
+    )
+
+    assert source["page"] == 10
+
+    assert source["source_organization"] == "CFC"

@@ -11,8 +11,6 @@ Objetivo:
     4. Geração de embeddings para chunks.
     5. Preservação dos metadados.
 """
-
-
 import pytest
 
 from vectorstore.embeddings import (
@@ -20,6 +18,7 @@ from vectorstore.embeddings import (
     load_embedding_model,
     generate_embedding,
     generate_embeddings,
+    generate_query_embedding,
 )
 
 
@@ -217,3 +216,71 @@ def test_embeddings_preserve_metadata(
     )
 
     assert "embedding" in embedded_chunk
+
+# ============================================================
+# TESTE 7
+# ============================================================
+
+def test_generate_query_embedding(
+    embedding_model,
+):
+    """
+    Verifica a geração do embedding de uma pergunta.
+    """
+
+    query = "O que é o IBS?"
+
+    embedding = generate_query_embedding(
+        query,
+        embedding_model,
+    )
+
+    assert isinstance(
+        embedding,
+        list,
+    )
+
+    assert len(embedding) > 0
+
+    assert all(
+        isinstance(value, float)
+        for value in embedding
+    )
+
+
+# ============================================================
+# TESTE 8
+# ============================================================
+
+def test_generate_query_embedding_empty_query(
+    embedding_model,
+):
+    """
+    Verifica se pergunta vazia é rejeitada.
+    """
+
+    with pytest.raises(ValueError):
+
+        generate_query_embedding(
+            "",
+            embedding_model,
+        )
+
+
+# ============================================================
+# TESTE 9
+# ============================================================
+
+def test_generate_query_embedding_invalid_query(
+    embedding_model,
+):
+    """
+    Verifica se pergunta inválida é rejeitada.
+    """
+
+    with pytest.raises(TypeError):
+
+        generate_query_embedding(
+            123,
+            embedding_model,
+        )

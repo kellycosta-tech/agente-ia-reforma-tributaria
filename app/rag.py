@@ -80,7 +80,6 @@ class RAG:
     # ========================================================
     # RECUPERAÇÃO
     # ========================================================
-
     def retrieve(
         self,
         query: str,
@@ -118,32 +117,22 @@ class RAG:
                 "k deve ser maior que zero."
             )
 
-# ========================================================
-# RECUPERAÇÃO SEMÂNTICA
-# ========================================================
+        # ========================================================
+        # RECUPERAÇÃO SEMÂNTICA
+        # ========================================================
 
         results = self.retriever.retrieve(
             query=query,
             k=k,
+            source_organization=source_organization,
+            module=module,
+            document_name=document_name,
         )
 
-# ========================================================
-# FILTROS POR METADADOS
-# ========================================================
-
-        if hasattr(self.retriever, "filter_results"):
-            results = self.retriever.filter_results(
-                results=results,
-                source_organization=source_organization,
-                module=module,
-                document_name=document_name,
-            )
-
         return results
-
- # ========================================================
+    # ========================================================
     # MONTAGEM DO CONTEXTO
- # ========================================================
+    # ========================================================
 
     def build_context(
         self,

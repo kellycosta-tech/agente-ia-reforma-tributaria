@@ -101,6 +101,43 @@ def generate_embedding(
 
     return embedding.tolist()
 
+def generate_query_embedding(
+    query: str,
+    model: SentenceTransformer,
+) -> list[float]:
+    """
+    Gera o embedding de uma pergunta do usuário.
+
+    Parameters
+    ----------
+    query:
+        Pergunta realizada pelo usuário.
+
+    model:
+        Modelo de embeddings utilizado pelo projeto.
+
+    Returns
+    -------
+    list[float]
+        Vetor numérico correspondente à pergunta.
+    """
+
+    if not isinstance(query, str):
+        raise TypeError(
+            "query deve ser uma string."
+        )
+
+    query = query.strip()
+
+    if not query:
+        raise ValueError(
+            "query não pode estar vazia."
+        )
+
+    return generate_embedding(
+        text=query,
+        model=model,
+    )
 
 # ============================================================
 # EMBEDDINGS DOS CHUNKS
