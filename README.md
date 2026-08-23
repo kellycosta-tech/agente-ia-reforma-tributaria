@@ -9,7 +9,10 @@
 [![Oracle Cloud](https://img.shields.io/badge/Cloud-Oracle%20Cloud-red?logo=oracle)](https://www.oracle.com/cloud/)
 
 ---
+## Links
+[http://localhost:8501](http://localhost:8501?utm_source=chatgpt.com)
 
+  
 ## 2️⃣ 🚧 Status do projeto
 
 **Status:** 🟡 Em desenvolvimento
@@ -33,51 +36,109 @@ A primeira versão prioriza documentos em **formato PDF**, com foco em:
 - Avaliação automatizada;
 - Controle de respostas sem evidência.
 
-📌 Checkpoint atual
 
-Concluído:
+### 📌 Checkpoint atual
+
+#### Concluído
 
 ✅ Pipeline de ingestão
+
 ✅ Extração, limpeza e chunking
+
 ✅ Metadados
+
 ✅ Embeddings
+
 ✅ Vector Store
+
 ✅ Retriever + Reranker
-✅ RAG
+
+✅ Pipeline RAG
+
 ✅ Agent
-✅ Abstração de LLM
+
+✅ Abstração da camada LLM
+
 ✅ Interface Streamlit
-✅ Estrutura app como pacote Python
-✅ Dockerfile
-✅ .dockerignore
-✅ Docker Desktop
+
+✅ Estrutura `app` como pacote Python
+
+✅ `Dockerfile`
+
+✅ `.dockerignore`
+
+✅ `google-genai` declarado no `requirements.txt`
+
 ✅ Build da imagem Docker
-✅ Execução do container
-✅ GitHub atualizado
-✅ Working tree limpa
 
-Pendências técnicas:
+✅ Imagem Docker criada
 
-🔧 Corrigir google-genai no container
-🔧 Validar chamada real ao Gemini
-☁️ Deploy na OCI
-🔗 Validar aplicação publicada
+✅ Container iniciado
 
-⚠️ Para depois da entrega:
+✅ Uvicorn
 
-reranking avançado;
-Autonomous Database / Vector Search;
-Teams;
-Slack;
-CI/CD completo;
-observabilidade avançada;
-atualização automática dos documentos;
-múltiplos formatos;
-arquitetura distribuída;
-fine-tuning;
-melhorias cosméticas grandes.
+✅ Streamlit
+
+✅ Aplicação disponível na porta `8501`
+
+✅ GitHub Actions
+
+✅ 204 testes automatizados aprovados
+
+#### Em validação / Próximas etapas
+
+⬜ Validar chamada real ao Gemini dentro do container
+
+⬜ Validar fluxo funcional end-to-end no ambiente Docker
+
+⬜ Deploy na Oracle Cloud Infrastructure (OCI)
+
+⬜ Validar aplicação publicada na OCI
+
+
+### 📊 Validação técnica
+
+| Etapa                                | Status |
+| ------------------------------------ | :----: |
+| 204 testes automatizados             |    ✅   |
+| GitHub Actions                       |    ✅   |
+| `google-genai` configurado           |    ✅   |
+| Docker build                         |    ✅   |
+| Docker image                         |    ✅   |
+| Container iniciado                   |    ✅   |
+| Uvicorn                              |    ✅   |
+| Streamlit                            |    ✅   |
+| Porta 8501                           |    ✅   |
+| Integração Gemini                    |    ✅   |
+| RAG end-to-end                       |    ✅   |
+| Respostas com evidências documentais |    ✅   |
+
+
+### 🔄 Próximas etapas
+☁️ Deploy da aplicação na Oracle Cloud Infrastructure (OCI);
+🔗 Validação da aplicação publicada;
+🔐 Configuração segura das variáveis de ambiente;
+📦 Validação do container no ambiente de nuvem.
+
+
+#### ⚠️ Evoluções futuras
+
+Itens planejados para uma segunda etapa, após a entrega inicial:
+
+Reranking avançado;
+Oracle Autonomous Database / Vector Search;
+Integração com Microsoft Teams;
+Integração com Slack;
+CI/CD avançado;
+Observabilidade e monitoramento;
+Atualização automática da base documental;
+Suporte ampliado a múltiplos formatos;
+Arquitetura distribuída;
+Fine-tuning;
+Melhorias adicionais de UX/UI.
 
 ### 📊 Indicadores atuais
+
 
 | Indicador | Resultado |
 |---|---:|
@@ -98,31 +159,31 @@ melhorias cosméticas grandes.
 
 ## 3️⃣ 📌 Sobre o projeto
 
-O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar a consulta, compreensão e capacitação sobre a **Reforma Tributária do Consumo**.
+O **Reforma Tributária AI Agent** é um agente de Inteligência Artificial desenvolvido para facilitar a **consulta, compreensão e capacitação** sobre a **Reforma Tributária do Consumo**.
 
-A solução utiliza **RAG — Retrieval-Augmented Generation** para transformar documentos oficiais e institucionais em uma base de conhecimento consultável por linguagem natural.
+A solução utiliza **RAG (Retrieval-Augmented Generation)** para transformar documentos oficiais e institucionais em uma **base de conhecimento estruturada e consultável por linguagem natural**.
 
-O usuário pode realizar perguntas sobre temas da Reforma Tributária e receber respostas contextualizadas a partir dos documentos recuperados, mantendo a **rastreabilidade das informações por meio dos metadados, documentos e páginas utilizadas**.
+Por meio de uma interface conversacional, o usuário pode realizar perguntas sobre temas relacionados à Reforma Tributária. O sistema recupera os trechos mais relevantes da base documental e utiliza esse contexto para gerar respostas fundamentadas, mantendo a **rastreabilidade por meio dos metadados, documentos e páginas recuperadas**.
 
 O projeto foi concebido com foco em:
 
-- Curadoria documental;
-- Governança da informação;
-- Recuperação semântica;
-- Respostas fundamentadas;
-- Rastreabilidade;
-- Controle de evidências;
-- Avaliação contínua da qualidade.
+- 📚 Curadoria e organização documental;
+- 🏛️ Governança da informação;
+- 🔎 Recuperação semântica;
+- 🧠 Geração de respostas contextualizadas;
+- 🔗 Rastreabilidade das fontes;
+- 🛡️ Controle de evidências;
+- 🧪 Avaliação da qualidade da recuperação e das respostas.
 
 ---
 
 # 4️⃣ ⭐ Diferencial do projeto
 
-O principal diferencial da solução está na **construção e governança da base de conhecimento**.
+O principal diferencial da solução está na **construção, organização e governança da base de conhecimento**.
 
-Os documentos não são simplesmente baixados e enviados para um modelo de linguagem.
+Os documentos não são simplesmente baixados e enviados para um modelo de linguagem. Antes de serem utilizados pelo agente, eles passam por um **pipeline estruturado de preparação documental**, garantindo maior qualidade na recuperação das informações e rastreabilidade das fontes.
 
-Antes da ingestão, os documentos passam por um processo estruturado de:
+### 🔄 Pipeline de construção da base
 
 ```text
 Fontes oficiais
@@ -137,18 +198,22 @@ Organização
       ↓
 Extração
       ↓
-Limpeza
+Limpeza e normalização
       ↓
-Metadados
+Enriquecimento com metadados
       ↓
 Chunking
       ↓
 Embeddings
       ↓
 Vector Store
-````
+      ↓
+Retriever + Reranker
+      ↓
+Contexto para o RAG
+```
 
-Cada documento pode possuir informações como:
+### 🗂️ Metadados documentais
 
 * Instituição responsável;
 * Módulo;
@@ -172,18 +237,17 @@ Essa abordagem permite construir uma base documental estruturada e preparada par
 
 Desenvolver um agente de IA capaz de:
 
-* Responder perguntas relacionadas à Reforma Tributária do Consumo;
-* Apoiar a capacitação de profissionais da Contabilidade;
-* Facilitar a consulta de documentos técnicos e institucionais;
-* Estruturar uma base de conhecimento documental;
-* Recuperar informações relevantes por busca semântica;
-* Gerar respostas contextualizadas;
-* Apresentar as fontes utilizadas;
-* Identificar documento e página;
-* Controlar respostas quando não houver evidências suficientes;
-* Reduzir o tempo necessário para localizar informações;
-* Disponibilizar uma interface conversacional.
-
+🤖 Responder perguntas relacionadas à Reforma Tributária do Consumo;
+📚 Apoiar a capacitação e consulta de profissionais da Contabilidade;
+🔎 Facilitar a localização de informações em documentos técnicos e institucionais;
+🗂️ Estruturar uma base de conhecimento documental;
+🧠 Recuperar informações relevantes por busca semântica;
+💬 Gerar respostas contextualizadas a partir das evidências recuperadas;
+🔗 Apresentar as fontes utilizadas na resposta;
+📄 Identificar documento e página de referência;
+🛡️ Controlar respostas quando não houver evidências suficientes na base;
+⏱️ Reduzir o tempo necessário para localizar informações;
+🖥️ Disponibilizar uma interface conversacional para consulta.
 ---
 
 # 6️⃣ 💡 Problema
@@ -192,24 +256,41 @@ A Reforma Tributária envolve mudanças relevantes na estrutura tributária bras
 
 As informações podem estar distribuídas em diferentes:
 
-* Documentos;
-* Materiais técnicos;
-* Orientações;
-* Publicações institucionais;
-* Regulamentações.
+📄 Documentos oficiais;
+📚 Materiais técnicos;
+🏛️ Orientações institucionais;
+📑 Publicações;
+⚖️ Atos normativos e regulamentações.
 
-Isso pode tornar a busca manual demorada e dificultar a localização rápida de informações específicas.
+A dispersão dessas informações pode tornar a busca manual demorada, dificultando a localização rápida de conteúdos específicos e a identificação da fonte correspondente.
 
 Nesse cenário, o projeto propõe uma camada conversacional sobre uma base documental estruturada.
 
-Em vez de procurar manualmente uma informação em diversos documentos, o usuário pode realizar uma pergunta em linguagem natural e receber uma resposta baseada nas evidências recuperadas.
+Em vez de realizar buscas manuais em diversos documentos, o usuário pode formular uma pergunta em linguagem natural. O agente então realiza a recuperação dos conteúdos mais relevantes na base de conhecimento e utiliza essas evidências para construir uma resposta contextualizada, acompanhada das respectivas referências documentais.
+
+### 🎯 Em síntese
+
+Busca manual em múltiplos documentos
+                ↓
+       Pergunta em linguagem natural
+                ↓
+      Recuperação semântica + Reranking
+                ↓
+       Contexto documental relevante
+                ↓
+           Agente de IA + LLM
+                ↓
+       Resposta fundamentada
+                ↓
+       Documento + página + fonte
 
 ---
 
 # 7️⃣ 👥 Público-alvo
 
-O agente foi concebido principalmente para:
+O Reforma Tributária AI Agent foi concebido para apoiar diferentes perfis de usuários que precisam consultar, compreender ou estudar informações relacionadas à Reforma Tributária do Consumo.
 
+Principais públicos:
 * Contadores;
 * Profissionais da área contábil;
 * Equipes fiscais e tributárias;
@@ -218,34 +299,48 @@ O agente foi concebido principalmente para:
 * Profissionais que desejam compreender o tema;
 * Usuários interessados em consultar informações sobre a Reforma Tributária.
 
-O acesso ao agente será **aberto**, não havendo necessidade de restringir sua utilização a um grupo específico de usuários.
-
+O agente foi projetado para acesso aberto, sem restrição a um grupo específico de usuários, permitindo sua utilização como ferramenta de consulta e capacitação.
 ---
 
 # 8️⃣ 🎯 Escopo do MVP
 
-A primeira versão do projeto tem como foco:
+O MVP concentra-se na construção de uma base documental estruturada e pesquisável, utilizando documentos oficiais e institucionais relacionados à Reforma Tributária do Consumo.
 
 * Documentos em formato PDF;
 * Materiais oficiais relacionados à Reforma Tributária do Consumo;
-* Materiais inicialmente concentrados em RFB/CFC;
-* Curadoria documental;
-* Processamento dos documentos;
-* Extração de conteúdo;
-* Limpeza e normalização;
+* Fontes inicialmente concentradas em RFB e CFC;
+* Curadoria e catalogação documental;
+* Ingestão e processamento dos documentos;
+* Extração, limpeza e normalização do conteúdo;
+* Enriquecimento com metadados;
 * Chunking;
 * Geração de embeddings;
-* Vector Store;
+* Persistência em Vector Store;
 * Recuperação semântica;
+* Recuperação Top-K;
 * Filtros por metadados;
-* Montagem do contexto;
-* Geração de respostas por LLM;
-* Apresentação das fontes;
+* Controle de similaridade;
+* Reranking;
+* Montagem de contexto;
+* Geração de respostas utilizando LLM;
 * Controle de evidências;
-* Interface conversacional;
-* Disponibilização em ambiente cloud.
+* Rastreabilidade das fontes;
+* Identificação de documento e página;
+* Interface conversacional com Streamlit;
+* Empacotamento da aplicação em Docker
 
-Formatos adicionais e novas integrações serão incorporados posteriormente.
+Evolução planejada
+
+Após a validação do MVP, estão previstas evoluções como:
+
+* Deploy na Oracle Cloud Infrastructure (OCI);
+* Ampliação para novos formatos documentais;
+* Integração com plataformas corporativas;
+* Observabilidade avançada;
+* Atualização automatizada da base documental;
+* Evolução da infraestrutura de armazenamento e busca vetorial.
+
+Nota: essas funcionalidades representam a evolução planejada da solução e não fazem parte necessariamente da versão atual do MVP.
 
 ---
 
@@ -280,6 +375,18 @@ Formatos adicionais e novas integrações serão incorporados posteriormente.
                      📚 Fontes + páginas
 ```
 
+---
+Fluxo simplificado
+* O usuário envia uma pergunta pela interface;
+* O Agent interpreta a solicitação;
+* O Retriever consulta a base vetorial;
+* Os documentos/chunks mais relevantes são recuperados;
+* Metadados e critérios de similaridade auxiliam na seleção das evidências;
+* O contexto recuperado é enviado à camada de LLM;
+* A resposta é gerada com base no contexto disponível;
+* As fontes e páginas utilizadas são apresentadas para permitir rastreabilidade.
+
+Essa arquitetura reduz a dependência de conhecimento exclusivamente armazenado nos parâmetros do modelo, utilizando a base documental como fonte de evidência para as respostas.
 ---
 
 # 🔟 🔎 Pipeline RAG
@@ -324,6 +431,25 @@ O fluxo completo da solução é:
 📚 Fonte + página
 ```
 
+---
+🔬 Princípio de funcionamento
+
+O pipeline não envia os documentos integralmente para o modelo de linguagem.
+
+Em vez disso, os documentos são:
+
+curados → processados → fragmentados → vetorizados → indexados → recuperados
+
+Durante uma consulta, somente os trechos mais relevantes são utilizados para construir o contexto da resposta.
+
+Isso permite:
+
+* reduzir o volume de informação enviado à LLM;
+* melhorar a relevância do contexto;
+* preservar a origem das informações;
+* identificar documento e página;
+* reduzir respostas sem evidência;
+* facilitar a avaliação da qualidade da recuperação.
 ---
 
 # 1️⃣1️⃣ 📚 Base documental
