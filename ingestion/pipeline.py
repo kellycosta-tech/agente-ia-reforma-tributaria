@@ -30,6 +30,9 @@ from ingestion.chunking import chunk_document
 from ingestion.cleaning import clean_document
 from ingestion.extraction import extract_document
 from ingestion.metadata import create_document_metadata
+from ingestion.structural_metadata import (
+    enrich_document_structure,
+)
 
 
 # ============================================================
@@ -44,6 +47,7 @@ def process_document(
     source_organization: str,
     publication_date: str | None = None,
     source_url: str | None = None,
+    module: str | None = None,
     chunk_size: int = 1000,
     chunk_overlap: int = 150,
 ) -> dict[str, Any]:
@@ -116,6 +120,14 @@ def process_document(
         extracted_document
     )
 
+# ========================================================
+# 2.1 STRUCTURAL METADATA
+# ========================================================
+
+    structured_document = enrich_document_structure(
+        cleaned_document,
+        document_name=document_name,
+)
     # ========================================================
     # 3. METADATA
     # ========================================================
@@ -127,6 +139,7 @@ def process_document(
         source_organization=source_organization,
         publication_date=publication_date,
         source_url=source_url,
+        module=module,
     )
 
     # ========================================================
@@ -134,7 +147,7 @@ def process_document(
     # ========================================================
 
     chunks = chunk_document(
-        cleaned_document,
+        structured_document,
         document_metadata=document_metadata,
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
@@ -158,6 +171,12 @@ def process_document(
                 cleaned_document
             ),
         },
+
+        "structural_metadata": {
+    "pages_enriched": len(
+        structured_document
+    ),
+},
 
         "chunking": {
             "chunks": chunks,

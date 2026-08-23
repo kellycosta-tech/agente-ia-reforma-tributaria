@@ -105,13 +105,13 @@ def generate_embedding(
 # ============================================================
 # EMBEDDINGS DOS CHUNKS
 # ============================================================
-
 def generate_embeddings(
     chunks: list[dict[str, Any]],
     model: SentenceTransformer,
 ) -> list[dict[str, Any]]:
     """
-    Gera embeddings para uma lista de chunks.
+    Gera embeddings para uma lista de chunks utilizando processamento
+    em lote.
 
     Os metadados existentes são preservados.
 
@@ -126,7 +126,7 @@ def generate_embeddings(
     Returns
     -------
     list[dict[str, Any]]
-        Chunks contendo o campo "embedding".
+        Lista de chunks contendo o campo "embedding".
     """
 
     if not isinstance(chunks, list):
@@ -134,7 +134,15 @@ def generate_embeddings(
             "chunks deve ser uma lista."
         )
 
-    result = []
+    if not isinstance(model, SentenceTransformer):
+        raise TypeError(
+            "model deve ser uma instância de SentenceTransformer."
+        )
+
+    if not chunks:
+        return []
+
+    texts: list[str] = []
 
     for chunk in chunks:
 
@@ -148,14 +156,44 @@ def generate_embeddings(
                 "Chunk deve possuir o campo 'text'."
             )
 
-        embedding = generate_embedding(
-            chunk["text"],
-            model,
-        )
+        text = chunk["text"]
 
+        if not isinstance(text, str):
+            raise TypeError(
+                "O campo 'text' deve ser uma string."
+            )
+
+        text = text.strip()
+
+        if not text:
+            raise ValueError(
+                "O campo 'text' não pode estar vazio."
+            )
+
+        texts.append(text)
+
+    # ========================================================
+    # GERAÇÃO DOS EMBEDDINGS EM BATCH
+    # ========================================================
+
+    embeddings = model.encode(
+        texts,
+        normalize_embeddings=True,
+    )
+
+    # ========================================================
+    # REASSOCIA EMBEDDINGS AOS CHUNKS
+    # ========================================================
+
+    result: list[dict[str, Any]] = []
+
+    for chunk, embedding in zip(
+        chunks,
+        embeddings,
+    ):
         embedded_chunk = {
             **chunk,
-            "embedding": embedding,
+            "embedding": embedding.tolist(),
         }
 
         result.append(

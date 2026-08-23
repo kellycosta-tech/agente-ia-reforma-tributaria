@@ -17,6 +17,16 @@ O projeto está em fase de construção e validação do pipeline de **RAG (Retr
 
 A primeira versão do projeto tem como foco documentos em **formato PDF**, priorizando qualidade de processamento, rastreabilidade das fontes e confiabilidade das respostas.
 
+| Item                      |    Resultado |
+| ------------------------- | -----------: |
+| PDFs processados          |       **34** |
+| Chunks criados            |    **1.302** |
+| Registros no Vector Store |    **1.302** |
+| `index.json`              |     ✅ Criado |
+| Embeddings                |    ✅ Gerados |
+| Vector Store              | ✅ Persistido |
+
+
 ### 📊 Status atual do MVP
 
 #### ✅ Concluído
@@ -34,30 +44,390 @@ A primeira versão do projeto tem como foco documentos em **formato PDF**, prior
 - [x] Chunking
 - [x] Validação da qualidade dos chunks
 - [x] Geração de embeddings
-- [x] Pipeline de processamento
+- [x] Implementação do Vector Store
+- [x] Persistência dos vetores
+- [x] Busca por similaridade vetorial
+- [x] Implementação do Retriever
 - [x] Testes automatizados do pipeline
+- [x] Testes automatizados de embeddings
+- [x] Testes automatizados do Vector Store
+- [x] Testes automatizados do Retriever
 
 #### 🚧 Em desenvolvimento
 
-- [ ] Indexação vetorial com Vector Store
-- [ ] Busca por similaridade semântica
-- [ ] Retriever
+
+- [ ] Integração do Retriever com o pipeline RAG
+- [ ] Implementação de reranking
 - [ ] Integração com LLM
 - [ ] Geração de respostas fundamentadas nas fontes
-- [ ] Interface conversacional
 - [ ] Avaliação da qualidade das respostas
+- [ ] Interface conversacional
+- [ ] Testes de integração
+- [ ] Configuração para produção
 - [ ] Deploy na OCI
 
+| Arquivo                         | Prioridade | Motivo                                 |
+| ------------------------------- | ---------: | -------------------------------------- |
+| `app/rag.py`                    |   🔴 **1** | Melhorar recuperação/reranking         |
+| `vectorstore/embeddings.py`     |   🔴 **2** | Melhorar representação semântica       |
+| `ingestion/chunking.py`         |   🟠 **3** | Preservar contexto nos chunks          |
+| `ingestion/metadata.py`         |   🟠 **4** | Corrigir `module=None`, `section=None` |
+| `ingestion/pipeline.py`         |   🟡 **5** | Reconstrução consistente do índice     |
+| `evaluation/run_evaluation.py`  |   🟡 **6** | Métricas mais rigorosas                |
+| `evaluation/debug_retrieval.py` |   🟡 **7** | Diagnóstico detalhado                  |
+| `evaluation_questions.json`     |   🟢 **8** | Já está adequado                       |
 
-| Requisito da etapa 3                 | Seu projeto                                                 | Status |
-| ------------------------------------ | ----------------------------------------------------------- | ------ |
-| Armazenar vetores                    | **Precisa confirmar a implementação**                       | ⚠️     |
-| Criar índice/busca vetorial          | **Precisa confirmar a implementação**                       | ⚠️     |
-| Permitir busca por similaridade      | Isso é necessário para considerar a etapa realmente fechada | ⚠️     |
+
+### 🔄 Pipeline etapas
+
+ETAPA 1 — COLETA E ORGANIZAÇÃO
+🏛️ Fontes
+   ↓
+📋 Catálogo
+   ↓
+🔎 Curadoria
+   ↓
+🏷️ Governança
+   ↓
+📁 Organização
 
 
+ETAPA 2 — PROCESSAMENTO
+📄 Ingestão
+   ↓
+📖 Extração
+   ↓
+🧹 Limpeza
+   ↓
+🏷️ Metadados
+   ↓
+✂️ Chunking
 
-### 🔄 Pipeline atual
+
+ETAPA 3 — INDEXAÇÃO
+🧮 Embeddings
+   ↓
+🗄️ Vector Store
+
+
+ETAPA 4 — RECUPERAÇÃO RAG
+🔢 Query Embedding
+   ↓
+🔍 Retriever
+   ↓
+🏷️ Filtros
+   ↓
+🔄 Reranking
+   ↓
+📝 Contexto
+
+
+ETAPA 5 — GERAÇÃO
+🧠 LLM
+   ↓
+💬 Resposta fundamentada
+   ↓
+📚 Documento + Página
+
+
+ETAPA 6 — AVALIAÇÃO
+🧪 Retrieval
+   ↓
+📊 Qualidade
+   ↓
+🎯 Precisão
+
+
+ETAPA 7 — ENTREGA
+🖥️ Interface
+   ↓
+☁️ OCI
+
+
+ETAPA 1 — COLETA E ORGANIZAÇÃO DE DOCUMENTOS
+
+
+Fontes Oficiais
+
+├── Identificação das fontes oficiais          ✅
+├── Receita Federal                            ✅
+├── Conselho Federal de Contabilidade (CFC)    ✅
+├── Fenacon                                    ✅
+└── Seleção das fontes relevantes              ✅
+
+
+Coleta Documental
+
+├── Levantamento dos documentos oficiais       ✅
+├── Download dos documentos                    ✅
+├── Organização dos arquivos                   ✅
+├── Armazenamento na base documental           ✅
+└── Padronização dos nomes dos arquivos        ✅
+
+
+Curadoria Documental
+
+├── Seleção dos documentos relevantes           ✅
+├── Verificação da origem oficial               ✅
+├── Identificação dos módulos                   ✅
+├── Identificação das partes dos documentos     ✅
+├── Verificação de duplicidades                 ✅
+└── Organização da base documental              ✅
+
+
+Catálogo Documental
+
+├── Catálogo em CSV                             ✅
+├── Catálogo em JSON                            ✅
+├── Identificação do documento                  ✅
+├── Identificação da organização de origem      ✅
+├── Identificação do módulo                     ✅
+├── Identificação do arquivo                    ✅
+└── Registro das informações documentais        ✅
+
+
+Governança Documental
+
+├── Definição dos critérios de inclusão         ✅
+├── Definição dos critérios de curadoria        ✅
+├── Padronização dos metadados                  ✅
+├── Rastreabilidade da origem documental        ✅
+└── Documentação da metodologia                 ✅
+
+
+Organização da Base
+
+├── Separação por módulos                       ✅
+├── Diretório de documentos brutos              ✅
+├── Estrutura para documentos processados       ✅
+├── Estrutura para Vector Store                 ✅
+└── Versionamento da estrutura no Git           ✅
+
+
+Integrações com Fontes
+
+├── Conexão automática com Receita Federal      🚧
+├── Conexão automática com CFC                  🚧
+├── Conexão automática com Fenacon              🚧
+└── Atualização automática da base documental   🚧
+
+
+Testes e Validações
+
+├── Validação do catálogo                       ✅
+├── Validação dos metadados                     ✅
+├── Validação da organização documental         ✅
+└── Integração automática com fontes            🚧
+
+
+ETAPA 2 — PROCESSAMENTO E EXTRAÇÃO DE CONTEÚDO
+
+Extração
+
+├── Ingestão de documentos PDF             ✅
+├── PDF nativo                             ✅
+├── Extração de texto por página           ✅
+├── Preservação da numeração das páginas   ✅
+├── Validação do conteúdo extraído         ✅
+└── Tratamento de arquivos inválidos       ✅
+
+
+Limpeza e Normalização
+
+├── Normalização de espaços                ✅
+├── Remoção de numeração de páginas        ✅
+├── Preservação de números no conteúdo     ✅
+├── Remoção de linhas repetidas            ✅
+├── Limpeza de ruídos textuais             ✅
+└── Validação da qualidade do texto        ✅
+
+
+Chunking
+
+├── Divisão do texto em chunks             ✅
+├── Controle do tamanho dos chunks         ✅
+├── Controle de overlap                    ✅
+├── Chunking por página                    ✅
+├── Chunking de documentos                 ✅
+├── Geração de IDs únicos                  ✅
+└── Validação da qualidade dos chunks      ✅
+
+
+Metadados
+
+├── Identificação do documento             ✅
+├── Nome do documento                      ✅
+├── Tipo do documento                      ✅
+├── Organização de origem                  ✅
+├── Localização/página                     ✅
+├── Metadados opcionais                    ✅
+└── Validação dos metadados                ✅
+
+
+Pipeline
+
+├── Integração das etapas                  ✅
+├── Processamento completo do documento    ✅
+├── Preservação dos metadados nos chunks   ✅
+├── Estatísticas do processamento          ✅
+└── Tratamento de arquivos inválidos       ✅
+
+
+Formatos adicionais
+
+├── Word                                   🚧
+├── Excel                                  🚧
+├── PowerPoint                             🚧
+├── Markdown                               🚧
+├── CSV                                    🚧
+├── JSON                                   🚧
+└── HTML                                   🚧
+
+
+Testes
+
+├── Testes de Extraction                   ✅
+├── Testes de Ingestion                    ✅
+├── Testes de Cleaning                     ✅
+├── Testes de Chunking                     ✅
+├── Testes de qualidade dos chunks         ✅
+├── Testes de Metadata                     ✅
+├── Testes do Pipeline                     ✅
+└── Suíte completa                         ✅
+
+
+ETAPA 3 — INDEXAÇÃO VETORIAL
+
+Embeddings
+├── Modelo SentenceTransformer         ✅
+├── Geração dos embeddings             ✅
+├── Normalização                       ✅
+└── Preservação dos metadados          ✅
+
+Vector Store
+├── Armazenamento                      ✅
+├── Persistência                       ✅
+├── Carregamento                       ✅
+├── Preservação dos metadados          ✅
+├── Similaridade de cosseno            ✅
+├── Ranking dos resultados             ✅
+└── Validações                         ✅
+
+Testes
+├── Embeddings                         ✅
+├── Vector Store                       ✅
+└── Suíte completa                     ✅
+
+ETAPA 4 — CAMADA DE RECUPERAÇÃO (RAG)
+
+
+Query Embedding
+
+├── Recebimento da pergunta               🚧
+├── Geração do embedding da consulta      ✅
+├── Uso do mesmo modelo de embeddings     ✅
+└── Normalização do vetor                 ✅
+
+Retriever
+
+├── Consulta ao Vector Store              ✅
+├── Busca por similaridade                ✅
+├── Recuperação dos Top-K resultados      ✅
+├── Ordenação por relevância              ✅
+└── Preservação dos metadados             ✅
+
+Filtros por Metadados
+
+├── Filtro por organização                ✅
+├── Filtro por módulo                     ✅
+├── Filtro por documento                  ✅
+└── Combinação de filtros                 ✅
+
+Reranking
+
+├── Recuperação de candidatos             🔮
+├── Reordenação por relevância            🔮
+└── Seleção dos melhores resultados       🔮
+
+Montagem do Contexto
+
+├── Seleção dos chunks relevantes         ✅
+├── Organização dos trechos               ✅
+├── Inclusão dos metadados de origem      ✅
+├── Inclusão de documento e página        ✅
+└── Construção do contexto para o LLM     ✅
+
+
+Testes
+
+├── Testes do Retriever                    ✅
+├── Testes de recuperação semântica        ✅
+├── Testes de validação                    ✅
+├── Testes de filtros                      ✅
+├── Testes de montagem do contexto         ✅
+└── Suíte completa                         ✅
+```
+
+ETAPA 5 — GERAÇÃO E VALIDAÇÃO DE RESPOSTAS
+🧠 LLM
+
+├── Definição da interface do LLM .................... 🚧
+├── Configuração do modelo ........................... 🚧
+├── Integração com provedor de LLM ................... 🚧
+├── Envio de pergunta + contexto ..................... 🚧
+└── Recebimento da resposta .......................... 🚧
+
+📝 Geração da resposta
+
+├── Integração RAG → Prompt → LLM .................... 🚧
+├── Geração de resposta baseada no contexto .......... 🚧
+├── Restrição ao contexto recuperado ................. 🚧
+├── Tratamento de contexto insuficiente .............. 🚧
+└── Controle de respostas fora do escopo ............. 🚧
+
+📚 Citação das fontes
+
+├── Preservação dos metadados recuperados ............ ✅
+├── Documento de origem .............................. 🚧
+├── Página ............................................ 🚧
+├── Seção ............................................. 🚧
+├── Formatação das citações .......................... 🚧
+└── Vinculação entre afirmação e fonte ................ 🚧
+
+🛡️ Validação e controle de alucinação
+
+├── Limiar mínimo de similaridade .................... 🚧
+├── Validação da existência de contexto .............. 🚧
+├── Verificação da resposta contra o contexto ........ 🚧
+├── Detecção de resposta sem evidência ............... 🚧
+├── Bloqueio de resposta sem suporte documental ...... 🚧
+└── Regeneração/rejeição de respostas inválidas ...... 🚧
+
+🚫 Fallback
+
+├── Nenhum resultado recuperado ....................... 🚧
+├── Contexto insuficiente ............................ 🚧
+├── Pergunta fora do escopo .......................... 🚧
+├── Mensagem de fallback ............................. 🚧
+└── Encaminhamento para área responsável ............. 🔮
+
+💬 Formatação final
+
+├── Resposta objetiva ................................ 🚧
+├── Estrutura da resposta ............................ 🚧
+├── Referências documentais .......................... 🚧
+├── Documento + página ............................... 🚧
+└── Formato preparado para interface conversacional . 🚧
+
+🧪 Testes
+
+├── Testes da integração com LLM ..................... 🚧
+├── Testes de geração de resposta .................... 🚧
+├── Testes de citações ............................... 🚧
+├── Testes de fallback ............................... 🚧
+├── Testes de ausência de evidência .................. 🚧
+├── Testes de controle de alucinação ................. 🚧
+└── Testes de integração RAG → LLM ................... 🚧
 
 ```text
 📄 PDF oficial
@@ -72,24 +442,39 @@ A primeira versão do projeto tem como foco documentos em **formato PDF**, prior
       ↓
 🏷️ Metadata      Documento → metadata padronizado   ✅
       ↓
-🔄 Pipeline       Orquestração                      ✅  
+🔄 Pipeline      Orquestração                       ✅
       ↓
-🧠 Embeddings                                       ✅
+🗄️ vectorstore/
+│
+├── 🧠embeddings.py                                 ✅
+│      ↓
+│   gera vetores
+│
+├── store.py                                        ✅
+│      ↓
+│   armazena + busca vetores
+│
+└── 🔍retriever.py                                 ✅
+       ↓
+    transforma pergunta
+    em embedding
+       ↓
+    consulta Vector Store
+       ↓
+    retorna chunks
+
       ↓
-🗄️ Vector Store                                    ⏳ ← próximo
-      ↓
-🔍 Retriever               ⏳
-      ↓
-🤖 RAG                     ⏳
-🔍 Retriever                                       ⏳
-      ↓        
-🤖 RAG                                             ⏳
+Reranking
+🤖 RAG                                             ⏳ ← próximo
+
 
 ```
 +
 
 ```
 Documentos
+   ↓
+Ingestão
    ↓
 Extração
    ↓
@@ -114,7 +499,9 @@ LLM/Agente
 ```
 ## 🧪 Cobertura de testes
 
-A camada de processamento possui 53 testes automatizados, com 53/53 testes passando.
+O projeto possui **81 testes automatizados**, cobrindo as principais camadas do pipeline de processamento documental, geração de embeddings, indexação vetorial e recuperação semântica.
+
+**Resultado atual: 81/81 testes passando ✅**
 
 | Módulo                  | Testes |    Status   |
 | ----------------------- | -----: | :---------: |
@@ -124,33 +511,32 @@ A camada de processamento possui 53 testes automatizados, com 53/53 testes passa
 | 🔢 Embeddings           |      6 |      ✅      |
 | 📄 Extraction           |      7 |      ✅      |
 | 📥 Ingestion            |      2 |      ✅      |
-| 🏷️ Metadata            |     10 |      ✅      |
+| 🏷️ Metadata             |     10 |      ✅      |
 | 🔄 Pipeline             |      6 |      ✅      |
-| **Total**               | **53** | **✅ 53/53** |
+| 🗄️ Vector Store         |      15|      ✅      |
+| 🔎 Retriever            |      13|      ✅      |
+| **Total**                | **81**|    **✅ 81/81** |
 
-Marco atual: o pipeline de processamento documental está validado por testes automatizados. A próxima etapa é concluir a indexação vetorial e validar a recuperação semântica.
+
+### 🔍 O que é validado
+
+Os testes automatizados verificam:
+
+- processamento e extração dos documentos;
+- limpeza e normalização do conteúdo;
+- geração e validação dos chunks;
+- preservação dos metadados documentais;
+- geração e validação dos embeddings;
+- persistência dos vetores;
+- carregamento do Vector Store;
+- busca por similaridade vetorial;
+- ordenação dos resultados por similaridade;
+- recuperação dos chunks relevantes;
+- preservação dos metadados durante a recuperação;
+- tratamento de entradas inválidas;
+- integração entre embeddings, Vector Store e Retriever.
 
 
-### 🎯 Próxima etapa
-
-Etapa 3 — Indexação vetorial
-
- Armazenamento dos embeddings no Vector Store
- Persistência da base vetorial
- Indexação para busca por similaridade
- Validação da recuperação dos chunks
- Preservação e utilização dos metadados
- Testes de busca semântica
-🔮 Roadmap futuro
-
-Após a consolidação do MVP:
-
- Citações das fontes por página
- Busca híbrida (semântica + lexical)
- Re-ranking
- Atualização automatizada da base documental
- Expansão para outros formatos de documentos
- Monitoramento e avaliação contínua do agente
 
 ###  3️⃣ 📌 Sobre o projeto
 
@@ -184,16 +570,21 @@ Os documentos não são simplesmente disponibilizados ao modelo de linguagem. An
 
 Essa abordagem permite construir uma base documental estruturada e preparada para recuperação semântica, contribuindo para respostas mais contextualizadas e verificáveis.
 
-```
+#  Pipeline Oficial
+
 🏛️ FONTES OFICIAIS
         ↓
 📋 CATÁLOGO DOCUMENTAL
         ↓
 🔎 CURADORIA
         ↓
-🏷️ METADADOS
-        ↓
 📄 INGESTÃO
+        ↓
+📖 EXTRAÇÃO
+        ↓
+🧹 CLEANING | LIMPEZA
+        ↓
+🏷️ METADADOS
         ↓
 ✂️ CHUNKING
         ↓
@@ -201,20 +592,29 @@ Essa abordagem permite construir uma base documental estruturada e preparada par
         ↓
 🗄️ VECTOR STORE
         ↓
-🔍 RETRIEVAL
+🔍 RETRIEVER
+        ↓
+    FILTROS
+       ↓
+MONTAGEM DO CONTEXTO
+       ↓
+     PROMPT
+      ↓
+🔄 RERANKING
+        ↓
+📝 CONTEXTO
         ↓
 🧠 LLM
         ↓
-💬 RESPOSTA
+💬 RESPOSTA FUNDAMENTADA
         ↓
 📚 FONTE + PÁGINA
-```
 
 ```
 ingestion/ → prepara o documento;
 vectorstore/ → transforma chunks em vetores, armazena e recupera;
-retriever.py → futuramente busca os chunks relevantes;
-store.py → futuramente controla o banco vetorial.
+retriever.py →  busca os chunks relevantes;
+store.py →  controla o banco vetorial.
 
 O embeddings.py será responsável somente por:
 
@@ -372,6 +772,19 @@ O fluxo conceitual é:
                    💬 Resposta
                          ↓
                  📚 Fontes consultadas
+```
+
+```
+                    RAG
+                     │
+          ┌──────────┴──────────┐
+          ↓                     ↓
+     RETRIEVAL                LLM
+          │                     │
+     Hit@K                  Faithfulness
+     MRR                    Answer Relevancy
+     Recall@K               Context Precision
+     Page Hit               Context Recall
 ```
 
 > **Nota:** os documentos inicialmente selecionados para o MVP são materiais oficiais do **Curso Reforma Tributária RFB e CFC**, disponibilizados no portal da Receita Federal. Materiais do CFC e da Fenacon poderão ser incorporados posteriormente, conforme a evolução da base de conhecimento.

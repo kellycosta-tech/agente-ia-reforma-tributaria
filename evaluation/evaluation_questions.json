@@ -1,0 +1,42 @@
+[
+  {
+    "id": "q001",
+    "question": "Quais são os dois principais tributos que compõem o IVA Dual da Reforma Tributária do Consumo?",
+    "answer": "O IVA Dual é composto pelo IBS (Imposto sobre Bens e Serviços), de competência dos Estados e Municípios, e pela CBS (Contribuição sobre Bens e Serviços), de competência federal.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [22]
+  },
+  {
+    "id": "q002",
+    "question": "Quais são os princípios constitucionais da Reforma Tributária do Consumo?",
+    "answer": "Os princípios constitucionais da Reforma Tributária do Consumo são simplicidade, transparência, justiça tributária, cooperação e defesa do meio ambiente.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [6, 7, 8, 9, 10, 11, 12]
+  },
+  {
+    "id": "q003",
+    "question": "Como funcionará o mecanismo de cashback para famílias de baixa renda?",
+    "answer": "O cashback é um mecanismo de devolução de tributos destinado a famílias de baixa renda, com renda mensal de até meio salário mínimo per capita, integradas ao Cadastro Único. O mecanismo prevê a devolução de parte dos tributos pagos, conforme as regras estabelecidas para cada tipo de consumo.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [36]
+  },
+  {
+    "id": "q004",
+    "question": "Quais fornecimentos são imunes ao IBS e à CBS segundo a Lei Complementar nº 214?",
+    "answer": "São imunes ao IBS e à CBS as exportações de bens e serviços e os fornecimentos abrangidos pelas hipóteses de imunidade previstas na Lei Complementar nº 214, incluindo as hipóteses relacionadas a entes públicos, entidades religiosas, partidos políticos, sindicatos, instituições de educação e assistência social sem fins lucrativos, livros, jornais, periódicos, fonogramas e videofonogramas musicais brasileiros, radiodifusão sonora e de sons e imagens de recepção livre e gratuita e ouro como ativo financeiro ou instrumento cambial.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [56, 57]
+  },
+  {
+    "id": "q005",
+    "question": "Como será feita a distribuição da receita do IBS entre Estados e Municípios durante a transição?",
+    "answer": "Durante a transição, uma parcela decrescente da receita será distribuída de acordo com a participação atual na receita e uma parcela crescente seguirá o novo sistema. Também estão previstos um Fundo de Desenvolvimento Regional e um Fundo de Compensação para os benefícios fiscais do ICMS, provido pela União.",
+    "expected_document": "Modulo_1_parte_1.pdf",
+    "expected_source": "CFC",
+    "expected_pages": [24]
+  }
+]

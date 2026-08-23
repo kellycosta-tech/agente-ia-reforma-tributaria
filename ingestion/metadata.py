@@ -77,6 +77,7 @@ def create_document_metadata(
     source_organization: str,
     publication_date: str | None = None,
     source_url: str | None = None,
+     module: str | None = None,
 ) -> dict[str, Any]:
     """
     Cria metadata documental padronizado.
