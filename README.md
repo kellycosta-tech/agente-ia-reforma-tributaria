@@ -26,6 +26,20 @@ A primeira versão do projeto tem como foco documentos em **formato PDF**, prior
 | Embeddings                |    ✅ Gerados |
 | Vector Store              | ✅ Persistido |
 
+Deploy atual
+→ Docker
+→ OCI Container Registry
+→ OCI Container Instance
+→ Streamlit
+
+Evoluções futuras
+→ OCI Object Storage
+→ OCI Vault
+→ Autonomous Database / Vector Search
+→ CI/CD
+→ monitoramento
+→ escalabilidade
+→ integração Teams/Slack
 
 ### 📊 Status atual do MVP
 
