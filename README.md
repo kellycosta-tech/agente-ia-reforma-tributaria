@@ -9,8 +9,21 @@
 [![Oracle Cloud](https://img.shields.io/badge/Cloud-Oracle%20Cloud-red?logo=oracle)](https://www.oracle.com/cloud/)
 
 ---
-## Links
-[http://localhost:8501](http://localhost:8501?utm_source=chatgpt.com)
+## 🔗 Links de Acesso
+
+### 🚀 Aplicação em produção
+[**Acessar o Agente de IA — Reforma Tributária**](https://agente-ia-reforma-tributaria.streamlit.app/)
+
+Aplicação publicada no **Streamlit Cloud**, disponível para acesso por meio de URL pública.
+
+### 💻 Execução local
+[**http://localhost:8501**](http://localhost:8501)
+
+Para executar a aplicação localmente:
+
+```bash
+python -m streamlit run app/main.py
+````
 
   
 ## 2️⃣ 🚧 Status do projeto
