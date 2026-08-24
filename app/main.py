@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from agent import create_agent
-
+from app.agent import create_agent
 # ============================================================
 # CONFIGURAÇÃO
 # ============================================================
