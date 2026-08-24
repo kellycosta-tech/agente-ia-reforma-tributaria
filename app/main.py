@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import os
+import sys
+
 import streamlit as st
 
-from app.agent import create_agent
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from agent import create_agent
 
 # ============================================================
 # CONFIGURAÇÃO
@@ -59,7 +63,9 @@ st.markdown(
        TÍTULOS
        ======================================================== */
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
         color: #f8fafc !important;
     }
 
@@ -109,7 +115,81 @@ st.markdown(
 
     [data-testid="column"] {
         background: #111827;
+        border: 1px solid #1f2937;
         border-radius: 14px;
+        padding: 1rem;
+    }
+
+    .info-card {
+        padding: 0.5rem;
+    }
+
+    .info-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-title {
+        color: #f8fafc;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+    }
+
+    .info-text {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+
+    /* ========================================================
+       TELA INICIAL
+       ======================================================== */
+
+    .welcome {
+        background: #111827;
+        border: 1px solid #263244;
+        border-radius: 18px;
+        padding: 2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .welcome-title {
+        color: #f8fafc;
+        font-size: 1.6rem;
+        font-weight: 750;
+        margin-bottom: 0.6rem;
+    }
+
+    .welcome-text {
+        color: #94a3b8;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .examples-title {
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+    }
+
+    .examples {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+    }
+
+    .example {
+        background: #1f2937;
+        border: 1px solid #374151;
+        color: #cbd5e1;
+        padding: 0.65rem 0.9rem;
+        border-radius: 10px;
+        font-size: 0.85rem;
     }
 
 
@@ -138,6 +218,10 @@ st.markdown(
         background: #1f2937 !important;
         color: #f8fafc !important;
         border: 1px solid #374151 !important;
+    }
+
+    [data-testid="stChatInput"] textarea::placeholder {
+        color: #64748b !important;
     }
 
 
@@ -177,7 +261,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
 
 # ============================================================
 # AGENTE
@@ -234,34 +317,49 @@ st.markdown(
 
 col1, col2, col3 = st.columns(3)
 
-
 with col1:
-
-    st.subheader("📚 Base documental")
-
-    st.write(
-        "Respostas fundamentadas em documentos oficiais "
-        "e materiais selecionados sobre a Reforma Tributária."
+    st.markdown(
+        """
+        <div class="info-card">
+            <div class="info-icon">📚</div>
+            <div class="info-title">Base documental</div>
+            <div class="info-text">
+                Respostas fundamentadas em documentos oficiais
+                e materiais selecionados sobre a Reforma Tributária.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
-
 
 with col2:
-
-    st.subheader("🔎 Busca inteligente")
-
-    st.write(
-        "Recuperação dos trechos mais relevantes "
-        "utilizando arquitetura RAG."
+    st.markdown(
+        """
+        <div class="info-card">
+            <div class="info-icon">🔎</div>
+            <div class="info-title">Busca inteligente</div>
+            <div class="info-text">
+                Recuperação dos trechos mais relevantes
+                utilizando arquitetura RAG.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
-
 with col3:
-
-    st.subheader("📖 Respostas com fontes")
-
-    st.write(
-        "Consulte os documentos e páginas utilizados "
-        "para fundamentar cada resposta."
+    st.markdown(
+        """
+        <div class="info-card">
+            <div class="info-icon">📖</div>
+            <div class="info-title">Respostas com fontes</div>
+            <div class="info-text">
+                Consulte os documentos e páginas utilizados
+                para fundamentar cada resposta.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
 
@@ -328,25 +426,51 @@ if "messages" not in st.session_state:
 
 if not st.session_state.messages:
 
-    st.header("👋 Como posso ajudar?")
+    st.markdown(
+        """
+        <div class="welcome">
 
-    st.write(
-        "Faça uma pergunta sobre a "
-        "**Reforma Tributária do Consumo**."
+            <div class="welcome-title">
+                👋 Como posso ajudar?
+            </div>
+
+            <div class="welcome-text">
+                Faça uma pergunta sobre a
+                <strong>Reforma Tributária do Consumo</strong>.
+            </div>
+
+            <div class="examples-title">
+                Exemplos de perguntas
+            </div>
+
+            <div class="examples">
+
+                <div class="example">
+                    O que é o IBS?
+                </div>
+
+                <div class="example">
+                    O que é a CBS?
+                </div>
+
+                <div class="example">
+                    Como funciona a transição?
+                </div>
+
+                <div class="example">
+                    Quais são os impactos para empresas?
+                </div>
+
+                <div class="example">
+                    O que muda na tributação do consumo?
+                </div>
+
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
-
-    st.write("### Exemplos")
-
-    st.info("O que é o IBS?")
-
-    st.info("O que é a CBS?")
-
-    st.info("Como funciona a transição?")
-
-    st.info("Quais são os impactos para empresas?")
-
-    st.info("O que muda na tributação do consumo?")
-
 
 # ============================================================
 # EXIBE HISTÓRICO
