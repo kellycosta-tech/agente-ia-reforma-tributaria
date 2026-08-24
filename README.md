@@ -81,20 +81,33 @@ A primeira versão prioriza documentos em **formato PDF**, com foco em:
 
 ✅ Aplicação disponível na porta `8501`
 
+✅ Integração com Gemini validada em ambiente Docker
+
+✅ Fluxo funcional end-to-end validado
+
+✅ Respostas fundamentadas com fontes e páginas
+
 ✅ GitHub Actions
 
 ✅ 204 testes automatizados aprovados
 
 #### Em validação / Próximas etapas
 
-⬜ Validar chamada real ao Gemini dentro do container
-
-⬜ Validar fluxo funcional end-to-end no ambiente Docker
-
 ⬜ Deploy na Oracle Cloud Infrastructure (OCI)
 
 ⬜ Validar aplicação publicada na OCI
 
+✅ Deploy na Oracle Cloud Infrastructure (OCI)
+
+✅ Container Instance criada
+
+✅ Aplicação publicada
+
+✅ Streamlit acessível externamente
+
+✅ Integração Gemini validada em produção
+
+✅ RAG validado end-to-end na OCI
 
 ### 📊 Validação técnica
 
@@ -112,6 +125,25 @@ A primeira versão prioriza documentos em **formato PDF**, com foco em:
 | Integração Gemini                    |    ✅   |
 | RAG end-to-end                       |    ✅   |
 | Respostas com evidências documentais |    ✅   |
+
+| Item                  | Status           |
+| --------------------- | ---------------- |
+| Container Instance    | ✅                |
+| `CI.Standard.E4.Flex` | ✅                |
+| 1 OCPU                | ✅                |
+| 16 GB RAM             | ✅                |
+| Restart `Always`      | ✅                |
+| VCN correta           | ✅                |
+| Subnet pública        | ✅                |
+| Public IP             | ✅                |
+| NSG                   | ✅ Não necessário |
+| Storage               | ✅ Nenhum         |
+| Imagem Docker Hub     | ✅                |
+| Tag `latest`          | ✅                |
+| Command sobrescrito   | ✅ Não            |
+| Command arguments     | ✅ Vazio          |
+| Streamlit na imagem   | ✅ Porta 8501     |
+
 
 
 ### 🔄 Próximas etapas
