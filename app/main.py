@@ -1,8 +1,21 @@
 from __future__ import annotations
 
+import os
+import sys
+
 import streamlit as st
 
-from app.agent import create_agent
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
+if APP_DIR not in sys.path:
+    sys.path.insert(0, APP_DIR)
+
+from agent import create_agent
 # ============================================================
 # CONFIGURAÇÃO
 # ============================================================
