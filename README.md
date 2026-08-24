@@ -91,23 +91,90 @@ A primeira versão prioriza documentos em **formato PDF**, com foco em:
 
 ✅ 204 testes automatizados aprovados
 
-#### Em validação / Próximas etapas
+## ☁️ Deploy na Oracle Cloud Infrastructure (OCI)
 
-⬜ Deploy na Oracle Cloud Infrastructure (OCI)
+A aplicação está em processo de implantação na **Oracle Cloud Infrastructure (OCI)**, utilizando uma instância Linux configurada para hospedar a aplicação Streamlit.
 
-⬜ Validar aplicação publicada na OCI
+### 📊 Status da infraestrutura
 
-✅ Deploy na Oracle Cloud Infrastructure (OCI)
+| Componente | Status |
+|---|---|
+| **Instância OCI** | ✅ Running |
+| **RunCommandPolicy** | ✅ Active |
+| **RunCommandDynamicGroup** | 🟡 Não configurado |
+| **Security List** | ✅ Available |
+| **Subnet pública** | ✅ Available |
+| **VCN** | ✅ Available |
+| **Route Table** | ✅ Available |
+| **Região** | 🇧🇷 `sa-saopaulo-1` |
+| **IP público** | `164.152.59.68` |
+| **Usuário SSH** | `opc` |
+| **Sistema operacional** | Oracle Linux 9.8 |
+| **VCN** | `vcn-reforma-tributaria` |
+| **Shape** | `VM.Standard.E2.1.Micro` |
 
-✅ Container Instance criada
+### 🖥️ Instância
 
-✅ Aplicação publicada
+```text
+Nome:       instance-20260823-2107
+Status:     ✅ Running
+Região:     sa-saopaulo-1
+SO:         Oracle Linux 9.8
+Shape:      VM.Standard.E2.1.Micro
+Usuário:    opc
+IP público: 164.152.59.68
+```
 
-✅ Streamlit acessível externamente
+### 🌐 Conectividade
 
-✅ Integração Gemini validada em produção
+A infraestrutura principal da instância já está provisionada. Entretanto, o acesso externo à instância ainda está em fase de configuração/validação.
 
-✅ RAG validado end-to-end na OCI
+| Teste                 | Status                   |
+| --------------------- | ------------------------ |
+| Instância em execução | ✅                        |
+| IP público atribuído  | ✅                        |
+| VCN configurada       | ✅                        |
+| Subnet pública        | ✅                        |
+| Route Table           | ✅                        |
+| Security List         | ✅                        |
+| Ping externo          | ❌ Sem resposta           |
+| Porta TCP 22 (SSH)    | ❌ Sem resposta           |
+| Conexão SSH           | ❌ `Connection timed out` |
+
+
+### 🔧 Próximas etapas
+  * [ ] Criar instância na OCI
+  * [ ] Configurar VCN
+  * [ ] Configurar subnet pública
+  * [ ] Configurar route table
+  * [ ] Configurar Security List
+  * [ ] Atribuir IP público
+  * [ ] Validar sistema operacional
+  * [ ] Validar conectividade SSH
+  * [ ] Instalar dependências da aplicação
+  * [ ] Transferir código para a instância
+  * [ ] Executar aplicação Streamlit
+  * [ ]  Liberar porta 8501
+  * [ ] Validar acesso externo
+  * [ ] Disponibilizar link público da aplicação
+
+### 🚀 Objetivo do Deploy
+
+Após a conclusão da configuração de rede e segurança, a aplicação deverá estar disponível externamente por meio do Streamlit, permitindo o acesso dos colaboradores ao Agente de IA para Reforma Tributária.
+
+Status atual: 🟡 Infraestrutura OCI provisionada — conectividade externa e publicação da aplicação ainda em configuração.
+
+### 🚀 Status da Publicação da Aplicação
+
+| Etapa | Status |
+|---|---|
+| Container Instance criada | ⬜ Pendente |
+| Aplicação publicada | ⬜ Pendente |
+| Streamlit acessível externamente | ⬜ Pendente |
+| Integração Gemini validada em produção | ⬜ Pendente |
+| RAG validado end-to-end na OCI | ⬜ Pendente |
+
+> **Status atual:** 🟡 Infraestrutura OCI provisionada. A conectividade com a instância e a publicação da aplicação ainda estão em andamento.
 
 ### 📊 Validação técnica
 

@@ -10,34 +10,169 @@ from app.agent import create_agent
 # ============================================================
 
 st.set_page_config(
-    page_title="Reforma Tributária AI Agent",
-    page_icon="🤖",
+    page_title="Reforma Tributária | AI Agent",
+    page_icon="⚖️",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 
 # ============================================================
-# ESTILO
+# TEMA ESCURO
 # ============================================================
 
 st.markdown(
     """
     <style>
-        .main {
-            padding-top: 2rem;
-        }
 
-        .title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
+    /* ========================================================
+       FUNDO PRINCIPAL
+       ======================================================== */
 
-        .subtitle {
-            color: #666;
-            font-size: 1.05rem;
-            margin-bottom: 2rem;
-        }
+    .stApp {
+        background: #0b1120;
+        color: #e5e7eb;
+    }
+
+    .main .block-container {
+        max-width: 1200px;
+        padding-top: 2rem;
+        padding-bottom: 6rem;
+    }
+
+
+    /* ========================================================
+       SIDEBAR
+       ======================================================== */
+
+    section[data-testid="stSidebar"] {
+        background: #111827;
+        border-right: 1px solid #1f2937;
+    }
+
+    section[data-testid="stSidebar"] * {
+        color: #e5e7eb;
+    }
+
+
+    /* ========================================================
+       TÍTULOS
+       ======================================================== */
+
+    h1, h2, h3 {
+        color: #f8fafc !important;
+    }
+
+
+    /* ========================================================
+       CABEÇALHO
+       ======================================================== */
+
+    .hero {
+        background: #111827;
+        border: 1px solid #263244;
+        border-radius: 20px;
+        padding: 2.2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #f8fafc;
+        margin-bottom: 0.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        color: #94a3b8;
+        line-height: 1.6;
+    }
+
+    .hero-status {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.35rem 0.8rem;
+        border-radius: 20px;
+        background: #052e16;
+        border: 1px solid #166534;
+        color: #86efac;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+
+    /* ========================================================
+       CARDS
+       ======================================================== */
+
+    [data-testid="column"] {
+        background: #111827;
+        border-radius: 14px;
+    }
+
+
+    /* ========================================================
+       CHAT
+       ======================================================== */
+
+    [data-testid="stChatMessage"] {
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 14px;
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+
+    /* ========================================================
+       INPUT
+       ======================================================== */
+
+    [data-testid="stChatInput"] {
+        background: #111827;
+    }
+
+    [data-testid="stChatInput"] textarea {
+        background: #1f2937 !important;
+        color: #f8fafc !important;
+        border: 1px solid #374151 !important;
+    }
+
+
+    /* ========================================================
+       EXPANDERS
+       ======================================================== */
+
+    [data-testid="stExpander"] {
+        background: #111827;
+        border: 1px solid #263244;
+        border-radius: 12px;
+    }
+
+
+    /* ========================================================
+       ALERTAS
+       ======================================================== */
+
+    [data-testid="stAlert"] {
+        border-radius: 10px;
+    }
+
+
+    /* ========================================================
+       RODAPÉ
+       ======================================================== */
+
+    .footer {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.8rem;
+        margin-top: 3rem;
+        padding: 1rem;
+    }
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -55,9 +190,13 @@ def load_agent():
 
 try:
     agent = load_agent()
+
 except Exception as exc:
+
     st.error("❌ Não foi possível inicializar o agente.")
+
     st.exception(exc)
+
     st.stop()
 
 
@@ -66,17 +205,64 @@ except Exception as exc:
 # ============================================================
 
 st.markdown(
-    '<div class="title">🤖 Reforma Tributária AI Agent</div>',
+    """
+    <div class="hero">
+
+        <div class="hero-title">
+            ⚖️ Reforma Tributária | AI Agent
+        </div>
+
+        <div class="hero-subtitle">
+            Assistente inteligente para consulta,
+            interpretação e compreensão da Reforma Tributária
+            com base em documentos oficiais.
+        </div>
+
+        <div class="hero-status">
+            ● RAG conectado
+        </div>
+
+    </div>
+    """,
     unsafe_allow_html=True,
 )
 
-st.markdown(
-    '<div class="subtitle">'
-    "Agente de IA para consulta e apoio à compreensão "
-    "da Reforma Tributária."
-    "</div>",
-    unsafe_allow_html=True,
-)
+
+# ============================================================
+# CARDS
+# ============================================================
+
+col1, col2, col3 = st.columns(3)
+
+
+with col1:
+
+    st.subheader("📚 Base documental")
+
+    st.write(
+        "Respostas fundamentadas em documentos oficiais "
+        "e materiais selecionados sobre a Reforma Tributária."
+    )
+
+
+with col2:
+
+    st.subheader("🔎 Busca inteligente")
+
+    st.write(
+        "Recuperação dos trechos mais relevantes "
+        "utilizando arquitetura RAG."
+    )
+
+
+with col3:
+
+    st.subheader("📖 Respostas com fontes")
+
+    st.write(
+        "Consulte os documentos e páginas utilizados "
+        "para fundamentar cada resposta."
+    )
 
 
 # ============================================================
@@ -85,29 +271,25 @@ st.markdown(
 
 with st.sidebar:
 
-    st.header("⚙️ Configurações")
+    st.title("⚙️ Configurações")
 
-    st.markdown("### 📚 Base de conhecimento")
+    st.subheader("📚 Base de conhecimento")
 
     st.success("RAG conectado")
 
-    st.markdown(
-        """
-        **Fontes documentais**
+    st.write("Fontes documentais:")
 
-        - Receita Federal
-        - CFC
-        - Fenacon
-        - Documentos oficiais
-        """
-    )
+    st.write("• Receita Federal")
+    st.write("• CFC")
+    st.write("• Fenacon")
+    st.write("• Documentos oficiais")
 
     st.divider()
 
-    st.markdown("### 🔎 Recuperação")
+    st.subheader("🔎 Recuperação")
 
     k = st.slider(
-        "Quantidade de documentos recuperados",
+        "Documentos recuperados",
         min_value=1,
         max_value=10,
         value=5,
@@ -115,9 +297,19 @@ with st.sidebar:
 
     st.divider()
 
+    st.subheader("ℹ️ Sobre o agente")
+
+    st.write(
+        "Este assistente utiliza uma arquitetura "
+        "Retrieval-Augmented Generation (RAG) para "
+        "consultar a base documental antes de gerar "
+        "uma resposta."
+    )
+
+    st.divider()
+
     st.caption(
-        "As respostas são geradas a partir dos documentos "
-        "recuperados pela camada RAG."
+        "Reforma Tributária | AI Agent"
     )
 
 
@@ -126,8 +318,39 @@ with st.sidebar:
 # ============================================================
 
 if "messages" not in st.session_state:
+
     st.session_state.messages = []
 
+
+# ============================================================
+# TELA INICIAL
+# ============================================================
+
+if not st.session_state.messages:
+
+    st.header("👋 Como posso ajudar?")
+
+    st.write(
+        "Faça uma pergunta sobre a "
+        "**Reforma Tributária do Consumo**."
+    )
+
+    st.write("### Exemplos")
+
+    st.info("O que é o IBS?")
+
+    st.info("O que é a CBS?")
+
+    st.info("Como funciona a transição?")
+
+    st.info("Quais são os impactos para empresas?")
+
+    st.info("O que muda na tributação do consumo?")
+
+
+# ============================================================
+# EXIBE HISTÓRICO
+# ============================================================
 
 for message in st.session_state.messages:
 
@@ -163,7 +386,8 @@ for message in st.session_state.messages:
                         )
 
                         section = source.get(
-                            "section"
+                            "section",
+                            "",
                         )
 
                         organization = source.get(
@@ -172,16 +396,19 @@ for message in st.session_state.messages:
                         )
 
                         st.markdown(
-                            f"""
-                            **📄 Documento:** {document_name}
+                            f"**📄 Documento:** {document_name}"
+                        )
 
-                            **🏢 Instituição:** {organization}
+                        st.markdown(
+                            f"**🏢 Instituição:** {organization}"
+                        )
 
-                            **📖 Página:** {page}
-                            """
+                        st.markdown(
+                            f"**📖 Página:** {page}"
                         )
 
                         if section:
+
                             st.markdown(
                                 f"**📌 Seção:** {section}"
                             )
@@ -205,16 +432,12 @@ question = st.chat_input(
 if question:
 
     # --------------------------------------------------------
-    # Exibe pergunta
+    # PERGUNTA
     # --------------------------------------------------------
 
     with st.chat_message("user"):
 
         st.markdown(question)
-
-    # --------------------------------------------------------
-    # Salva pergunta
-    # --------------------------------------------------------
 
     st.session_state.messages.append(
         {
@@ -223,8 +446,9 @@ if question:
         }
     )
 
+
     # --------------------------------------------------------
-    # Executa Agent
+    # RESPOSTA
     # --------------------------------------------------------
 
     with st.chat_message("assistant"):
@@ -250,11 +474,13 @@ if question:
                     [],
                 )
 
+
                 # --------------------------------------------
                 # RESPOSTA
                 # --------------------------------------------
 
                 st.markdown(answer)
+
 
                 # --------------------------------------------
                 # FONTES
@@ -279,7 +505,8 @@ if question:
                             )
 
                             section = source.get(
-                                "section"
+                                "section",
+                                "",
                             )
 
                             organization = source.get(
@@ -288,13 +515,15 @@ if question:
                             )
 
                             st.markdown(
-                                f"""
-                                **📄 Documento:** {document_name}
+                                f"**📄 Documento:** {document_name}"
+                            )
 
-                                **🏢 Instituição:** {organization}
+                            st.markdown(
+                                f"**🏢 Instituição:** {organization}"
+                            )
 
-                                **📖 Página:** {page}
-                                """
+                            st.markdown(
+                                f"**📖 Página:** {page}"
                             )
 
                             if section:
@@ -311,8 +540,9 @@ if question:
                         "Nenhuma fonte foi retornada."
                     )
 
+
                 # --------------------------------------------
-                # SALVA RESPOSTA
+                # SALVA HISTÓRICO
                 # --------------------------------------------
 
                 st.session_state.messages.append(
@@ -323,6 +553,7 @@ if question:
                     }
                 )
 
+
             except Exception as exc:
 
                 st.error(
@@ -330,3 +561,14 @@ if question:
                 )
 
                 st.exception(exc)
+
+
+# ============================================================
+# RODAPÉ
+# ============================================================
+
+st.divider()
+
+st.caption(
+    "⚖️ Reforma Tributária | AI Agent · Arquitetura RAG · Consulta baseada em documentos oficiais"
+)
