@@ -35,16 +35,16 @@ from __future__ import annotations
 
 from typing import Any
 
-from app.llm import (
+from llm import (
     BaseLLM,
     create_llm,
 )
 
-from app.prompts import (
+from prompts import (
     build_messages,
 )
 
-from app.rag import (
+from rag import (
     RAG,
     create_rag,
 )

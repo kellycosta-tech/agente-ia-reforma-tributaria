@@ -287,7 +287,7 @@ except Exception as exc:
 # CABEÇALHO
 # ============================================================
 
-st.markdown(
+st.html(
     """
     <div class="hero">
 
@@ -306,8 +306,7 @@ st.markdown(
         </div>
 
     </div>
-    """,
-    unsafe_allow_html=True,
+    """
 )
 
 
@@ -426,7 +425,7 @@ if "messages" not in st.session_state:
 
 if not st.session_state.messages:
 
-    st.markdown(
+    st.html(
         """
         <div class="welcome">
 
@@ -468,8 +467,7 @@ if not st.session_state.messages:
             </div>
 
         </div>
-        """,
-        unsafe_allow_html=True,
+        """
     )
 
 # ============================================================
