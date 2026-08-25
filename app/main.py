@@ -15,7 +15,8 @@ APP_DIR = os.path.dirname(os.path.abspath(__file__))
 if APP_DIR not in sys.path:
     sys.path.insert(0, APP_DIR)
 
-from agent import create_agent
+from app.agent import create_agent
+from app.llm import LLMQuotaError
 # ============================================================
 # CONFIGURAÇÃO
 # ============================================================
@@ -553,7 +554,6 @@ question = st.chat_input(
     "Digite sua pergunta sobre a Reforma Tributária..."
 )
 
-
 # ============================================================
 # PROCESSAMENTO
 # ============================================================
@@ -574,7 +574,6 @@ if question:
             "content": question,
         }
     )
-
 
     # --------------------------------------------------------
     # RESPOSTA
@@ -603,13 +602,11 @@ if question:
                     [],
                 )
 
-
                 # --------------------------------------------
                 # RESPOSTA
                 # --------------------------------------------
 
                 st.markdown(answer)
-
 
                 # --------------------------------------------
                 # FONTES
@@ -669,46 +666,59 @@ if question:
                         "Nenhuma fonte foi retornada."
                     )
 
-
                 # --------------------------------------------
                 # SALVA HISTÓRICO
                 # --------------------------------------------
 
+                st.session_state.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": answer,
+                        "sources": sources,
+                    }
+                )
+
+            # --------------------------------------------
+            # QUOTA / RATE LIMIT GEMINI
+            # --------------------------------------------
+
+            except LLMQuotaError:
+
+                st.warning(
+                    "⚠️ **Limite temporário da IA**\n\n"
+                    "O serviço de IA atingiu temporariamente "
+                    "o limite de requisições da API Gemini.\n\n"
+                    "Aguarde alguns instantes e tente novamente."
+                )
+
+            # --------------------------------------------
+            # OUTROS ERROS
+            # --------------------------------------------
+
             except Exception as exc:
 
-                error_message = str(exc)
+                st.error(
+                    "❌ Ocorreu um erro ao processar a pergunta."
+                )
 
-                # --------------------------------------------
-                # QUOTA / RATE LIMIT GEMINI
-                # --------------------------------------------
+                with st.expander(
+                    "🔎 Detalhes técnicos"
+                ):
 
-                if "QUOTA_EXCEEDED" in error_message:
-
-                    st.warning(
-                        "⚠️ **Limite temporário da IA**\n\n"
-                        "O serviço de IA atingiu temporariamente "
-                        "o limite de requisições da API Gemini.\n\n"
-                        "Aguarde alguns segundos e tente novamente."
+                    st.code(
+                        str(exc)
                     )
 
-                # --------------------------------------------
-                # OUTROS ERROS
-                # --------------------------------------------
 
-                else:
+# ============================================================
+# RODAPÉ
+# ============================================================
 
-                    st.error(
-                        "❌ Ocorreu um erro ao processar a pergunta."
-                    )
+st.divider()
 
-                    with st.expander(
-                        "🔎 Detalhes técnicos"
-                    ):
-
-                        st.code(
-                            error_message
-                        )
-
+st.caption(
+    "⚖️ Reforma Tributária | AI Agent · Arquitetura RAG · Consulta baseada em documentos oficiais"
+)
 # ============================================================
 # RODAPÉ
 # ============================================================

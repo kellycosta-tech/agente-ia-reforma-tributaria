@@ -46,6 +46,18 @@ from google import genai
 load_dotenv()
 
 # ============================================================
+# EXCEÇÕES
+# ============================================================
+
+class LLMQuotaError(RuntimeError):
+    """
+    Indica que a quota da API Gemini foi excedida.
+    """
+
+    pass
+
+
+# ============================================================
 # LLM BASE
 # ============================================================
 
@@ -251,7 +263,20 @@ class GeminiLLM(BaseLLM):
             )
 
         except Exception as exc:
+
             error_text = str(exc)
+
+            if (
+                "429" in error_text
+                or "RESOURCE_EXHAUSTED" in error_text
+                or "quota" in error_text.lower()
+            ):
+                raise LLMQuotaError(
+                    "O limite temporário de requisições da IA foi atingido. "
+                    "Aguarde alguns instantes e tente novamente."
+                ) from exc
+
+            raise
 
             # ------------------------------------------------
             # RATE LIMIT / QUOTA GEMINI
