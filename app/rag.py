@@ -39,7 +39,6 @@ from typing import Any
 
 from vectorstore.retriever import create_retriever
 
-
 # ============================================================
 # RAG
 # ============================================================
@@ -227,7 +226,6 @@ class RAG:
     # ========================================================
     # RECUPERAÇÃO + CONTEXTO
     # ========================================================
-
     def retrieve_context(
         self,
         query: str,
@@ -256,18 +254,6 @@ class RAG:
             document_name=document_name,
         )
 
-        # ========================================================
-        # FILTRO DE SIMILARIDADE
-        # ========================================================
-
-        MIN_SIMILARITY = 0.55
-
-        results = [
-            result
-            for result in results
-            if result.get("similarity", 0) >= MIN_SIMILARITY
-        ]
-
         context = self.build_context(
             results
         )
@@ -278,6 +264,31 @@ class RAG:
             "context": context,
         }
 
+        # ========================================================
+        # RERANKING
+        # ========================================================
+
+        if self.reranker_model is not None and results:
+            results = rerank_results(
+                query=query,
+                results=results,
+                model=self.reranker_model,
+                k=k,
+            )
+
+        # ========================================================
+        # CONTEXTO
+        # ========================================================
+
+        context = self.build_context(
+            results
+        )
+
+        return {
+            "query": query,
+            "results": results,
+            "context": context,
+        }
 
 # ============================================================
 # FACTORY
