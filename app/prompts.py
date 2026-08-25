@@ -95,22 +95,6 @@ def build_prompt(
     query: str,
     context: str,
 ) -> str:
-    """
-    Constrói o prompt enviado ao modelo de linguagem.
-
-    Parameters
-    ----------
-    query:
-        Pergunta realizada pelo usuário.
-
-    context:
-        Contexto recuperado pelo RAG.
-
-    Returns
-    -------
-    str
-        Prompt formatado para o LLM.
-    """
 
     if not isinstance(query, str):
         raise TypeError(
@@ -135,11 +119,18 @@ def build_prompt(
             "context não pode estar vazio."
         )
 
+    print("\n" + "=" * 80)
+    print("DEBUG - PERGUNTA")
+    print(query)
+    print("=" * 80)
+    print("DEBUG - CONTEXTO ENVIADO AO LLM")
+    print(context)
+    print("=" * 80)
+
     return USER_PROMPT_TEMPLATE.format(
         query=query,
         context=context,
     )
-
 
 # ============================================================
 # BUILD MESSAGES
