@@ -674,23 +674,40 @@ if question:
                 # SALVA HISTÓRICO
                 # --------------------------------------------
 
-                st.session_state.messages.append(
-                    {
-                        "role": "assistant",
-                        "content": answer,
-                        "sources": sources,
-                    }
-                )
-
-
             except Exception as exc:
 
-                st.error(
-                    "❌ Ocorreu um erro ao processar a pergunta."
-                )
+                error_message = str(exc)
 
-                st.exception(exc)
+                # --------------------------------------------
+                # QUOTA / RATE LIMIT GEMINI
+                # --------------------------------------------
 
+                if "QUOTA_EXCEEDED" in error_message:
+
+                    st.warning(
+                        "⚠️ **Limite temporário da IA**\n\n"
+                        "O serviço de IA atingiu temporariamente "
+                        "o limite de requisições da API Gemini.\n\n"
+                        "Aguarde alguns segundos e tente novamente."
+                    )
+
+                # --------------------------------------------
+                # OUTROS ERROS
+                # --------------------------------------------
+
+                else:
+
+                    st.error(
+                        "❌ Ocorreu um erro ao processar a pergunta."
+                    )
+
+                    with st.expander(
+                        "🔎 Detalhes técnicos"
+                    ):
+
+                        st.code(
+                            error_message
+                        )
 
 # ============================================================
 # RODAPÉ

@@ -244,12 +244,37 @@ class GeminiLLM(BaseLLM):
         # ----------------------------------------------------
         # CHAMADA À API
         # ----------------------------------------------------
+        try:
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt,
+            )
 
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=prompt,
-        )
+        except Exception as exc:
+            error_text = str(exc)
 
+            # ------------------------------------------------
+            # RATE LIMIT / QUOTA GEMINI
+            # ------------------------------------------------
+
+            if (
+                "429" in error_text
+                or "RESOURCE_EXHAUSTED" in error_text
+                or "quota" in error_text.lower()
+            ):
+                raise RuntimeError(
+                    "O serviço de IA atingiu temporariamente "
+                    "o limite de requisições da API Gemini. "
+                    "Aguarde alguns segundos e tente novamente."
+                ) from exc
+
+            # ------------------------------------------------
+            # OUTROS ERROS DA API
+            # ------------------------------------------------
+
+            raise RuntimeError(
+                "Não foi possível obter uma resposta do modelo Gemini."
+            ) from exc
         # ----------------------------------------------------
         # VALIDAÇÃO DA RESPOSTA
         # ----------------------------------------------------
