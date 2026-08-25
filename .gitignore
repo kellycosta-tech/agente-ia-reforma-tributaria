@@ -51,11 +51,12 @@ data/processed/*
 !data/processed/.gitkeep
 
 # ============================================================
-# 🗄️ VECTOR STORE GERADO
+# 🗄️ VECTOR STORE
 # ============================================================
 
 data/vector_store/*
 !data/vector_store/.gitkeep
+!data/vector_store/index.json
 
 # ============================================================
 # 📊 ARQUIVOS GERADOS
