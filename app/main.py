@@ -30,245 +30,482 @@ st.set_page_config(
 
 
 # ============================================================
-# TEMA ESCURO
+# CONTROLE DE TEMA
 # ============================================================
 
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = True
+
+
+def toggle_theme():
+    st.session_state.dark_mode = not st.session_state.dark_mode
+
+
+button_icon = (
+    "☀️"
+    if st.session_state.dark_mode
+    else "🌙"
+)
+
+# ============================================================
+# TEMA VISUAL
+# ============================================================
+
+if st.session_state.dark_mode:
+
+    bg_global = "#0F172A"
+    text_main = "#F8FAFC"
+    card_bg = "#1E293B"
+    input_bg = "#0F172A"
+    border = "rgba(255, 255, 255, 0.10)"
+    secondary_text = "#CBD5E1"
+
+else:
+
+    bg_global = "#F5F1EB"
+    text_main = "#011E38"
+    card_bg = "#FFFFFF"
+    input_bg = "#FFFFFF"
+    border = "rgba(1, 30, 56, 0.15)"
+    secondary_text = "#475569"
+
+
 st.markdown(
-    """
+    f"""
     <style>
+
+    /* ========================================================
+       PALETA
+       ======================================================== */
+
+    :root {{
+        --gb-blue-deep: #011E38;
+        --gb-blue-action: #264FEC;
+        --gb-salmon: #FFBC82;
+        --gb-off-white: #F5F1EB;
+        --gb-success: #27AE60;
+        --gb-danger: #C70E0E;
+
+        --bg-global: {bg_global};
+        --text-main: {text_main};
+        --card-bg: {card_bg};
+        --input-bg: {input_bg};
+        --border: {border};
+        --secondary-text: {secondary_text};
+    }}
+
 
     /* ========================================================
        FUNDO PRINCIPAL
        ======================================================== */
 
-    .stApp {
-        background: #0b1120;
-        color: #e5e7eb;
-    }
+    .stApp {{
+        background-color: var(--bg-global) !important;
+        color: var(--text-main) !important;
+    }}
 
-    .main .block-container {
+    .main .block-container {{
         max-width: 1200px;
         padding-top: 2rem;
         padding-bottom: 6rem;
-    }
+    }}
 
 
+    /* ========================================================
+       TEXTO GERAL
+       ======================================================== */
+
+    .stApp p,
+    .stApp span,
+    .stApp label,
+    .stApp li,
+    .stApp td,
+    .stApp th,
+    .stApp strong,
+    .stApp em {{
+        color: var(--text-main) !important;
+    }}
+
+    h1,
+    h2,
+    h3 {{
+        color: var(--text-main) !important;
+    }}
+
+    /* ========================================================
+       CONTEÚDO DAS RESPOSTAS DO CHAT
+       ======================================================== */
+
+    [data-testid="stChatMessage"] p,
+    [data-testid="stChatMessage"] li,
+    [data-testid="stChatMessage"] span,
+    [data-testid="stChatMessage"] strong,
+    [data-testid="stChatMessage"] em,
+    [data-testid="stChatMessage"] h1,
+    [data-testid="stChatMessage"] h2,
+    [data-testid="stChatMessage"] h3,
+    [data-testid="stChatMessage"] h4,
+    [data-testid="stChatMessage"] h5,
+    [data-testid="stChatMessage"] h6 {{
+        color: var(--text-main) !important;
+    }}
+
+    [data-testid="stChatMessage"] a {{
+        color: var(--gb-blue-action) !important;
+    }}
+
+    [data-testid="stChatMessage"] blockquote {{
+        color: var(--secondary-text) !important;
+        border-left: 4px solid var(--gb-blue-action) !important;
+    }}
+
+    [data-testid="stChatMessage"] code {{
+        color: var(--text-main) !important;
+        background-color: var(--input-bg) !important;
+    }}
+
+    [data-testid="stChatMessage"] pre {{
+        background-color: var(--input-bg) !important;
+        color: var(--text-main) !important;
+        border: 1px solid var(--border) !important;
+    }}
+
+    /* ========================================================
+       TABELAS NAS RESPOSTAS
+       ======================================================== */
+
+    [data-testid="stChatMessage"] table {{
+        color: var(--text-main) !important;
+        background-color: var(--card-bg) !important;
+    }}
+
+    [data-testid="stChatMessage"] thead th {{
+        color: var(--text-main) !important;
+        background-color: var(--input-bg) !important;
+        border-color: var(--border) !important;
+    }}
+
+    [data-testid="stChatMessage"] tbody td {{
+        color: var(--text-main) !important;
+        border-color: var(--border) !important;
+    }}
+    
     /* ========================================================
        SIDEBAR
        ======================================================== */
 
-    section[data-testid="stSidebar"] {
-        background: #111827;
-        border-right: 1px solid #1f2937;
-    }
+    section[data-testid="stSidebar"] {{
+        background-color: var(--gb-blue-deep) !important;
+        border-right: 1px solid rgba(255,255,255,0.10);
+    }}
 
-    section[data-testid="stSidebar"] * {
-        color: #e5e7eb;
-    }
+    section[data-testid="stSidebar"] * {{
+        color: #FFFFFF !important;
+    }}
 
 
     /* ========================================================
-       TÍTULOS
+       BOTÃO DE TEMA
        ======================================================== */
 
-    h1,
-    h2,
-    h3 {
-        color: #f8fafc !important;
-    }
+    div[data-testid="stButton"] button {{
+        background-color: var(--gb-blue-action) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 50% !important;
+
+        width: 48px !important;
+        height: 48px !important;
+
+        padding: 0 !important;
+
+        font-size: 1.2rem !important;
+
+        box-shadow:
+            0 8px 24px rgba(0,0,0,0.20);
+
+        transition:
+            transform 0.2s ease,
+            background-color 0.2s ease;
+    }}
+
+    div[data-testid="stButton"] button:hover {{
+        background-color: var(--gb-blue-deep) !important;
+        color: var(--gb-salmon) !important;
+        transform: scale(1.05);
+    }}
 
 
     /* ========================================================
        CABEÇALHO
        ======================================================== */
 
-    .hero {
-        background: #111827;
-        border: 1px solid #263244;
+    .hero {{
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
         border-radius: 20px;
+
         padding: 2.2rem;
         margin-bottom: 1.5rem;
-        text-align: center;
-    }
 
-    .hero-title {
+        text-align: center;
+
+        box-shadow:
+            0 10px 30px rgba(1,30,56,0.08);
+    }}
+
+    .hero-title {{
         font-size: 2.2rem;
         font-weight: 800;
-        color: #f8fafc;
+
+        color: var(--gb-blue-action) !important;
+
         margin-bottom: 0.6rem;
-    }
+    }}
 
-    .hero-subtitle {
+    .hero-subtitle {{
         font-size: 1rem;
-        color: #94a3b8;
-        line-height: 1.6;
-    }
+        color: var(--secondary-text) !important;
 
-    .hero-status {
+        line-height: 1.6;
+    }}
+
+    .hero-status {{
         display: inline-block;
+
         margin-top: 1rem;
+
         padding: 0.35rem 0.8rem;
+
         border-radius: 20px;
-        background: #052e16;
-        border: 1px solid #166534;
-        color: #86efac;
+
+        background: rgba(39,174,96,0.12);
+
+        border:
+            1px solid rgba(39,174,96,0.30);
+
+        color: var(--gb-success) !important;
+
         font-size: 0.8rem;
         font-weight: 600;
-    }
+    }}
 
 
     /* ========================================================
        CARDS
        ======================================================== */
 
-    [data-testid="column"] {
-        background: #111827;
-        border: 1px solid #1f2937;
+    [data-testid="column"] {{
+        background-color: var(--card-bg);
+
+        border:
+            1px solid var(--border);
+
         border-radius: 14px;
+
         padding: 1rem;
-    }
+    }}
 
-    .info-card {
+    .info-card {{
         padding: 0.5rem;
-    }
+    }}
 
-    .info-icon {
+    .info-icon {{
         font-size: 1.8rem;
         margin-bottom: 0.5rem;
-    }
+    }}
 
-    .info-title {
-        color: #f8fafc;
+    .info-title {{
+        color: var(--text-main) !important;
+
         font-size: 1rem;
         font-weight: 700;
-        margin-bottom: 0.4rem;
-    }
 
-    .info-text {
-        color: #94a3b8;
+        margin-bottom: 0.4rem;
+    }}
+
+    .info-text {{
+        color: var(--secondary-text) !important;
+
         font-size: 0.9rem;
+
         line-height: 1.5;
-    }
+    }}
 
 
     /* ========================================================
        TELA INICIAL
        ======================================================== */
 
-    .welcome {
-        background: #111827;
-        border: 1px solid #263244;
+    .welcome {{
+        background-color: var(--card-bg);
+
+        border:
+            1px solid var(--border);
+
         border-radius: 18px;
+
         padding: 2rem;
+
         margin-top: 1.5rem;
         margin-bottom: 2rem;
-    }
 
-    .welcome-title {
-        color: #f8fafc;
+        box-shadow:
+            0 10px 30px rgba(1,30,56,0.05);
+    }}
+
+    .welcome-title {{
+        color: var(--text-main) !important;
+
         font-size: 1.6rem;
         font-weight: 750;
+
         margin-bottom: 0.6rem;
-    }
+    }}
 
-    .welcome-text {
-        color: #94a3b8;
+    .welcome-text {{
+        color: var(--secondary-text) !important;
+
         font-size: 1rem;
+
         line-height: 1.6;
+
         margin-bottom: 1.5rem;
-    }
+    }}
 
-    .examples-title {
-        color: #cbd5e1;
+    .examples-title {{
+        color: var(--gb-blue-action) !important;
+
         font-size: 0.9rem;
+
         font-weight: 700;
+
         margin-bottom: 0.8rem;
-    }
+    }}
 
-    .examples {
+    .examples {{
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-    }
 
-    .example {
-        background: #1f2937;
-        border: 1px solid #374151;
-        color: #cbd5e1;
+        flex-wrap: wrap;
+
+        gap: 0.7rem;
+    }}
+
+    .example {{
+        background-color:
+            rgba(38,79,236,0.08);
+
+        border:
+            1px solid var(--border);
+
+        color: var(--text-main) !important;
+
         padding: 0.65rem 0.9rem;
+
         border-radius: 10px;
+
         font-size: 0.85rem;
-    }
+    }}
 
 
     /* ========================================================
        CHAT
        ======================================================== */
 
-    [data-testid="stChatMessage"] {
-        background: #111827;
-        border: 1px solid #1f2937;
+    [data-testid="stChatMessage"] {{
+        background-color: var(--card-bg);
+
+        border:
+            1px solid var(--border);
+
         border-radius: 14px;
+
         padding: 0.8rem;
+
         margin-bottom: 0.8rem;
-    }
+    }}
 
 
     /* ========================================================
-       INPUT
+       CAMPO DE PERGUNTA
        ======================================================== */
 
-    [data-testid="stChatInput"] {
-        background: #111827;
-    }
+    [data-testid="stChatInput"] {{
+        background-color: var(--card-bg);
+    }}
 
-    [data-testid="stChatInput"] textarea {
-        background: #1f2937 !important;
-        color: #f8fafc !important;
-        border: 1px solid #374151 !important;
-    }
+    [data-testid="stChatInput"] textarea {{
+        background-color: var(--input-bg) !important;
 
-    [data-testid="stChatInput"] textarea::placeholder {
-        color: #64748b !important;
-    }
+        color: var(--text-main) !important;
+
+        border:
+            1px solid var(--border) !important;
+    }}
+
+    [data-testid="stChatInput"] textarea::placeholder {{
+        color: #64748B !important;
+    }}
 
 
     /* ========================================================
        EXPANDERS
        ======================================================== */
 
-    [data-testid="stExpander"] {
-        background: #111827;
-        border: 1px solid #263244;
+    [data-testid="stExpander"] {{
+        background-color: var(--card-bg);
+
+        border:
+            1px solid var(--border);
+
         border-radius: 12px;
-    }
+    }}
 
 
     /* ========================================================
        ALERTAS
        ======================================================== */
 
-    [data-testid="stAlert"] {
+    [data-testid="stAlert"] {{
         border-radius: 10px;
-    }
+    }}
 
 
     /* ========================================================
        RODAPÉ
        ======================================================== */
 
-    .footer {
+    .footer {{
         text-align: center;
-        color: #64748b;
+
+        color: var(--secondary-text) !important;
+
         font-size: 0.8rem;
+
         margin-top: 3rem;
+
         padding: 1rem;
-    }
+    }}
 
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+# ============================================================
+# BOTÃO DE TEMA
+# ============================================================
+
+col_theme, _ = st.columns([1, 12])
+
+with col_theme:
+
+    st.button(
+        button_icon,
+        key="theme_toggle",
+        help="Alternar entre tema claro e escuro",
+        on_click=toggle_theme,
+    )
 
 # ============================================================
 # AGENTE
@@ -710,15 +947,6 @@ if question:
                     )
 
 
-# ============================================================
-# RODAPÉ
-# ============================================================
-
-st.divider()
-
-st.caption(
-    "⚖️ Reforma Tributária | AI Agent · Arquitetura RAG · Consulta baseada em documentos oficiais"
-)
 # ============================================================
 # RODAPÉ
 # ============================================================
