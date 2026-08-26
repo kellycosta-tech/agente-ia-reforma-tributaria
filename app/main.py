@@ -34,7 +34,7 @@ st.set_page_config(
 # ============================================================
 
 if "dark_mode" not in st.session_state:
-    st.session_state.dark_mode = True
+    st.session_state.dark_mode = False
 
 
 def toggle_theme():
